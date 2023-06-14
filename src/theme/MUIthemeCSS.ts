@@ -210,7 +210,12 @@ const theme = createTheme({
           "&.input-form": {
             width: "100%",
           },
+          "&.skill-form .MuiOutlinedInput-notchedOutline": {
+            boxShadow: "0px 0px 8px rgba(121, 121, 121, 0.12)",
+            border: "none",
+          },
           "&.input-form .MuiInputBase-root": {
+            paddingRight: "10px",
             height: "42px",
             fontSize: "14px",
             "@media (max-width: 640px)": {

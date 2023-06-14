@@ -1,6 +1,8 @@
 import TextForm from "../components/account/account-add-edit/TextForm";
 import SelectForm from "../components/account/account-add-edit/SelectForm";
 import DateForm from "../components/account/account-add-edit/DateForm";
+import SkillForm from "../components/account/account-add-edit/SkillForm";
+import { Button } from "@mui/material";
 
 const AccountAdd = () => {
   return (
@@ -13,7 +15,9 @@ const AccountAdd = () => {
             span="2"
             array={["test", "test2", "test3", "test4"]}
           />
-          <DateForm label="test2" span="1" data="" />
+          <DateForm label="test2" span="1" />
+          <SkillForm />
+          <Button className="save col-span-2">Save</Button>
         </form>
       </div>
     </div>
