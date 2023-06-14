@@ -3,7 +3,7 @@ import { Button, ButtonGroup, MenuItem, TextField } from "@mui/material";
 const AccountTabFooter = () => {
   const ar: number[] = [1, 2, 3, 4, 5];
   return (
-    <div className="flex-none p-4 flex flex-col sm:flex-row justify-between items-center text-t-light">
+    <div className="grow-0 p-4 flex flex-col sm:flex-row justify-between items-center text-t-light">
       <p>Showing 1 to 10 of 100 entries</p>
 
       <div className="flex gap-4">

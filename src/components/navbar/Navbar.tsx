@@ -7,7 +7,7 @@ import { Button } from "@mui/material";
 
 const Navbar = ({ onSidebar }: { onSidebar: any }) => {
   return (
-    <div className="w-full grid grid-cols-2 h-12 sm:h-16 px-2 sm:px-3 fixed bg-white z-20 content-center">
+    <div className="max-w-[1440px] w-full grid grid-cols-2 h-12 sm:h-16 px-2 sm:px-3 fixed bg-white z-20 content-center">
       <div
         onClick={() => onSidebar()}
         className="w-16 sm:w-20 px-2 flex items-center"

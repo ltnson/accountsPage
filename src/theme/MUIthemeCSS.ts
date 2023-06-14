@@ -5,6 +5,36 @@ const theme = createTheme({
     fontFamily: "Poppins",
   },
   components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          "&.s14-gray": {
+            fontSize: "14px",
+            color: "#9DA7B9",
+          },
+          "&.s12-gray": {
+            fontSize: "12px",
+            color: "#9DA7B9",
+          },
+          "&.s14": {
+            fontSize: "14px",
+          },
+          "&.s12": {
+            fontSize: "12px",
+          },
+          "&.s14-green": {
+            fontSize: "14px",
+            color: "#2B8143",
+          },
+          "&.s12-green-bg": {
+            fontSize: "12px",
+            color: "#2B8143",
+            background: "#E5FAE8",
+            borderRadius: "3px",
+          },
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -67,6 +97,22 @@ const theme = createTheme({
           "&.btn-group-active": {
             color: "white",
             background: "#5E90F0",
+          },
+          "&.save": {
+            background: "#5E90F0",
+            borderRadius: "4px",
+            color: "white",
+            width: "100%",
+            height: "40px",
+            fontSize: "14px",
+            fontWeight: "500",
+            "&:hover": {
+              background: "#4dabf7",
+            },
+            "@media (max-width: 640px)": {
+              height: "32px",
+              fontSize: "12px",
+            },
           },
         },
       },
@@ -161,6 +207,16 @@ const theme = createTheme({
               fontSize: "14px",
             },
           },
+          "&.input-form": {
+            width: "100%",
+          },
+          "&.input-form .MuiInputBase-root": {
+            height: "42px",
+            fontSize: "14px",
+            "@media (max-width: 640px)": {
+              height: "36px",
+            },
+          },
         },
       },
     },
@@ -172,6 +228,31 @@ const theme = createTheme({
             height: "28px",
             fontSize: "14px",
           },
+        },
+      },
+    },
+    MuiTableContainer: {
+      styleOverrides: {
+        root: {
+          borderRadius: "0",
+          boxShadow: "0",
+          flexGrow: "1",
+        },
+      },
+    },
+    MuiTable: {
+      styleOverrides: {
+        root: {
+          minWidth: "1020px",
+        },
+      },
+    },
+    MuiTableHead: {
+      styleOverrides: {
+        root: {
+          position: "sticky",
+          top: "0",
+          background: "white",
         },
       },
     },
