@@ -1,12 +1,19 @@
-import CloseSVG from "../../../assets/SVG/accountsSVG/CloseSVG";
-import ImportSVG from "../../../assets/SVG/accountsSVG/ImportSVG";
+import CloseSVG from "../../../../assets/SVG/accountsSVG/CloseSVG";
+import ImportSVG from "../../../../assets/SVG/accountsSVG/ImportSVG";
 import { Button } from "@mui/material";
+import { useContext } from "react";
+import { AccountContext } from "../../../../store/AccountContext";
 
 const AccountUpdate = () => {
+  const { setShowUpload } = useContext(AccountContext);
+
   return (
     <div className="bg-cart">
       <div className="cart-update">
-        <div className="absolute top-6 right-6">
+        <div
+          className="absolute top-6 right-6"
+          onClick={() => setShowUpload(false)}
+        >
           <CloseSVG />
         </div>
         <div className="flex flex-col gap-4">

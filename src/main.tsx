@@ -13,6 +13,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import isBetweenPlugin from "dayjs/plugin/isBetween";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { AccountProvider } from "./store/AccountContext.tsx";
 
 dayjs.extend(weekOfYear);
 dayjs.extend(customParseFormat);
@@ -27,7 +28,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <App />
+            <AccountProvider>
+              <App />
+            </AccountProvider>
           </LocalizationProvider>
         </ThemeProvider>
       </BrowserRouter>

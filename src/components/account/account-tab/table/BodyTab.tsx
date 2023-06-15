@@ -1,4 +1,5 @@
-import { TableBody, TableRow, TableCell } from "@mui/material";
+import { TableBody } from "@mui/material";
+import ItemTab from "./ItemTab";
 
 const BodyTab = () => {
   const tes: number[] = [
@@ -7,19 +8,8 @@ const BodyTab = () => {
   ];
   return (
     <TableBody>
-      {tes.map((t) => (
-        <TableRow>
-          <TableCell>{t}</TableCell>
-          <TableCell>1</TableCell>
-          <TableCell>1</TableCell>
-          <TableCell>1</TableCell>
-          <TableCell>1</TableCell>
-          <TableCell>1</TableCell>
-          <TableCell>1</TableCell>
-          <TableCell>1</TableCell>
-          <TableCell>1</TableCell>
-          <TableCell>1</TableCell>
-        </TableRow>
+      {tes.map((t, index) => (
+        <ItemTab key={index} data={t} />
       ))}
     </TableBody>
   );

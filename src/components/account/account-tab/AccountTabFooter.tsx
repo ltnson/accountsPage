@@ -19,8 +19,10 @@ const AccountTabFooter = () => {
         </TextField>
         <ButtonGroup>
           <Button className="btn-group-active">Prev.</Button>
-          {ar.map((a) => (
-            <Button className="btn-group-n">{a}</Button>
+          {ar.map((a, index) => (
+            <Button className="btn-group-n" key={index}>
+              {a}
+            </Button>
           ))}
           <Button className="btn-group">Next</Button>
         </ButtonGroup>

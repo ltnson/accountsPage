@@ -1,11 +1,17 @@
 import { Typography } from "@mui/material";
-import CloseSVG from "../../../assets/SVG/accountsSVG/CloseSVG";
+import CloseSVG from "../../../../assets/SVG/accountsSVG/CloseSVG";
+import { useContext } from "react";
+import { AccountContext } from "../../../../store/AccountContext";
 
 const AccountDetail = () => {
+  const { setShowDetail } = useContext(AccountContext);
   return (
     <div className="bg-cart">
       <div className="cart-detail">
-        <div className="absolute top-6 right-8">
+        <div
+          className="absolute top-6 right-8"
+          onClick={() => setShowDetail(false)}
+        >
           <CloseSVG />
         </div>
         <div className="grid grid-cols-3 border-b border-t-light gap-4 pb-4">

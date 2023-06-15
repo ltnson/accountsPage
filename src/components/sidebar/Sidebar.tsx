@@ -7,7 +7,6 @@ import ReportSVG from "../../assets/SVG/sidebarSVG/ReportSVG";
 import UsersSVG from "../../assets/SVG/sidebarSVG/UsersSVG";
 import SettingSVG from "../../assets/SVG/sidebarSVG/SettingSVG";
 import NotificationSVG from "../../assets/SVG/sidebarSVG/NotificationSVG";
-import EllipseSVG from "../../assets/SVG/sidebarSVG/EllipseSVG";
 import LogoutSVG from "../../assets/SVG/sidebarSVG/LogoutSVG";
 import { Button } from "@mui/material";
 
@@ -17,7 +16,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-16 sm:w-20 px-3 pb-4 h-screen pt-16 flex flex-col justify-between fixed sm:static bg-white z-10">
+    <div className="w-16 sm:w-20 px-3 pb-4 h-screen pt-16 flex flex-col justify-between fixed md:static bg-white z-10">
       <div>
         <DashbroadSVG className="sidebar" />
         <PJSVG className="sidebar" />
@@ -29,12 +28,18 @@ const Sidebar = () => {
         />
         <SettingSVG className="sidebar" />
       </div>
-      <div className="relative">
+      <div className="relative flex flex-col items-center gap-12">
         <NotificationSVG className="sidebar" />
-        <EllipseSVG
-          className="sidebar"
+        <div
+          className="p-2 hover:bg-red/F rounded-xl"
           onClick={() => setLogoutCart(!logoutCart)}
-        />
+        >
+          <img
+            className="bg-t-light rounded-full w-9 h-9"
+            alt="it is me"
+            src="https://robohash.org/autquiaut.png?size=50x50&set=set1"
+          />
+        </div>
         {logoutCart && (
           <div className="w-56 sm:w-64 sm:h-36 p-4 absolute z-10 bottom-2 left-12 rounded-xl shadow-xl flex flex-col justify-between bg-white">
             <div>

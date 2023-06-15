@@ -114,6 +114,31 @@ const theme = createTheme({
               fontSize: "12px",
             },
           },
+          "&.filter-clear": {
+            background: "white",
+            border: "1px solid #5E90F0",
+            borderRadius: "4px",
+            color: "#5E90F0",
+            width: "100%",
+            height: "30px",
+            fontSize: "14px",
+            fontWeight: "500",
+            "&:hover": {
+              background: "#EDF3FE",
+            },
+          },
+          "&.filter-show": {
+            background: "#5E90F0",
+            borderRadius: "4px",
+            color: "white",
+            width: "100%",
+            height: "30px",
+            fontSize: "14px",
+            fontWeight: "500",
+            "&:hover": {
+              background: "#4dabf7",
+            },
+          },
         },
       },
     },
@@ -189,6 +214,7 @@ const theme = createTheme({
         },
       },
     },
+
     MuiTextField: {
       styleOverrides: {
         root: {
@@ -215,11 +241,19 @@ const theme = createTheme({
             border: "none",
           },
           "&.input-form .MuiInputBase-root": {
-            paddingRight: "10px",
+            paddingLeft: "0",
             height: "42px",
             fontSize: "14px",
             "@media (max-width: 640px)": {
               height: "36px",
+            },
+          },
+          "&.filter-form .MuiInputBase-root": {
+            paddingRight: "10px",
+            height: "32px",
+            fontSize: "14px",
+            "@media (max-width: 640px)": {
+              height: "30px",
             },
           },
         },
@@ -270,6 +304,13 @@ const theme = createTheme({
             fontSize: "12px",
             padding: "6px",
           },
+        },
+      },
+    },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          padding: "4px 6px 4px 0",
         },
       },
     },

@@ -15,7 +15,7 @@ import VinovaSVG from "../../assets/SVG/VinovaSVG";
 import { useState } from "react";
 
 const loginSchema = yup.object().shape({
-  email: yup.string().required(),
+  username: yup.string().required(),
   password: yup.string().required(),
 });
 
@@ -53,14 +53,14 @@ const LoginCart = () => {
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div>
-            <label className="text-sm md:text-base">Email</label>
+            <label className="text-sm md:text-base">User Name</label>
             <TextField
               size="small"
-              placeholder="Email"
+              placeholder="User Name"
               fullWidth
-              {...register("email")}
+              {...register("username")}
             />
-            <p className="text-red">{errors.email?.message}</p>
+            <p className="text-red">{errors.username?.message}</p>
           </div>
           <div>
             <label className="text-sm md:text-base">Password</label>
