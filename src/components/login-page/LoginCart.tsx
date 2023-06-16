@@ -7,12 +7,16 @@ import {
   InputAdornment,
   IconButton,
   Button,
+  LinearProgress,
 } from "@mui/material";
-import { FormData } from "../../model/types";
+import { LoginData } from "../../model/types";
 import EyeClosed from "../../assets/SVG/loginSVG/EyeClosed";
 import EyeOpen from "../../assets/SVG/loginSVG/EyeOpen";
 import VinovaSVG from "../../assets/SVG/VinovaSVG";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { loginAccountMutation, catchErr } from "../../hooks/Accounts";
+import { AccountContext } from "../../store/AccountContext";
+import { Toaster } from "react-hot-toast";
 
 const loginSchema = yup.object().shape({
   username: yup.string().required(),
@@ -20,20 +24,32 @@ const loginSchema = yup.object().shape({
 });
 
 const LoginCart = () => {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<LoginData>({
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data: FormData) => console.log(data);
+  const { setUserData, setAuthLogin } = useContext(AccountContext);
+  const { mutate, isLoading } = loginAccountMutation();
 
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const onSubmit = (loginData: LoginData) => {
+    mutate(loginData, {
+      onSuccess: (data) => {
+        localStorage.setItem("user", JSON.stringify(data));
+        setUserData(data);
+        setAuthLogin(true);
+      },
+      onError: (error) => catchErr(error),
+    });
+  };
 
   return (
     <div className="fixed px-8 z-20 top-0 py-12 w-full h-screen">
+      <Toaster />
       <div className="cart-css">
         <VinovaSVG />
         <p className="text-xl lg:text-2xl xl:text-3xl font-extrabold">
@@ -54,6 +70,7 @@ const LoginCart = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div>
             <label className="text-sm md:text-base">User Name</label>
+            <p>kminchelle</p>
             <TextField
               size="small"
               placeholder="User Name"
@@ -64,6 +81,7 @@ const LoginCart = () => {
           </div>
           <div>
             <label className="text-sm md:text-base">Password</label>
+            <p>0lelplR</p>
             <TextField
               size="small"
               placeholder="Password"
@@ -84,11 +102,17 @@ const LoginCart = () => {
           </div>
 
           <Typography className="text-sm md:text-md font-light">
-            Forgot your password?
+            <a href="#">Forgot your password?</a>
           </Typography>
-          <Button className="login-btn-1" type="submit">
-            Login
-          </Button>
+          {isLoading ? (
+            <div className="py-4">
+              <LinearProgress />
+            </div>
+          ) : (
+            <Button className="login-btn-1" type="submit">
+              Login
+            </Button>
+          )}
           <div className="flex justify-between ">
             <div className="grow px-2">
               <p className="border my-2"></p>

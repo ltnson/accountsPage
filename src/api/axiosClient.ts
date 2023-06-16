@@ -1,22 +1,26 @@
 import axios from "axios";
 
-const LOGIN_URL = import.meta.env.VITE_REACT_LOGIN_URL;
+const LOGIN_URL = import.meta.env.VITE_REACT_POST_LOGIN;
 const ACCOUNTS_URL = import.meta.env.VITE_REACT_ACCOUNTS_URL;
-const OPTION_PARAMS = import.meta.env.VITE_REACT_OPTION_PARAMS;
 const SEARCH_ACCOUNTS_URL = import.meta.env.VITE_REACT_SEARCH_ACCOUNTS_URL;
-
 const ADD_ACCOUNT_URL = import.meta.env.VITE_REACT_ADD_ACCOUNT_URL;
 
+const SELECT_OPTIONS = import.meta.env.VITE_REACT_SELECT_OPTIONS;
+
 const axiosClient = {
-  postLogin: async (username: string, password: string) => {
+  postLogin: async (data: any) => {
+    console.log(`${LOGIN_URL}`, typeof `${LOGIN_URL}`);
     try {
-      const response = await axios.post(LOGIN_URL, {
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
-      });
+      const response = await axios.post(
+        `${LOGIN_URL}`,
+        {
+          username: data.username,
+          password: data.password,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       return response.data;
     } catch (error) {
       throw error;
@@ -33,7 +37,7 @@ const axiosClient = {
   getLimitAccounts: async (limit: number, skip: number) => {
     try {
       const response = await axios.get(
-        `${ACCOUNTS_URL}?limit=${limit}&skip=${skip}&select=${OPTION_PARAMS}`
+        `${ACCOUNTS_URL}?limit=${limit}&skip=${skip}&${SELECT_OPTIONS}`
       );
       const jsonData = response.data;
       return jsonData;
@@ -52,7 +56,7 @@ const axiosClient = {
 
   getDetailAccount: async (id: number) => {
     try {
-      const response = await axios.get(`${ACCOUNTS_URL}/${id}/carts`);
+      const response = await axios.get(`${ACCOUNTS_URL}/${id}`);
       return response.data;
     } catch (err) {
       throw err;

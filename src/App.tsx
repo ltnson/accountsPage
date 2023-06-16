@@ -9,23 +9,21 @@ import Navbar from "./components/navbar/Navbar";
 import AccountAdd from "./page/AccountAdd";
 
 function App() {
-  const { showSidebar } = useContext(AccountContext);
-  const { authLogin } = useContext(AccountContext);
+  const { authLogin, showArr } = useContext(AccountContext);
 
   return (
     <div className="flex justify-center">
       {authLogin ? (
-        <>
+        <div className="flex w-full max-w-[1440px] bg-account-page ">
           <Navbar />
-          <div className="flex w-full max-w-[1440px] bg-account-page">
-            {showSidebar && <Sidebar />}
-            <Routes>
-              <Route path="/" element={<Navigate to="/accounts" />} />
-              <Route path="/accounts" element={<AccountTab />} />
-              <Route path="/accounts/add" element={<AccountAdd />} />
-            </Routes>
-          </div>
-        </>
+          {showArr.sidebar && <Sidebar />}
+          <Routes>
+            <Route path="/" element={<Navigate to="/accounts" />} />
+            <Route path="/accounts" element={<AccountTab />} />
+            <Route path="/accounts/add" element={<AccountAdd />} />
+            <Route path="/accounts/edit/:idAccount" element={<AccountAdd />} />
+          </Routes>
+        </div>
       ) : (
         <LoginPage />
       )}

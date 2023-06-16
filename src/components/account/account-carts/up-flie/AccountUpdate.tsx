@@ -5,14 +5,14 @@ import { useContext } from "react";
 import { AccountContext } from "../../../../store/AccountContext";
 
 const AccountUpdate = () => {
-  const { setShowUpload } = useContext(AccountContext);
+  const { setShowArr, showArr } = useContext(AccountContext);
 
   return (
     <div className="bg-cart">
       <div className="cart-update">
         <div
           className="absolute top-6 right-6"
-          onClick={() => setShowUpload(false)}
+          onClick={() => setShowArr({ ...showArr, update: false })}
         >
           <CloseSVG />
         </div>

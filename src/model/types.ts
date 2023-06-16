@@ -1,4 +1,4 @@
-export type FormData = {
+export type LoginData = {
   username: string;
   password: string;
 };
@@ -78,29 +78,16 @@ export interface Account {
 
 export type Accounts = Account[];
 
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  quantity: number;
-  total: number;
-  discountPercentage: number;
-  discountedPrice: number;
-}
-
-interface Cart {
-  id: number;
-  products: Product[];
-  total: number;
-  discountedTotal: number;
-  userId: number;
-  totalProducts: number;
-  totalQuantity: number;
-}
-
-export interface CartResponse {
-  carts: Cart[];
+export type AccountLimit = {
+  users: Accounts;
   total: number;
   skip: number;
   limit: number;
-}
+};
+
+export type ShowArr = {
+  sidebar: boolean;
+  detail: boolean;
+  filter: boolean;
+  update: boolean;
+};

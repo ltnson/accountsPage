@@ -32,6 +32,12 @@ const theme = createTheme({
             background: "#E5FAE8",
             borderRadius: "3px",
           },
+          "&.layout-sideber": {
+            width: "80px",
+            "@media (max-width: 640px)": {
+              width: "64px",
+            },
+          },
         },
       },
     },

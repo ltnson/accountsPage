@@ -28,6 +28,7 @@ export default {
         "alpha/4": "rgba(0,0,0,0.4)",
         "neutral/f5": "#F5F5F5",
         "red/F": "#FFF3F4",
+        "tag/green10": "#E5FAE8",
       },
     },
     fontFamily: {

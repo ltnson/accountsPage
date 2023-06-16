@@ -1,15 +1,12 @@
 import { TableBody } from "@mui/material";
 import ItemTab from "./ItemTab";
+import { Accounts } from "../../../../model/types";
 
-const BodyTab = () => {
-  const tes: number[] = [
-    1, 2, 3, 1, 2, 12, 1, 1, 1, 1, 21, 12, 21, 2, 21, 21, 21, 21, 21, 21, 21,
-    21, 2, 2, 21, 12, 12, 21, 21, 2, 21, 21, 21, 21, 21, 21, 12, 21,
-  ];
+const BodyTab = ({ accountsArray }: { accountsArray: Accounts }) => {
   return (
     <TableBody>
-      {tes.map((t, index) => (
-        <ItemTab key={index} data={t} />
+      {accountsArray.map((dt, index) => (
+        <ItemTab key={index} item={dt} />
       ))}
     </TableBody>
   );

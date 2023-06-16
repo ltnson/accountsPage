@@ -5,25 +5,31 @@ import { useContext } from "react";
 import { AccountContext } from "../../../../store/AccountContext";
 
 const AccountFilter = () => {
-  const { setShowFilter } = useContext(AccountContext);
+  const { showArr, setShowArr } = useContext(AccountContext);
   return (
     <div className="bg-cart">
       <div className="cart-filter relative">
         <div
           className="absolute top-6 right-8"
-          onClick={() => setShowFilter(false)}
+          onClick={() => setShowArr({ ...showArr, filter: false })}
         >
           <CloseSVG />
         </div>
         <p className="font-bold ">Filter</p>
-        <FilterForm label="Role" array={["1", "2"]} />
+        <FilterForm label="Hair Color" array={["Brown", "Chestnut", "Black"]} />
         <hr className="text-t-neutral/d2" />
-        <FilterForm label="Team" array={["1", "2"]} />
-        <FilterForm label="Position" array={["1", "2"]} />
-        <FilterForm label="Level" array={["1", "2"]} />
-        <FilterForm label="Skill" array={["1", "2"]} />
+        <FilterForm
+          label="Hair Type"
+          array={["Curly", "Straight", "Very curly"]}
+        />
+        <FilterForm
+          label="Eye color"
+          array={["Blue", "Gray", "Amber", "Brown"]}
+        />
+        <FilterForm label="Level" array={["test ", "test 2"]} />
+        <FilterForm label="Skill" array={["skill 1", "skill 2"]} />
         <hr className="text-t-neutral/d2" />
-        <FilterForm label="Contact Type" array={["1", "2"]} />
+        <FilterForm label="Contact Type" array={["skill 1", "skill 2"]} />
         <div className="flex gap-4 w-full">
           <Button className="filter-clear">Clear All</Button>
           <Button className="filter-show">Show</Button>

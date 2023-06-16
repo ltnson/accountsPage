@@ -10,8 +10,7 @@ import { useContext } from "react";
 import { AccountContext } from "../../store/AccountContext";
 
 const Navbar = () => {
-  const { showSidebar, setShowSidebar, setShowUpload } =
-    useContext(AccountContext);
+  const { showArr, setShowArr } = useContext(AccountContext);
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -33,24 +32,32 @@ const Navbar = () => {
     );
   }
   return (
-    <div className="max-w-[1440px] w-full flex h-12 sm:h-16 px-2 sm:px-3 fixed bg-white z-20 items-center">
-      <div
-        onClick={() => setShowSidebar(!showSidebar)}
-        className=" px-2 flex items-center w-full"
-      >
-        <SidebarButton className="sidebar-toggle" />
-        {title}
-      </div>
-      {pathname === "/accounts" && (
-        <div className="flex gap-2.5 justify-self-end h-12 items-center">
-          <FieldSVG className="navbar" />
-          <UploadSVG className="navbar" onClick={() => setShowUpload(true)} />
-          <DownloadSVG className="navbar" />
-          <Button className="navbar" onClick={() => navigate("/accounts/add")}>
-            <PlushSVG /> New Account
-          </Button>
+    <div className="flex justify-center fixed top-0 left-0 w-full">
+      <div className="max-w-[1440px] w-full flex h-12 sm:h-16 px-2 sm:px-3  bg-white z-20 items-center">
+        <div
+          onClick={() => setShowArr({ ...showArr, sidebar: !showArr.sidebar })}
+          className=" px-2 flex items-center w-full"
+        >
+          <SidebarButton className="sidebar-toggle" />
+          {title}
         </div>
-      )}
+        {pathname === "/accounts" && (
+          <div className="flex gap-2.5 justify-self-end h-12 items-center">
+            <FieldSVG className="navbar" />
+            <UploadSVG
+              className="navbar"
+              onClick={() => setShowArr({ ...showArr, update: true })}
+            />
+            <DownloadSVG className="navbar" />
+            <Button
+              className="navbar"
+              onClick={() => navigate("/accounts/add")}
+            >
+              <PlushSVG /> New Account
+            </Button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import { Button } from "@mui/material";
 
 const AccountAdd = () => {
   return (
-    <div className=" w-full h-screen pt-14 sm:pt-20 p-2 sm:p-4 ">
+    <div className="w-full h-screen pt-14 sm:pt-20 p-2 sm:p-4 ">
       <div className="bg-white w-full h-full rounded-xl p-5 overflow-y-auto">
         <form className="max-w-[680px]">
           <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 pb-4 sm:pb-6 border-b border-t-neutral/DE">
