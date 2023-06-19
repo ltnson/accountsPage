@@ -77,13 +77,13 @@ export interface Account {
 }
 
 export interface EditForm {
-  id?: number;
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
   username: string;
   birthDate: string;
+  today: string;
 }
 
 export type Accounts = Account[];
