@@ -18,11 +18,14 @@ const AccountUpdate = () => {
         </div>
         <div className="flex flex-col gap-4">
           <p className="text-xl font-semibold">Import Data</p>
-          <div className="update-import">
+
+          <label className="update-import" htmlFor="accounts-file">
             <ImportSVG />
             <p className="text-xl font-bold py-2">Drag your csv here</p>
             <p>or, click to select a csv file</p>
-          </div>
+            <input type="file" className="hidden" id="accounts-file" />
+          </label>
+
           <div className="">
             <p className="font-semibold text-sm">Requirement:</p>
             <ul className="pl-8 list-disc">

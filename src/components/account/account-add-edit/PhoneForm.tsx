@@ -5,19 +5,36 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const PhoneForm = ({
   label,
   span,
   data,
+  onValue,
 }: {
   label: string;
   span: string;
-  data: string;
+  data?: string;
+  onValue: any;
 }) => {
-  const [value, setValue] = useState<string>(data ? data : "");
+  const [value, setValue] = useState<string>("");
   const [phoneCode, setPhoneCode] = useState<string>("+84");
+
+  useEffect(() => {
+    if (data) {
+      const secondPart = data.split(" ")[1];
+      const remainingPart = data.slice(data.indexOf(secondPart));
+      setValue(remainingPart);
+      const firstPart = data?.split(" ")[0];
+      setPhoneCode(firstPart);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    onValue(phoneCode + value);
+  }, [value, phoneCode]);
+
   return (
     <div className={`col-span-${span}`}>
       <Typography className="s12">
@@ -39,7 +56,8 @@ const PhoneForm = ({
                 onChange={(e) => setPhoneCode(e.target.value)}
                 sx={{ minWidth: "90px" }}
               >
-                <MenuItem value="+84">+84</MenuItem>
+                <MenuItem value={phoneCode}>{phoneCode}</MenuItem>
+                <MenuItem value="+7">+7</MenuItem>
                 <MenuItem value="+1">+1</MenuItem>
               </Select>
             </InputAdornment>

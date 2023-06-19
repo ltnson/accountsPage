@@ -1,15 +1,59 @@
 import { Button, ButtonGroup, MenuItem, TextField } from "@mui/material";
 import { useContext } from "react";
 import { AccountContext } from "../../../store/AccountContext";
+import { useLocation } from "react-router-dom";
 
 const AccountTabFooter = () => {
+  const {
+    totalTab,
+    skipTab,
+    setSkipTab,
+    limitTab,
+    setLimitTab,
+    searchResult,
+    opMember,
+  } = useContext(AccountContext);
+
+  const { pathname } = useLocation();
   const ar: number[] = [1, 2, 3, 4, 5];
-  const { limitTab, setLimitTab, skipTab, setSkipTab } =
-    useContext(AccountContext);
+
+  if (pathname.includes("/accounts/search")) {
+    return (
+      <div className="grow-0 p-4 text-t-light">
+        <p>
+          Showing {searchResult} of {totalTab} total
+        </p>
+      </div>
+    );
+  }
+  if (pathname.includes("/accounts/filter")) {
+    return (
+      <div className="grow-0 p-4 text-t-light">
+        <p>
+          Showing {searchResult} of {totalTab} total
+        </p>
+      </div>
+    );
+  }
+  if (opMember === "vinova") {
+    return (
+      <div className="grow-0 p-4 text-t-light">
+        <p>Showing {totalTab} accounts of Vinova</p>
+      </div>
+    );
+  }
+  if (opMember === "partner") {
+    return (
+      <div className="grow-0 p-4 text-t-light">
+        <p>Showing {totalTab} accounts of partner</p>
+      </div>
+    );
+  }
+
   return (
     <div className="grow-0 p-4 flex flex-col sm:flex-row justify-between items-center text-t-light">
       <p>
-        Showing {skipTab + 1} to {skipTab + limitTab} of 100 entries
+        Showing {skipTab + 1} to {skipTab + limitTab} of {totalTab} entries
       </p>
       <div className="flex gap-4">
         <TextField
@@ -32,7 +76,7 @@ const AccountTabFooter = () => {
           {ar.map((a, index) => (
             <Button
               className={`btn-group-n ${
-                skipTab === index * limitTab - limitTab && "btn-group-active"
+                skipTab === index * limitTab && "btn-group-active"
               }`}
               key={index}
               onClick={() => setSkipTab(limitTab * index)}
@@ -43,7 +87,7 @@ const AccountTabFooter = () => {
           <Button
             className="btn-group"
             onClick={() =>
-              skipTab + limitTab !== 100 && setSkipTab(skipTab + limitTab)
+              skipTab + limitTab < totalTab && setSkipTab(skipTab + limitTab)
             }
           >
             Next

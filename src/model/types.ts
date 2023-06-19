@@ -76,6 +76,16 @@ export interface Account {
   userAgent: string;
 }
 
+export interface EditForm {
+  id?: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  username: string;
+  birthDate: string;
+}
+
 export type Accounts = Account[];
 
 export type AccountLimit = {
@@ -90,4 +100,10 @@ export type ShowArr = {
   detail: boolean;
   filter: boolean;
   update: boolean;
+};
+
+export type FilterOption = {
+  "hair.color": string;
+  "hair.type": string;
+  eyeColor: string;
 };

@@ -93,19 +93,21 @@ const AccountDetail = () => {
             </div>
             <div>
               <Typography className="s12-gray">Position</Typography>
-              <Typography className="s14">{data.age}</Typography>
+              <Typography className="s14">{data.bloodGroup}</Typography>
             </div>
             <div>
               <Typography className="s12-gray">Level</Typography>
-              <Typography className="s14">{data.bloodGroup}</Typography>
+              <Typography className="s14">{data.age}</Typography>
             </div>
             <div className="col-span-3">
               <Typography className="s12-gray">Skill</Typography>
-              <Typography className="s14">{data.bank.iban}</Typography>
+              <Typography className="s14">{data.university}</Typography>
             </div>
           </div>
           <div className="text-start pt-2">
-            <Typography className="s12-gray">Create on 12/02/2022</Typography>
+            <Typography className="s12-gray">
+              Create on {data.birthDate}
+            </Typography>
           </div>
         </div>
       )}

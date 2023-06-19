@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import typeApi from "../api/typeApi";
-import { LoginData } from "../model/types";
+import { EditForm, LoginData } from "../model/types";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
@@ -8,10 +8,10 @@ export const loginAccountMutation = () => {
   return useMutation((data: LoginData) => typeApi.login(data));
 };
 
-export const getAccountsLimit = (limit: number, skip: number) => {
+export const getAccountsLimit = (pathName: string) => {
   return useQuery({
-    queryKey: ["limit", limit, skip],
-    queryFn: () => typeApi.getAccounts(limit, skip),
+    queryKey: ["limit", pathName],
+    queryFn: () => typeApi.getAccounts(pathName),
   });
 };
 
@@ -22,12 +22,15 @@ export const getAccountDetail = (id: number) => {
   });
 };
 
-// export const getAccountEdit = (id: string) => {
-//   return useQuery({
-//     queryKey: ["detail", id],
-//     queryFn: () => typeApi.getDetail(id),
-//   });
-// };
+export const postAccountEdit = (id: number) => {
+  return useMutation((payload: EditForm) =>
+    typeApi.postEditAccount(id, payload)
+  );
+};
+
+export const postAccountAdd = () => {
+  return useMutation((payload: EditForm) => typeApi.postAddNewAccount(payload));
+};
 
 export const catchErr = (error: any) => {
   if (axios.isAxiosError(error)) {

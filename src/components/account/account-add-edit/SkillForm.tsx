@@ -1,48 +1,49 @@
-import {
-  TextField,
-  Typography,
-  InputAdornment,
-  IconButton,
-} from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import CalendarSVG from "../../../assets/SVG/accountsSVG/CalendarSVG";
+
 import CloseSVG2 from "../../../assets/SVG/accountsSVG/CloseSVG2";
 
 const SkillForm = () => {
-  const arr: string[] = [".NET", "PM", "Native React"];
-  const [newSk, setNewSk] = useState<string>("");
-  const [skill, setSkill] = useState<string[]>(arr ? arr : [""]);
+  const [newSk, setNewSk] = useState<string[]>([
+    ".NET",
+    "PM",
+    "Native React",
+    "Node.Js",
+    "Next",
+  ]);
+  const [skill, setSkill] = useState<string[]>([""]);
 
   return (
     <div className="col-span-2">
       <TextField
-        sx={{ overflow: "hidden" }}
-        disabled
         className="input-form"
-        fullWidth
+        maxRows={4}
         InputProps={{
           startAdornment: (
-            <div className="flex gap-x-1 items-center flex-nowrap min-w-[1280px] overflow-auto ml-2">
+            <div className="flex gap-x-1 items-center flex-nowrap  ml-2 w-auto pr-2">
               {skill.map((sk, index) => (
                 <div
-                  className="rounded-xl border border-t-light text-center flex items-center"
+                  className={`rounded-xl border border-t-light text-center flex items-center flex-nowrap ${
+                    sk === "" && "hidden"
+                  }`}
                   key={index}
                 >
-                  <div
-                    onClick={() =>
-                      setSkill(() => skill.filter((_, i) => i !== index))
-                    }
-                    className="px-1"
-                  >
-                    <CloseSVG2 />
-                  </div>
                   <Typography
                     className="s12-gray"
                     sx={{
-                      paddingRight: "5px",
-                      padding: "2px 4px 2px 0",
+                      padding: "2px 6px",
+                      display: "flex",
+                      width: "auto",
+                      whiteSpace: "nowrap",
                     }}
                   >
+                    <CloseSVG2
+                      onClick={() => {
+                        setNewSk([...newSk, sk]);
+                        setSkill(() => skill.filter((_, i) => i !== index));
+                      }}
+                    />
+
                     {sk}
                   </Typography>
                 </div>
@@ -53,25 +54,44 @@ const SkillForm = () => {
       />
       <TextField
         className="input-form skill-form"
-        value={newSk}
-        onChange={(e) => setNewSk(e.target.value)}
         InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                onClick={() => {
-                  setNewSk("");
-                  setSkill([...skill, newSk]);
-                }}
-              >
-                <CalendarSVG />
-              </IconButton>
-            </InputAdornment>
+          startAdornment: (
+            <div className="flex gap-x-1 items-center flex-nowrap  ml-2 w-auto pr-2">
+              {newSk.map((sk, index) => (
+                <div
+                  className={`rounded-xl border border-t-light text-center flex items-center flex-nowrap ${
+                    sk === "" && "hidden"
+                  }`}
+                  key={index}
+                  onClick={() => {
+                    setSkill([...skill, sk]);
+                    setNewSk(() => newSk.filter((_, i) => i !== index));
+                  }}
+                >
+                  <Typography
+                    className="s12-gray"
+                    sx={{
+                      padding: "2px 6px",
+                      display: "flex",
+                      width: "auto",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {sk}
+                  </Typography>
+                </div>
+              ))}
+            </div>
           ),
         }}
       ></TextField>
     </div>
   );
 };
+
+// onClick={() => {
+//   setNewSk("");
+//   setSkill([...skill, newSk]);
+// }}
 
 export default SkillForm;

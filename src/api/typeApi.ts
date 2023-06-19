@@ -5,14 +5,12 @@ import {
   Accounts,
   LoginData,
   AccountLimit,
+  EditForm,
 } from "../model/types";
 
 const typeApi = {
   login(data: LoginData): Promise<User> {
     return axiosClient.postLogin(data);
-  },
-  getAccounts(limit: number, skip: number): Promise<AccountLimit> {
-    return axiosClient.getLimitAccounts(limit, skip);
   },
   getSearchAccounts(searchKey: string): Promise<Accounts> {
     return axiosClient.getSearchAccounts(searchKey);
@@ -23,11 +21,14 @@ const typeApi = {
   getEditAccount(id: number): Promise<Account> {
     return axiosClient.getSignleAccount(id);
   },
-  postEditAccount(id: number, payload: any): Promise<Account> {
+  postEditAccount(id: number, payload: EditForm): Promise<Account> {
     return axiosClient.updateAccount(id, payload);
   },
-  postAddNewAccount(payload: Account): Promise<Account> {
+  postAddNewAccount(payload: EditForm): Promise<Account> {
     return axiosClient.addAccount(payload);
+  },
+  getAccounts(pathName: string): Promise<AccountLimit> {
+    return axiosClient.getLimitAccounts(pathName);
   },
 };
 

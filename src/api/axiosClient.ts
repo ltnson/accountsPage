@@ -5,8 +5,6 @@ const ACCOUNTS_URL = import.meta.env.VITE_REACT_ACCOUNTS_URL;
 const SEARCH_ACCOUNTS_URL = import.meta.env.VITE_REACT_SEARCH_ACCOUNTS_URL;
 const ADD_ACCOUNT_URL = import.meta.env.VITE_REACT_ADD_ACCOUNT_URL;
 
-const SELECT_OPTIONS = import.meta.env.VITE_REACT_SELECT_OPTIONS;
-
 const axiosClient = {
   postLogin: async (data: any) => {
     console.log(`${LOGIN_URL}`, typeof `${LOGIN_URL}`);
@@ -34,21 +32,11 @@ const axiosClient = {
       throw error;
     }
   },
-  getLimitAccounts: async (limit: number, skip: number) => {
+  getLimitAccounts: async (pathName: string) => {
     try {
-      const response = await axios.get(
-        `${ACCOUNTS_URL}?limit=${limit}&skip=${skip}&${SELECT_OPTIONS}`
-      );
+      const response = await axios.get(`${ACCOUNTS_URL}${pathName}`);
       const jsonData = response.data;
       return jsonData;
-    } catch (error) {
-      throw error;
-    }
-  },
-  getSearchAccounts: async (searchKey: string) => {
-    try {
-      const response = await axios.get(`${SEARCH_ACCOUNTS_URL}${searchKey}`);
-      return response.data;
     } catch (error) {
       throw error;
     }
@@ -99,6 +87,15 @@ const axiosClient = {
       return response.data;
     } catch (err) {
       throw err;
+    }
+  },
+
+  getSearchAccounts: async (searchKey: string) => {
+    try {
+      const response = await axios.get(`${SEARCH_ACCOUNTS_URL}${searchKey}`);
+      return response.data;
+    } catch (error) {
+      throw error;
     }
   },
 };

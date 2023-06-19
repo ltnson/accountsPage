@@ -34,29 +34,32 @@ const Navbar = () => {
   return (
     <div className="flex justify-center fixed top-0 left-0 w-full">
       <div className="max-w-[1440px] w-full flex h-12 sm:h-16 px-2 sm:px-3  bg-white z-20 items-center">
-        <div
-          onClick={() => setShowArr({ ...showArr, sidebar: !showArr.sidebar })}
-          className=" px-2 flex items-center w-full"
-        >
-          <SidebarButton className="sidebar-toggle" />
+        <div className=" px-2 flex items-center w-full">
+          <SidebarButton
+            className="sidebar-toggle"
+            onClick={() =>
+              setShowArr({ ...showArr, sidebar: !showArr.sidebar })
+            }
+          />
           {title}
         </div>
-        {pathname === "/accounts" && (
-          <div className="flex gap-2.5 justify-self-end h-12 items-center">
-            <FieldSVG className="navbar" />
-            <UploadSVG
-              className="navbar"
-              onClick={() => setShowArr({ ...showArr, update: true })}
-            />
-            <DownloadSVG className="navbar" />
-            <Button
-              className="navbar"
-              onClick={() => navigate("/accounts/add")}
-            >
-              <PlushSVG /> New Account
-            </Button>
-          </div>
-        )}
+        {!pathname.includes("/accounts/add") &&
+          !pathname.includes("/accounts/edit") && (
+            <div className="flex gap-2.5 justify-self-end h-12 items-center">
+              <FieldSVG className="navbar" />
+              <UploadSVG
+                className="navbar"
+                onClick={() => setShowArr({ ...showArr, update: true })}
+              />
+              <DownloadSVG className="navbar" />
+              <Button
+                className="navbar"
+                onClick={() => navigate("/accounts/add")}
+              >
+                <PlushSVG /> New Account
+              </Button>
+            </div>
+          )}
       </div>
     </div>
   );

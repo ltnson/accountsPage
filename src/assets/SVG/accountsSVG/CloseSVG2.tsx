@@ -8,6 +8,7 @@ const CloseSVG2 = (props: SvgIconProps) => {
       fill="none"
       {...props}
       sx={{
+        margin: "3px 0",
         width: "12px",
         height: "12px",
         "&:hover": {

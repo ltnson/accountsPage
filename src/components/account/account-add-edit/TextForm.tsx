@@ -1,16 +1,26 @@
 import { TextField, Typography, InputAdornment } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const TextForm = ({
   label,
   span,
   data,
+  onValue,
 }: {
   label: string;
   span: string;
   data: string;
+  onValue?: any;
 }) => {
-  const [value, setValue] = useState<string>(data ? data : "");
+  const [value, setValue] = useState<string>("");
+  useEffect(() => {
+    setValue(data);
+  }, [data]);
+
+  useEffect(() => {
+    onValue(value);
+  }, [value]);
+
   return (
     <div className={`col-span-${span}`}>
       <Typography className="s12">

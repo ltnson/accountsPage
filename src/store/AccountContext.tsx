@@ -16,6 +16,14 @@ interface MyContextData {
   setIdDetail: (value: number) => void;
   userData: User | null;
   setUserData: (data: User) => void;
+  filter: string;
+  setFilter: (value: string) => void;
+  opMember: string;
+  setOpMember: (value: string) => void;
+  searchResult: number;
+  setSearchResult: (value: number) => void;
+  pathName: string;
+  setPathName: (value: string) => void;
 }
 
 export const AccountContext = createContext<MyContextData>({
@@ -38,6 +46,14 @@ export const AccountContext = createContext<MyContextData>({
   setIdDetail: () => {},
   userData: null,
   setUserData: () => {},
+  opMember: "",
+  setOpMember: () => {},
+  filter: "",
+  setFilter: () => {},
+  searchResult: 0,
+  setSearchResult: () => {},
+  pathName: "",
+  setPathName: () => {},
 });
 
 export const AccountProvider = ({
@@ -55,9 +71,15 @@ export const AccountProvider = ({
 
   const [userData, setUserData] = useState<User | null>(null);
   const [limitTab, setLimitTab] = useState<number>(10);
-  const [totalTab, setTotalTab] = useState<number>(10);
+  const [totalTab, setTotalTab] = useState<number>(100);
   const [skipTab, setSkipTab] = useState<number>(0);
   const [idDetail, setIdDetail] = useState<number>(0);
+  const [opMember, setOpMember] = useState<string>("all");
+  const [filter, setFilter] = useState<string>("");
+  const [pathName, setPathName] = useState<string>(
+    `?limit=${limitTab}` + "&" + `skip=${skipTab}`
+  );
+  const [searchResult, setSearchResult] = useState<number>(0);
 
   useEffect(() => {
     const userLocalString = localStorage.getItem("user");
@@ -85,6 +107,14 @@ export const AccountProvider = ({
     setIdDetail,
     userData,
     setUserData,
+    opMember,
+    setOpMember,
+    searchResult,
+    setSearchResult,
+    filter,
+    setFilter,
+    pathName,
+    setPathName,
   };
   return (
     <AccountContext.Provider value={contextValue}>

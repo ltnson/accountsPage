@@ -7,16 +7,73 @@ import { AccountContext } from "../../../store/AccountContext";
 import { CircularProgress } from "@mui/material";
 import { getAccountsLimit, catchErr } from "../../../hooks/Accounts";
 import { Toaster } from "react-hot-toast";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const AccountTabTable = () => {
-  const { showArr, setShowArr, limitTab, skipTab } = useContext(AccountContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { pageNumber } = useParams();
+  const {
+    pathName,
+    showArr,
+    setShowArr,
+    setTotalTab,
+    setSearchResult,
+    limitTab,
+    skipTab,
+    setPathName,
+    setSkipTab,
+    opMember,
+  } = useContext(AccountContext);
 
-  const { data, isLoading, error } = getAccountsLimit(limitTab, skipTab);
+  useEffect(() => {
+    if (pageNumber)
+      setSkipTab(
+        limitTab * (parseInt(pageNumber?.split("=")[1]) - 1) || skipTab
+      );
+  }, []);
+
+  useEffect(() => {
+    navigate(`/accounts/page=${Math.ceil(skipTab / limitTab + 1)}`);
+    setPathName(`?limit=${limitTab}` + "&" + `skip=${skipTab}`);
+  }, [skipTab, limitTab]);
+
+  const { data, isLoading, error } = getAccountsLimit(pathName);
+  useEffect(() => {
+    if (data) {
+      if (location.pathname.includes("/accounts/search")) {
+        setSearchResult(data.limit);
+      }
+      if (location.pathname.includes("/accounts/filter")) {
+        console.log(data);
+        setSearchResult(data.limit);
+      }
+      setTotalTab(data.total);
+    }
+  }, [data]);
+
   useEffect(() => {
     if (error) {
       catchErr(error);
     }
   }, [error]);
+
+  const handleToSearch = (e: string) => {
+    if (e === "") {
+      if (opMember === "vinova") {
+        setPathName("/filter?key=gender&value=male");
+        return navigate("/accounts/vinova");
+      }
+      if (opMember === "partner") {
+        setPathName("/filter?key=gender&value=female");
+        return navigate("/accounts/partner");
+      }
+      navigate(`/accounts/page=${Math.ceil(skipTab / limitTab + 1)}`);
+      return setPathName(`?limit=${limitTab}` + "&" + `skip=${skipTab}`);
+    }
+    navigate(`/accounts/search?q=${e}`);
+    setPathName(`/search?q=${e}`);
+  };
 
   return (
     <div className="p-2 sm:p-5  border-b border-t-light grow flex flex-col gap-5 flex-nowrap overflow-auto">
@@ -26,6 +83,7 @@ const AccountTabTable = () => {
           placeholder="Search"
           className="search-account"
           size="small"
+          onChange={(e) => handleToSearch(e.target.value)}
         />
         <a
           className="btn-w-a w-8 h-8 sm:w-10 sm:h-10"

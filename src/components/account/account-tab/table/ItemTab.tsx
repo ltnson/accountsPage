@@ -13,7 +13,6 @@ const ItemTab = ({ item }: { item: Account }) => {
     setShowArr({ ...showArr, detail: true });
     setIdDetail(id);
   };
-  console.log(item);
 
   return (
     <TableRow>

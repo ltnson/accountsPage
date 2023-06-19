@@ -1,21 +1,45 @@
 import { TextField, Typography, MenuItem, Checkbox } from "@mui/material";
-import { useState } from "react";
 
-const FilterForm = ({ label, array }: { label: string; array?: string[] }) => {
-  const [value, setValue] = useState<string>(array ? array[0] : "");
+import { useEffect, useState } from "react";
+
+const FilterForm = ({
+  label,
+  array,
+  onValue,
+}: {
+  label: string;
+  array?: string[];
+  onValue: any;
+}) => {
+  const [checkBox, setCheckBox] = useState<boolean>(false);
+  const [valueFilter, setValueFilter] = useState<string>("");
+
+  useEffect(() => {
+    if (checkBox) {
+      onValue(valueFilter);
+    }
+  }, [checkBox, valueFilter]);
 
   return (
     <div>
       <Typography className="s14">
-        <Checkbox size="small" />
+        <Checkbox
+          size="small"
+          onChange={(e) => setCheckBox(e.target.checked)}
+        />
         {label}
       </Typography>
       <TextField
         fullWidth
         className="filter-form"
-        value={value}
         select
-        onChange={(e) => setValue(e.target.value)}
+        defaultValue={valueFilter}
+        onChange={(e) =>
+          label !== "Level" &&
+          label !== "Skill" &&
+          label !== "Contact Type" &&
+          setValueFilter(e.target.value)
+        }
       >
         {array?.map((item: string, index) => (
           <MenuItem value={item} key={index}>
