@@ -65,7 +65,7 @@ const AccountAdd = () => {
       firstName: '',
       lastName: '',
       email: '',
-      phone: '',
+      phone: '+79 ',
       username: '',
       birthDate: new Date().toLocaleDateString('en-US'),
       today: new Date().toLocaleDateString('en-US'),

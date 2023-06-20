@@ -89,7 +89,7 @@ const theme = createTheme({
             },
             '@media (max-width: 640px)': {
               height: '32px',
-              width: '110px',
+              width: '120px',
               fontSize: '12px',
             },
           },

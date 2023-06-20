@@ -18,6 +18,30 @@ const PhoneForm = ({
   span: string;
 }) => {
   const { control } = useFormContext();
+  const setPhoneCode = (value: string) => {
+    if (value.split(' ')[1] === undefined) {
+      return value;
+    }
+    return value.split(' ')[0] + ' ';
+  };
+  const selectPhoneCode = (value: string, e: string) => {
+    if (value.split(' ')[1] === undefined || value.split(' ')[1] === '') {
+      return e + ' ';
+    }
+    return e + ' ' + value.slice(value.indexOf(value.split(' ')[1]));
+  };
+  const setPhoneNumb = (value: string) => {
+    if (value.split(' ')[1] === undefined || value.split(' ')[1] === '') {
+      return '';
+    }
+    return value.slice(value.indexOf(value.split(' ')[1]));
+  };
+  const changePhoneNumb = (value: string, e: string) => {
+    if (e.length > 0) {
+      return value.split(' ')[0] + ' ' + e;
+    }
+    return value.split(' ')[0];
+  };
 
   return (
     <Controller
@@ -29,44 +53,30 @@ const PhoneForm = ({
             {label} <span className="pb-2 pl-1 text-t-red100">*</span>
           </Typography>
           <TextField
+            // type="tel"
             className="input-form"
             helperText={error ? error?.message : null}
             name={name}
             error={!!error}
-            value={
-              value && value.slice(value.indexOf(value.split(' ')[1])) !== value
-                ? value.slice(value.indexOf(value.split(' ')[1]))
-                : ''
-            }
+            value={setPhoneNumb(value)}
             onChange={(e) =>
-              value.replace(/\s/g, '').length <= 15
-                ? onChange(
-                    e.target.value
-                      ? value.split(' ')[0] + ' ' + e.target.value
-                      : value.split(' ')[0] + ' ',
-                  )
-                : onChange(
-                    value.split(' ')[0] + ' ' + e.target.value.slice(0, 18),
-                  )
+              e.target.value.length < 19
+                ? onChange(changePhoneNumb(value, e.target.value))
+                : onChange(changePhoneNumb(value, e.target.value.slice(0, -1)))
             }
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
                   <Select
-                    value={value && value.split(' ')[0] + ' '}
+                    value={setPhoneCode(value)}
                     onChange={(e) =>
-                      onChange(
-                        e.target.value +
-                          value.slice(value.indexOf(value.split(' ')[1])),
-                      )
+                      onChange(selectPhoneCode(value, e.target.value))
                     }
                     sx={{ minWidth: '90px' }}
                   >
-                    {value && (
-                      <MenuItem value={value.split(' ')[0] + ' '}>
-                        {value.split(' ')[0] + ' '}
-                      </MenuItem>
-                    )}
+                    <MenuItem value={setPhoneCode(value)}>
+                      {setPhoneCode(value)}
+                    </MenuItem>
                     <MenuItem value="+7 ">+7</MenuItem>
                     <MenuItem value="+84 ">+84</MenuItem>
                   </Select>
