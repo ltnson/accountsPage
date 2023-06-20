@@ -4,8 +4,8 @@ import {
   InputAdornment,
   Select,
   MenuItem,
-} from "@mui/material";
-import { Controller, useFormContext } from "react-hook-form";
+} from '@mui/material';
+import { Controller, useFormContext } from 'react-hook-form';
 
 const PhoneForm = ({
   name,
@@ -33,37 +33,37 @@ const PhoneForm = ({
             name={name}
             error={!!error}
             value={
-              value && value.slice(value.indexOf(value.split(" ")[1])) !== value
-                ? value.slice(value.indexOf(value.split(" ")[1]))
-                : ""
+              value && value.slice(value.indexOf(value.split(' ')[1])) !== value
+                ? value.slice(value.indexOf(value.split(' ')[1]))
+                : ''
             }
             onChange={(e) =>
-              value.replace(/\s/g, "").length <= 15
+              value.replace(/\s/g, '').length <= 15
                 ? onChange(
                     e.target.value
-                      ? value.split(" ")[0] + " " + e.target.value
-                      : value.split(" ")[0] + " "
+                      ? value.split(' ')[0] + ' ' + e.target.value
+                      : value.split(' ')[0] + ' ',
                   )
                 : onChange(
-                    value.split(" ")[0] + " " + e.target.value.slice(0, 18)
+                    value.split(' ')[0] + ' ' + e.target.value.slice(0, 18),
                   )
             }
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
                   <Select
-                    value={value && value.split(" ")[0] + " "}
+                    value={value && value.split(' ')[0] + ' '}
                     onChange={(e) =>
                       onChange(
                         e.target.value +
-                          value.slice(value.indexOf(value.split(" ")[1]))
+                          value.slice(value.indexOf(value.split(' ')[1])),
                       )
                     }
-                    sx={{ minWidth: "90px" }}
+                    sx={{ minWidth: '90px' }}
                   >
                     {value && (
-                      <MenuItem value={value.split(" ")[0] + " "}>
-                        {value.split(" ")[0] + " "}
+                      <MenuItem value={value.split(' ')[0] + ' '}>
+                        {value.split(' ')[0] + ' '}
                       </MenuItem>
                     )}
                     <MenuItem value="+7 ">+7</MenuItem>
@@ -72,9 +72,9 @@ const PhoneForm = ({
                 </InputAdornment>
               ),
               endAdornment: (
-                <InputAdornment position="end" sx={{ marginTop: "10px" }}>
+                <InputAdornment position="end" sx={{ marginTop: '10px' }}>
                   <Typography className="s12-gray">
-                    {value.replace(/\s/g, "").length}/18
+                    {value.replace(/\s/g, '').length}/18
                   </Typography>
                 </InputAdornment>
               ),

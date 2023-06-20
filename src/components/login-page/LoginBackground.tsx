@@ -1,5 +1,5 @@
-import BgLoginSVG from "../../assets/SVG/loginSVG/BgLoginSVG";
-import BgLoginFrame from "../../assets/SVG/loginSVG/BgLoginFrame";
+import BgLoginSVG from '../../assets/SVG/loginSVG/BgLoginSVG';
+import BgLoginFrame from '../../assets/SVG/loginSVG/BgLoginFrame';
 
 const LoginBackground = () => {
   return (

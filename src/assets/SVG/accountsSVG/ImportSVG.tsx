@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "@mui/material";
+import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const ImportSVG = (props: SvgIconProps) => {
   return (
@@ -7,7 +7,7 @@ const ImportSVG = (props: SvgIconProps) => {
       viewBox="0 0 64 64"
       fill="none"
       {...props}
-      sx={{ width: "64px", height: "64px" }}
+      sx={{ width: '64px', height: '64px' }}
     >
       <path
         d="M51.9993 50.6592C52.746 50.6592 53.3327 51.2725 53.3327 51.9925C53.3327 52.7392 52.746 53.3258 51.9993 53.3258H50.666V50.6592H51.9993Z"

@@ -1,5 +1,5 @@
-import { TextField, Typography, MenuItem } from "@mui/material";
-import { useState } from "react";
+import { TextField, Typography, MenuItem } from '@mui/material';
+import { useState } from 'react';
 
 const SelectForm = ({
   label,
@@ -10,7 +10,7 @@ const SelectForm = ({
   span: string;
   array?: string[];
 }) => {
-  const [value, setValue] = useState<string>(array ? array[0] : "");
+  const [value, setValue] = useState<string>(array ? array[0] : '');
 
   return (
     <div className={`col-span-${span}`}>

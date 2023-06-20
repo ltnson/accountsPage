@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "@mui/material";
+import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const EyeClosed = (props: SvgIconProps) => {
   return (
@@ -7,8 +7,8 @@ const EyeClosed = (props: SvgIconProps) => {
       viewBox="0 0 256 256"
       {...props}
       sx={{
-        width: "18px",
-        height: "18px",
+        width: '18px',
+        height: '18px',
       }}
     >
       <rect width="256" height="256" fill="none"></rect>

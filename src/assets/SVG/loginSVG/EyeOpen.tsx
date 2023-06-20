@@ -1,10 +1,10 @@
-import { SvgIcon, SvgIconProps } from "@mui/material";
+import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const EyeOpen = (props: SvgIconProps) => {
   return (
     <SvgIcon
       role="img"
-      sx={{ width: "18px", height: "18px" }}
+      sx={{ width: '18px', height: '18px' }}
       viewBox="0 0 1024 1024"
       version="1.1"
       {...props}

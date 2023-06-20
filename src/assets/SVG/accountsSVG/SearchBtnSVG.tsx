@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "@mui/material";
+import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const SearchBtnSVG = (props: SvgIconProps) => {
   return (
@@ -7,7 +7,7 @@ const SearchBtnSVG = (props: SvgIconProps) => {
       viewBox="0 0 16 15"
       fill="none"
       {...props}
-      sx={{ height: "16px" }}
+      sx={{ height: '16px' }}
     >
       <path
         fillRule="evenodd"

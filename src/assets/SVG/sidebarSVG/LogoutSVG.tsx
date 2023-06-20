@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "@mui/material";
+import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const LogoutSVG = (props: SvgIconProps) => {
   return (
@@ -7,7 +7,7 @@ const LogoutSVG = (props: SvgIconProps) => {
       viewBox="0 0 21 20"
       fill="none"
       {...props}
-      sx={{ marginRight: "6px" }}
+      sx={{ marginRight: '6px' }}
     >
       <path
         fillRule="evenodd"

@@ -1,10 +1,10 @@
-import { Typography } from "@mui/material";
-import CloseSVG from "../../../../assets/SVG/accountsSVG/CloseSVG";
-import { useContext, useEffect } from "react";
-import { AccountContext } from "../../../../store/AccountContext";
-import { catchErr, getAccountDetail } from "../../../../hooks/Accounts";
-import { Toaster } from "react-hot-toast";
-import { CircularProgress } from "@mui/material";
+import { Typography } from '@mui/material';
+import CloseSVG from '../../../../assets/SVG/accountsSVG/CloseSVG';
+import { useContext, useEffect } from 'react';
+import { AccountContext } from '../../../../store/AccountContext';
+import { catchErr, getAccountDetail } from '../../../../hooks/Accounts';
+import { Toaster } from 'react-hot-toast';
+import { CircularProgress } from '@mui/material';
 
 const AccountDetail = () => {
   const { showArr, setShowArr, idDetail } = useContext(AccountContext);

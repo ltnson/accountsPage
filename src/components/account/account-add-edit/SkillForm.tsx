@@ -1,17 +1,17 @@
-import { TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { TextField, Typography } from '@mui/material';
+import { useState } from 'react';
 
-import CloseSVG2 from "../../../assets/SVG/accountsSVG/CloseSVG2";
+import CloseSVG2 from '../../../assets/SVG/accountsSVG/CloseSVG2';
 
 const SkillForm = () => {
   const [newSk, setNewSk] = useState<string[]>([
-    ".NET",
-    "PM",
-    "Native React",
-    "Node.Js",
-    "Next",
+    '.NET',
+    'PM',
+    'Native React',
+    'Node.Js',
+    'Next',
   ]);
-  const [skill, setSkill] = useState<string[]>([""]);
+  const [skill, setSkill] = useState<string[]>(['']);
 
   return (
     <div className="col-span-2">
@@ -23,17 +23,17 @@ const SkillForm = () => {
               {skill.map((sk, index) => (
                 <div
                   className={`rounded-xl border border-t-light text-center flex items-center flex-nowrap ${
-                    sk === "" && "hidden"
+                    sk === '' && 'hidden'
                   }`}
                   key={index}
                 >
                   <Typography
                     className="s12-gray"
                     sx={{
-                      padding: "2px 6px",
-                      display: "flex",
-                      width: "auto",
-                      whiteSpace: "nowrap",
+                      padding: '2px 6px',
+                      display: 'flex',
+                      width: 'auto',
+                      whiteSpace: 'nowrap',
                     }}
                   >
                     <CloseSVG2
@@ -59,7 +59,7 @@ const SkillForm = () => {
               {newSk.map((sk, index) => (
                 <div
                   className={`rounded-xl border border-t-light text-center flex items-center flex-nowrap ${
-                    sk === "" && "hidden"
+                    sk === '' && 'hidden'
                   }`}
                   key={index}
                   onClick={() => {
@@ -70,10 +70,10 @@ const SkillForm = () => {
                   <Typography
                     className="s12-gray"
                     sx={{
-                      padding: "2px 6px",
-                      display: "flex",
-                      width: "auto",
-                      whiteSpace: "nowrap",
+                      padding: '2px 6px',
+                      display: 'flex',
+                      width: 'auto',
+                      whiteSpace: 'nowrap',
                     }}
                   >
                     {sk}

@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState } from "react";
-import { User, ShowArr, MyContextData } from "../model/types";
+import { createContext, useEffect, useState } from 'react';
+import { User, ShowArr, MyContextData } from '../model/types';
 
 export const AccountContext = createContext<MyContextData>({
   authLogin: false,
@@ -21,13 +21,13 @@ export const AccountContext = createContext<MyContextData>({
   setIdDetail: () => {},
   userData: null,
   setUserData: () => {},
-  opMember: "",
+  opMember: '',
   setOpMember: () => {},
-  filter: "",
+  filter: '',
   setFilter: () => {},
   searchResult: 0,
   setSearchResult: () => {},
-  pathName: "",
+  pathName: '',
   setPathName: () => {},
 });
 
@@ -49,15 +49,15 @@ export const AccountProvider = ({
   const [totalTab, setTotalTab] = useState<number>(100);
   const [skipTab, setSkipTab] = useState<number>(0);
   const [idDetail, setIdDetail] = useState<number>(0);
-  const [opMember, setOpMember] = useState<string>("all");
-  const [filter, setFilter] = useState<string>("");
+  const [opMember, setOpMember] = useState<string>('all');
+  const [filter, setFilter] = useState<string>('');
   const [pathName, setPathName] = useState<string>(
-    `?limit=${limitTab}` + "&" + `skip=${skipTab}`
+    `?limit=${limitTab}` + '&' + `skip=${skipTab}`,
   );
   const [searchResult, setSearchResult] = useState<number>(0);
 
   useEffect(() => {
-    const userLocalString = localStorage.getItem("user");
+    const userLocalString = localStorage.getItem('user');
     const userLocal: User | null = userLocalString
       ? JSON.parse(userLocalString)
       : null;

@@ -1,18 +1,18 @@
-import { TableCell, TableHead, TableRow } from "@mui/material";
-import SortTwoSVG from "../../../../assets/SVG/accountsSVG/SortTwoSVG";
+import { TableCell, TableHead, TableRow } from '@mui/material';
+import SortTwoSVG from '../../../../assets/SVG/accountsSVG/SortTwoSVG';
 
 const HeadTab = () => {
   const headerData: string[] = [
-    "ID",
-    "First Name",
-    "Alias",
-    "Email",
-    "Team",
-    "Company",
-    "Posision",
-    "Role",
-    "Status",
-    "Action",
+    'ID',
+    'First Name',
+    'Alias',
+    'Email',
+    'Team',
+    'Company',
+    'Posision',
+    'Role',
+    'Status',
+    'Action',
   ];
   return (
     <TableHead>

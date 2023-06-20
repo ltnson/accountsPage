@@ -1,10 +1,10 @@
-import { TableRow, TableCell } from "@mui/material";
-import { useContext } from "react";
-import { AccountContext } from "../../../../store/AccountContext";
-import { Account } from "../../../../model/types";
-import EyeSVG from "../../../../assets/SVG/accountsSVG/EyeSVG";
-import WriteSVG from "../../../../assets/SVG/accountsSVG/WriteSVG";
-import { useNavigate } from "react-router-dom";
+import { TableRow, TableCell } from '@mui/material';
+import { useContext } from 'react';
+import { AccountContext } from '../../../../store/AccountContext';
+import { Account } from '../../../../model/types';
+import EyeSVG from '../../../../assets/SVG/accountsSVG/EyeSVG';
+import WriteSVG from '../../../../assets/SVG/accountsSVG/WriteSVG';
+import { useNavigate } from 'react-router-dom';
 
 const ItemTab = ({ item }: { item: Account }) => {
   const { showArr, setShowArr, setIdDetail } = useContext(AccountContext);
@@ -27,9 +27,9 @@ const ItemTab = ({ item }: { item: Account }) => {
       <TableCell>
         <p
           className={
-            item.gender === "female"
-              ? "bg-tag/green10 text-center rounded py-0.5 w-3/4"
-              : "text-center rounded py-0.5 w-3/4"
+            item.gender === 'female'
+              ? 'bg-tag/green10 text-center rounded py-0.5 w-3/4'
+              : 'text-center rounded py-0.5 w-3/4'
           }
         >
           {item.gender}

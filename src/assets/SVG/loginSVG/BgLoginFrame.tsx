@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "@mui/material";
+import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const BgLoginFrame = (props: SvgIconProps) => {
   return (
@@ -7,7 +7,7 @@ const BgLoginFrame = (props: SvgIconProps) => {
       viewBox="0 0 812 627"
       fill="none"
       {...props}
-      sx={{ width: "100%", height: "100%" }}
+      sx={{ width: '100%', height: '100%' }}
     >
       <path
         d="M215.757 519.441C233.335 504.679 256.674 505.482 254.827 507.297C252.98 509.112 247.505 513.49 251.254 523.5C255.003 533.51 250.913 547.513 244.119 555.906C237.326 564.299 243.845 564.552 234.588 583.373C225.332 602.205 188.966 624.502 188.966 624.502L167.397 622.962C167.397 622.962 155.535 577.07 171.574 564.574C187.614 552.078 190.549 549.471 193.176 541.65C195.793 533.818 204.873 522.345 215.757 519.441Z"

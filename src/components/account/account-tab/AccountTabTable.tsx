@@ -1,13 +1,13 @@
-import { Table, TableContainer, TextField, Paper } from "@mui/material";
-import SearchBtnSVG from "../../../assets/SVG/accountsSVG/SearchBtnSVG";
-import HeadTab from "./table/HeadTab";
-import BodyTab from "./table/BodyTab";
-import { useContext, useEffect } from "react";
-import { AccountContext } from "../../../store/AccountContext";
-import { CircularProgress } from "@mui/material";
-import { getAccountsLimit, catchErr } from "../../../hooks/Accounts";
-import { Toaster } from "react-hot-toast";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Table, TableContainer, TextField, Paper } from '@mui/material';
+import SearchBtnSVG from '../../../assets/SVG/accountsSVG/SearchBtnSVG';
+import HeadTab from './table/HeadTab';
+import BodyTab from './table/BodyTab';
+import { useContext, useEffect } from 'react';
+import { AccountContext } from '../../../store/AccountContext';
+import { CircularProgress } from '@mui/material';
+import { getAccountsLimit, catchErr } from '../../../hooks/Accounts';
+import { Toaster } from 'react-hot-toast';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 const AccountTabTable = () => {
   const location = useLocation();
@@ -29,22 +29,22 @@ const AccountTabTable = () => {
   useEffect(() => {
     if (pageNumber)
       setSkipTab(
-        limitTab * (parseInt(pageNumber?.split("=")[1]) - 1) || skipTab
+        limitTab * (parseInt(pageNumber?.split('=')[1]) - 1) || skipTab,
       );
   }, []);
 
   useEffect(() => {
     navigate(`/accounts/page=${Math.ceil(skipTab / limitTab + 1)}`);
-    setPathName(`?limit=${limitTab}` + "&" + `skip=${skipTab}`);
+    setPathName(`?limit=${limitTab}` + '&' + `skip=${skipTab}`);
   }, [skipTab, limitTab]);
 
   const { data, isLoading, error } = getAccountsLimit(pathName);
   useEffect(() => {
     if (data) {
-      if (location.pathname.includes("/accounts/search")) {
+      if (location.pathname.includes('/accounts/search')) {
         setSearchResult(data.limit);
       }
-      if (location.pathname.includes("/accounts/filter")) {
+      if (location.pathname.includes('/accounts/filter')) {
         setSearchResult(data.limit);
       }
       setTotalTab(data.total);
@@ -58,17 +58,17 @@ const AccountTabTable = () => {
   }, [error]);
 
   const handleToSearch = (e: string) => {
-    if (e === "") {
-      if (opMember === "vinova") {
-        setPathName("/filter?key=gender&value=male");
-        return navigate("/accounts/vinova");
+    if (e === '') {
+      if (opMember === 'vinova') {
+        setPathName('/filter?key=gender&value=male');
+        return navigate('/accounts/vinova');
       }
-      if (opMember === "partner") {
-        setPathName("/filter?key=gender&value=female");
-        return navigate("/accounts/partner");
+      if (opMember === 'partner') {
+        setPathName('/filter?key=gender&value=female');
+        return navigate('/accounts/partner');
       }
       navigate(`/accounts/page=${Math.ceil(skipTab / limitTab + 1)}`);
-      return setPathName(`?limit=${limitTab}` + "&" + `skip=${skipTab}`);
+      return setPathName(`?limit=${limitTab}` + '&' + `skip=${skipTab}`);
     }
     navigate(`/accounts/search?q=${e}`);
     setPathName(`/search?q=${e}`);

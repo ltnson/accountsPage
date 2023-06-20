@@ -1,15 +1,15 @@
-import { useState, useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import DashbroadSVG from "../../assets/SVG/sidebarSVG/DashbroadSVG";
-import PJSVG from "../../assets/SVG/sidebarSVG/PJSVG";
-import StacksSVG from "../../assets/SVG/sidebarSVG/StacksSVG";
-import ReportSVG from "../../assets/SVG/sidebarSVG/ReportSVG";
-import UsersSVG from "../../assets/SVG/sidebarSVG/UsersSVG";
-import SettingSVG from "../../assets/SVG/sidebarSVG/SettingSVG";
-import NotificationSVG from "../../assets/SVG/sidebarSVG/NotificationSVG";
-import LogoutSVG from "../../assets/SVG/sidebarSVG/LogoutSVG";
-import { Button, Typography } from "@mui/material";
-import { AccountContext } from "../../store/AccountContext";
+import { useState, useContext } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import DashbroadSVG from '../../assets/SVG/sidebarSVG/DashbroadSVG';
+import PJSVG from '../../assets/SVG/sidebarSVG/PJSVG';
+import StacksSVG from '../../assets/SVG/sidebarSVG/StacksSVG';
+import ReportSVG from '../../assets/SVG/sidebarSVG/ReportSVG';
+import UsersSVG from '../../assets/SVG/sidebarSVG/UsersSVG';
+import SettingSVG from '../../assets/SVG/sidebarSVG/SettingSVG';
+import NotificationSVG from '../../assets/SVG/sidebarSVG/NotificationSVG';
+import LogoutSVG from '../../assets/SVG/sidebarSVG/LogoutSVG';
+import { Button, Typography } from '@mui/material';
+import { AccountContext } from '../../store/AccountContext';
 
 const Sidebar = () => {
   const [logoutCart, setLogoutCart] = useState<boolean>(false);
@@ -18,7 +18,7 @@ const Sidebar = () => {
   const { setAuthLogin, userData } = useContext(AccountContext);
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
     return setAuthLogin(false);
   };
 
@@ -31,8 +31,8 @@ const Sidebar = () => {
           <StacksSVG className="sidebar" />
           <ReportSVG className="sidebar" />
           <UsersSVG
-            className={`sidebar ${pathname.includes("/accounts") && "red"}`}
-            onClick={() => navigate("/accounts")}
+            className={`sidebar ${pathname.includes('/accounts') && 'red'}`}
+            onClick={() => navigate('/accounts')}
           />
           <SettingSVG className="sidebar" />
         </div>

@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "@mui/material";
+import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const SortTwoSVG = (props: SvgIconProps) => {
   return (
@@ -7,7 +7,7 @@ const SortTwoSVG = (props: SvgIconProps) => {
       viewBox="0 0 17 16"
       fill="none"
       {...props}
-      sx={{ height: "13px" }}
+      sx={{ height: '13px' }}
     >
       <path
         fillRule="evenodd"

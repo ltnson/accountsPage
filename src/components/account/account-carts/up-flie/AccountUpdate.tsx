@@ -1,8 +1,8 @@
-import CloseSVG from "../../../../assets/SVG/accountsSVG/CloseSVG";
-import ImportSVG from "../../../../assets/SVG/accountsSVG/ImportSVG";
-import { Button } from "@mui/material";
-import { useContext } from "react";
-import { AccountContext } from "../../../../store/AccountContext";
+import CloseSVG from '../../../../assets/SVG/accountsSVG/CloseSVG';
+import ImportSVG from '../../../../assets/SVG/accountsSVG/ImportSVG';
+import { Button } from '@mui/material';
+import { useContext } from 'react';
+import { AccountContext } from '../../../../store/AccountContext';
 
 const AccountUpdate = () => {
   const { setShowArr, showArr } = useContext(AccountContext);

@@ -1,6 +1,6 @@
-import { TableBody } from "@mui/material";
-import ItemTab from "./ItemTab";
-import { Accounts } from "../../../../model/types";
+import { TableBody } from '@mui/material';
+import ItemTab from './ItemTab';
+import { Accounts } from '../../../../model/types';
 
 const BodyTab = ({ accountsArray }: { accountsArray: Accounts }) => {
   return (

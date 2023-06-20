@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "@mui/material";
+import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const VinovaSVG = (props: SvgIconProps) => {
   return (
@@ -8,13 +8,13 @@ const VinovaSVG = (props: SvgIconProps) => {
       fill="none"
       {...props}
       sx={{
-        width: "121px",
-        height: "41px",
-        margin: "10px 0",
+        width: '121px',
+        height: '41px',
+        margin: '10px 0',
 
-        "@media (max-width: 420px)": {
-          width: "81px",
-          height: "14px",
+        '@media (max-width: 420px)': {
+          width: '81px',
+          height: '14px',
         },
       }}
     >

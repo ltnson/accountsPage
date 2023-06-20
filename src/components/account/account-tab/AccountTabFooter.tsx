@@ -1,7 +1,7 @@
-import { Button, ButtonGroup, MenuItem, TextField } from "@mui/material";
-import { useContext } from "react";
-import { AccountContext } from "../../../store/AccountContext";
-import { useLocation } from "react-router-dom";
+import { Button, ButtonGroup, MenuItem, TextField } from '@mui/material';
+import { useContext } from 'react';
+import { AccountContext } from '../../../store/AccountContext';
+import { useLocation } from 'react-router-dom';
 
 const AccountTabFooter = () => {
   const {
@@ -17,7 +17,7 @@ const AccountTabFooter = () => {
   const { pathname } = useLocation();
   const ar: number[] = [1, 2, 3, 4, 5];
 
-  if (pathname.includes("/accounts/search")) {
+  if (pathname.includes('/accounts/search')) {
     return (
       <div className="grow-0 p-4 text-t-light">
         <p>
@@ -26,7 +26,7 @@ const AccountTabFooter = () => {
       </div>
     );
   }
-  if (pathname.includes("/accounts/filter")) {
+  if (pathname.includes('/accounts/filter')) {
     return (
       <div className="grow-0 p-4 text-t-light">
         <p>
@@ -35,14 +35,14 @@ const AccountTabFooter = () => {
       </div>
     );
   }
-  if (opMember === "vinova") {
+  if (opMember === 'vinova') {
     return (
       <div className="grow-0 p-4 text-t-light">
         <p>Showing {totalTab} accounts of Vinova</p>
       </div>
     );
   }
-  if (opMember === "partner") {
+  if (opMember === 'partner') {
     return (
       <div className="grow-0 p-4 text-t-light">
         <p>Showing {totalTab} accounts of partner</p>
@@ -76,7 +76,7 @@ const AccountTabFooter = () => {
           {ar.map((a, index) => (
             <Button
               className={`btn-group-n ${
-                skipTab === index * limitTab && "btn-group-active"
+                skipTab === index * limitTab && 'btn-group-active'
               }`}
               key={index}
               onClick={() => setSkipTab(limitTab * index)}

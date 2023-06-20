@@ -1,6 +1,6 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import {
   Typography,
   TextField,
@@ -8,15 +8,15 @@ import {
   IconButton,
   Button,
   LinearProgress,
-} from "@mui/material";
-import { LoginData } from "../../model/types";
-import EyeClosed from "../../assets/SVG/loginSVG/EyeClosed";
-import EyeOpen from "../../assets/SVG/loginSVG/EyeOpen";
-import VinovaSVG from "../../assets/SVG/VinovaSVG";
-import { useState, useContext } from "react";
-import { loginAccountMutation, catchErr } from "../../hooks/Accounts";
-import { AccountContext } from "../../store/AccountContext";
-import { Toaster } from "react-hot-toast";
+} from '@mui/material';
+import { LoginData } from '../../model/types';
+import EyeClosed from '../../assets/SVG/loginSVG/EyeClosed';
+import EyeOpen from '../../assets/SVG/loginSVG/EyeOpen';
+import VinovaSVG from '../../assets/SVG/VinovaSVG';
+import { useState, useContext } from 'react';
+import { loginAccountMutation, catchErr } from '../../hooks/Accounts';
+import { AccountContext } from '../../store/AccountContext';
+import { Toaster } from 'react-hot-toast';
 
 const loginSchema = yup.object().shape({
   username: yup.string().required(),
@@ -39,7 +39,7 @@ const LoginCart = () => {
   const onSubmit = (loginData: LoginData) => {
     mutate(loginData, {
       onSuccess: (data) => {
-        localStorage.setItem("user", JSON.stringify(data));
+        localStorage.setItem('user', JSON.stringify(data));
         setUserData(data);
         setAuthLogin(true);
       },
@@ -75,7 +75,7 @@ const LoginCart = () => {
               size="small"
               placeholder="User Name"
               fullWidth
-              {...register("username")}
+              {...register('username')}
             />
             <p className="text-red">{errors.username?.message}</p>
           </div>
@@ -86,8 +86,8 @@ const LoginCart = () => {
               size="small"
               placeholder="Password"
               fullWidth
-              type={showPassword ? "text" : "password"}
-              {...register("password")}
+              type={showPassword ? 'text' : 'password'}
+              {...register('password')}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">

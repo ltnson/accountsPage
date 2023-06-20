@@ -1,5 +1,5 @@
-import { TextField, Typography, InputAdornment } from "@mui/material";
-import { Controller, useFormContext } from "react-hook-form";
+import { TextField, Typography, InputAdornment } from '@mui/material';
+import { Controller, useFormContext } from 'react-hook-form';
 
 const TextForm = ({
   name,
@@ -33,7 +33,7 @@ const TextForm = ({
             }
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end" sx={{ marginTop: "10px" }}>
+                <InputAdornment position="end" sx={{ marginTop: '10px' }}>
                   <Typography className="s12-gray">
                     {value?.length}/50
                   </Typography>

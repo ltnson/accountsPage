@@ -1,6 +1,6 @@
-import { TextField, Typography, MenuItem, Checkbox } from "@mui/material";
+import { TextField, Typography, MenuItem, Checkbox } from '@mui/material';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const FilterForm = ({
   label,
@@ -35,9 +35,9 @@ const FilterForm = ({
         select
         defaultValue={valueFilter}
         onChange={(e) =>
-          label !== "Level" &&
-          label !== "Skill" &&
-          label !== "Contact Type" &&
+          label !== 'Level' &&
+          label !== 'Skill' &&
+          label !== 'Contact Type' &&
           setValueFilter(e.target.value)
         }
       >

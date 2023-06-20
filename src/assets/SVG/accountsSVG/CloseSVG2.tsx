@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "@mui/material";
+import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const CloseSVG2 = (props: SvgIconProps) => {
   return (
@@ -8,15 +8,15 @@ const CloseSVG2 = (props: SvgIconProps) => {
       fill="none"
       {...props}
       sx={{
-        margin: "3px 0",
-        width: "12px",
-        height: "12px",
-        "&:hover": {
+        margin: '3px 0',
+        width: '12px',
+        height: '12px',
+        '&:hover': {
           path: {
-            fill: "#FF424A",
+            fill: '#FF424A',
           },
         },
-        paddingBottom: "3px",
+        paddingBottom: '3px',
       }}
     >
       <path

@@ -1,12 +1,12 @@
-import { useContext } from "react";
-import { AccountContext } from "./store/AccountContext";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { useContext } from 'react';
+import { AccountContext } from './store/AccountContext';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-import LoginPage from "./page/LoginPage";
-import AccountTab from "./page/AccountTab";
-import Sidebar from "./components/sidebar/Sidebar";
-import Navbar from "./components/navbar/Navbar";
-import AccountAdd from "./page/AccountAdd";
+import LoginPage from './page/LoginPage';
+import AccountTab from './page/AccountTab';
+import Sidebar from './components/sidebar/Sidebar';
+import Navbar from './components/navbar/Navbar';
+import AccountAdd from './page/AccountAdd';
 
 function App() {
   const { authLogin, showArr } = useContext(AccountContext);

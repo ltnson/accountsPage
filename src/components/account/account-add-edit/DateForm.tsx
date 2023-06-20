@@ -1,9 +1,9 @@
-import { Controller, useFormContext } from "react-hook-form";
-import CalendarSVG from "../../../assets/SVG/accountsSVG/CalendarSVG";
-import { Typography } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
-import moment from "moment";
-import dayjs from "dayjs";
+import { Controller, useFormContext } from 'react-hook-form';
+import CalendarSVG from '../../../assets/SVG/accountsSVG/CalendarSVG';
+import { Typography } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers';
+import moment from 'moment';
+import dayjs from 'dayjs';
 const icon = (props: any) => {
   return <CalendarSVG onClick={props.onClick} />;
 };
@@ -34,7 +34,7 @@ const DateForm = ({
             className="input-form"
             value={dayjs(value)}
             onChange={(date: any) =>
-              onChange(moment(date?.$d).format("MM/DD/YYYY"))
+              onChange(moment(date?.$d).format('MM/DD/YYYY'))
             }
             onError={(error: any) => console.log(error)}
           />

@@ -1,4 +1,4 @@
-import { SvgIcon, SvgIconProps } from "@mui/material";
+import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const LeftSVG = (props: SvgIconProps) => {
   return (
@@ -8,9 +8,9 @@ const LeftSVG = (props: SvgIconProps) => {
       fill="none"
       {...props}
       sx={{
-        "&:hover": {
+        '&:hover': {
           rect: {
-            fill: "#F7F9FE",
+            fill: '#F7F9FE',
           },
         },
       }}
