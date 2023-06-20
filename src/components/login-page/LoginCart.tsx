@@ -48,7 +48,7 @@ const LoginCart = () => {
   };
 
   return (
-    <div className="fixed px-8 z-20 top-0 py-12 w-full h-screen">
+    <div className="fixed px-8 z-30 top-0 py-12 w-full h-screen">
       <Toaster />
       <div className="cart-css">
         <VinovaSVG />

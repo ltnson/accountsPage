@@ -17,7 +17,6 @@ const SkillForm = () => {
     <div className="col-span-2">
       <TextField
         className="input-form"
-        maxRows={4}
         InputProps={{
           startAdornment: (
             <div className="flex gap-x-1 items-center flex-nowrap  ml-2 w-auto pr-2">

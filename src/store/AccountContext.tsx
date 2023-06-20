@@ -1,30 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { User, ShowArr } from "../model/types";
-
-interface MyContextData {
-  authLogin: boolean;
-  setAuthLogin: (value: boolean) => void;
-  showArr: ShowArr;
-  setShowArr: (value: ShowArr) => void;
-  limitTab: number;
-  setLimitTab: (value: number) => void;
-  skipTab: number;
-  setSkipTab: (value: number) => void;
-  totalTab: number;
-  setTotalTab: (value: number) => void;
-  idDetail: number;
-  setIdDetail: (value: number) => void;
-  userData: User | null;
-  setUserData: (data: User) => void;
-  filter: string;
-  setFilter: (value: string) => void;
-  opMember: string;
-  setOpMember: (value: string) => void;
-  searchResult: number;
-  setSearchResult: (value: number) => void;
-  pathName: string;
-  setPathName: (value: string) => void;
-}
+import { User, ShowArr, MyContextData } from "../model/types";
 
 export const AccountContext = createContext<MyContextData>({
   authLogin: false,
@@ -61,7 +36,7 @@ export const AccountProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [authLogin, setAuthLogin] = useState<boolean>(false);
+  const [authLogin, setAuthLogin] = useState<boolean>(true);
   const [showArr, setShowArr] = useState<ShowArr>({
     sidebar: false,
     detail: false,
@@ -86,6 +61,9 @@ export const AccountProvider = ({
     const userLocal: User | null = userLocalString
       ? JSON.parse(userLocalString)
       : null;
+    if (!userLocal) {
+      setAuthLogin(false);
+    }
     if (userLocal) {
       setUserData(userLocal);
       setAuthLogin(true);

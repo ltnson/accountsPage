@@ -1,3 +1,28 @@
+export interface MyContextData {
+  authLogin: boolean;
+  setAuthLogin: (value: boolean) => void;
+  showArr: ShowArr;
+  setShowArr: (value: ShowArr) => void;
+  limitTab: number;
+  setLimitTab: (value: number) => void;
+  skipTab: number;
+  setSkipTab: (value: number) => void;
+  totalTab: number;
+  setTotalTab: (value: number) => void;
+  idDetail: number;
+  setIdDetail: (value: number) => void;
+  userData: User | null;
+  setUserData: (data: User) => void;
+  filter: string;
+  setFilter: (value: string) => void;
+  opMember: string;
+  setOpMember: (value: string) => void;
+  searchResult: number;
+  setSearchResult: (value: number) => void;
+  pathName: string;
+  setPathName: (value: string) => void;
+}
+
 export type LoginData = {
   username: string;
   password: string;

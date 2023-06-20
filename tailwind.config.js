@@ -18,9 +18,6 @@ export default {
     },
 
     extend: {
-      backgroundImage: {
-        login: 'url("./src/assets/SVG/loginSVG/right-bg.svg")',
-      },
       backgroundColor: {
         "login-page": "#f8f9fa",
         "account-page": "#D8E0ED",

@@ -17,11 +17,6 @@ const PhoneForm = ({
   span: string;
 }) => {
   const { control } = useFormContext();
-  const t = "kdhsfk ";
-  console.log(
-    t.slice(t.indexOf(t.split(" ")[1])),
-    typeof t.slice(t.indexOf(t.split(" ")[1]))
-  );
 
   return (
     <Controller

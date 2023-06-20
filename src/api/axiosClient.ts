@@ -7,7 +7,6 @@ const ADD_ACCOUNT_URL = import.meta.env.VITE_REACT_ADD_ACCOUNT_URL;
 
 const axiosClient = {
   postLogin: async (data: any) => {
-    console.log(`${LOGIN_URL}`, typeof `${LOGIN_URL}`);
     try {
       const response = await axios.post(
         `${LOGIN_URL}`,

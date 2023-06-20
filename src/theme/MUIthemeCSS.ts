@@ -285,13 +285,6 @@ const theme = createTheme({
         },
       },
     },
-    MuiTable: {
-      styleOverrides: {
-        root: {
-          minWidth: "1020px",
-        },
-      },
-    },
     MuiTableHead: {
       styleOverrides: {
         root: {
