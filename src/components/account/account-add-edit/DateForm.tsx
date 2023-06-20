@@ -22,7 +22,7 @@ const DateForm = ({
     <Controller
       name={name}
       control={control}
-      render={({ field: { onChange, onBlur, value, name, ref } }) => (
+      render={({ field: { onChange, value } }) => (
         <div className={`col-span-${span}`}>
           <Typography className="s12">
             {label} <span className="pb-2 pl-1 text-t-red100">*</span>

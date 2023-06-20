@@ -45,7 +45,6 @@ const AccountTabTable = () => {
         setSearchResult(data.limit);
       }
       if (location.pathname.includes("/accounts/filter")) {
-        console.log(data);
         setSearchResult(data.limit);
       }
       setTotalTab(data.total);

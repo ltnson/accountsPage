@@ -89,9 +89,4 @@ const SkillForm = () => {
   );
 };
 
-// onClick={() => {
-//   setNewSk("");
-//   setSkill([...skill, newSk]);
-// }}
-
 export default SkillForm;

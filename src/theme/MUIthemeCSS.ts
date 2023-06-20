@@ -171,7 +171,7 @@ const theme = createTheme({
             width: "36px",
             height: "auto",
             padding: "4px",
-
+            zIndex: "99",
             "&:hover": {
               backgroundColor: "#FFF3F4",
               borderRadius: "8px",

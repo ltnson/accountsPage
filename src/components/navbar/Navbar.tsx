@@ -32,9 +32,9 @@ const Navbar = () => {
     );
   }
   return (
-    <div className="flex justify-center fixed top-0 left-0 w-full">
+    <div className="flex justify-center fixed top-0 left-0 w-full z-20">
       <div className="max-w-[1440px] w-full flex h-12 sm:h-16 px-2 sm:px-3  bg-white z-20 items-center">
-        <div className=" px-2 flex items-center w-full">
+        <div className=" px-2 flex items-center w-full ">
           <SidebarButton
             className="sidebar-toggle"
             onClick={() =>
@@ -46,7 +46,10 @@ const Navbar = () => {
         {!pathname.includes("/accounts/add") &&
           !pathname.includes("/accounts/edit") && (
             <div className="flex gap-2.5 justify-self-end h-12 items-center">
-              <FieldSVG className="navbar" />
+              <FieldSVG
+                className="navbar"
+                onClick={() => setShowArr({ ...showArr, update: true })}
+              />
               <UploadSVG
                 className="navbar"
                 onClick={() => setShowArr({ ...showArr, update: true })}

@@ -8,11 +8,11 @@ const FilterForm = ({
   onValue,
 }: {
   label: string;
-  array?: string[];
+  array: string[];
   onValue: any;
 }) => {
   const [checkBox, setCheckBox] = useState<boolean>(false);
-  const [valueFilter, setValueFilter] = useState<string>("");
+  const [valueFilter, setValueFilter] = useState<string>(array[0]);
 
   useEffect(() => {
     if (checkBox) {
@@ -41,7 +41,7 @@ const FilterForm = ({
           setValueFilter(e.target.value)
         }
       >
-        {array?.map((item: string, index) => (
+        {array.map((item: string, index) => (
           <MenuItem value={item} key={index}>
             {item}
           </MenuItem>

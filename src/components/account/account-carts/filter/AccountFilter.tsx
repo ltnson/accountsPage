@@ -31,7 +31,6 @@ const AccountFilter = () => {
 
   const handleShowFilterOption = () => {
     let firstNonEmptyKeyValue;
-    console.log(filterOption);
     for (const [key, value] of Object.entries(filterOption)) {
       if (value.trim() === "") {
         continue;
@@ -42,7 +41,6 @@ const AccountFilter = () => {
       break;
     }
     if (firstNonEmptyKeyValue) {
-      console.log(firstNonEmptyKeyValue);
       setPathName(`${firstNonEmptyKeyValue}`);
       navigate(`/accounts${firstNonEmptyKeyValue}`);
     }

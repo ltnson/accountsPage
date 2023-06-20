@@ -37,7 +37,7 @@ const schema = yup.object({
     .string()
     .required("Phone is required")
     .min(6, "Phone is too short")
-    .max(20, "Phone is too long")
+    .max(18, "Phone is too long")
     .matches(/^[+0-9\s]+$/, "Phone must only contain numbers"),
   username: yup
     .string()
@@ -68,7 +68,7 @@ const AccountAdd = () => {
       email: "",
       phone: "",
       username: "",
-      birthDate: "",
+      birthDate: new Date().toLocaleDateString("en-US"),
       today: new Date().toLocaleDateString("en-US"),
     },
     mode: "onChange",
@@ -108,15 +108,15 @@ const AccountAdd = () => {
     if (idAccount) {
       return editMutation?.mutate(data, {
         onSuccess: (data) => {
-          toast.success(`Account with id ${data.id} is Update`);
+          toast.success(`Account with id ${data.id} are Update`);
           navigate("/accounts");
         },
         onError: (error) => catchErr(error),
       });
     }
     addMutation?.mutate(data, {
-      onSuccess: (data) => {
-        toast.success(`Account with id ${data.id} is Created`);
+      onSuccess: () => {
+        toast.success(`New Account are Created`);
         navigate("/accounts");
       },
       onError: (error) => catchErr(error),
