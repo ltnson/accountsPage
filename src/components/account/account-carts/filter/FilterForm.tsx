@@ -1,6 +1,6 @@
-import { TextField, Typography, MenuItem, Checkbox } from '@mui/material';
-
 import { useEffect, useState } from 'react';
+
+import { TextField, Typography, MenuItem, Checkbox } from '@mui/material';
 
 const FilterForm = ({
   label,

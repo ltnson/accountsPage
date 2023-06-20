@@ -1,13 +1,20 @@
-import { Table, TableContainer, TextField, Paper } from '@mui/material';
-import SearchBtnSVG from '../../../assets/SVG/accountsSVG/SearchBtnSVG';
-import HeadTab from './table/HeadTab';
-import BodyTab from './table/BodyTab';
 import { useContext, useEffect } from 'react';
 import { AccountContext } from '../../../store/AccountContext';
-import { CircularProgress } from '@mui/material';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+
 import { getAccountsLimit, catchErr } from '../../../hooks/Accounts';
 import { Toaster } from 'react-hot-toast';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+
+import HeadTab from './table/HeadTab';
+import BodyTab from './table/BodyTab';
+import {
+  Table,
+  TableContainer,
+  TextField,
+  Paper,
+  CircularProgress,
+} from '@mui/material';
+import SearchBtnSVG from '../../../assets/SVG/accountsSVG/SearchBtnSVG';
 
 const AccountTabTable = () => {
   const location = useLocation();

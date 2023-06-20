@@ -1,6 +1,14 @@
+import { useState, useContext } from 'react';
+import { AccountContext } from '../../store/AccountContext';
+
+import { loginAccountMutation, catchErr } from '../../hooks/Accounts';
+import { LoginData } from '../../model/types';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { Toaster } from 'react-hot-toast';
+
 import {
   Typography,
   TextField,
@@ -9,14 +17,9 @@ import {
   Button,
   LinearProgress,
 } from '@mui/material';
-import { LoginData } from '../../model/types';
 import EyeClosed from '../../assets/SVG/loginSVG/EyeClosed';
 import EyeOpen from '../../assets/SVG/loginSVG/EyeOpen';
 import VinovaSVG from '../../assets/SVG/VinovaSVG';
-import { useState, useContext } from 'react';
-import { loginAccountMutation, catchErr } from '../../hooks/Accounts';
-import { AccountContext } from '../../store/AccountContext';
-import { Toaster } from 'react-hot-toast';
 
 const loginSchema = yup.object().shape({
   username: yup.string().required(),

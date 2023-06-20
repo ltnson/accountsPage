@@ -1,9 +1,11 @@
 import { Controller, useFormContext } from 'react-hook-form';
-import CalendarSVG from '../../../assets/SVG/accountsSVG/CalendarSVG';
-import { Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import moment from 'moment';
 import dayjs from 'dayjs';
+
+import { Typography } from '@mui/material';
+import CalendarSVG from '../../../assets/SVG/accountsSVG/CalendarSVG';
+
 const icon = (props: any) => {
   return <CalendarSVG onClick={props.onClick} />;
 };

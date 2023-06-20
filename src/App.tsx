@@ -27,7 +27,10 @@ function App() {
           </Routes>
         </div>
       ) : (
-        <LoginPage />
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
       )}
     </div>
   );

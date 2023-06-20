@@ -1,5 +1,5 @@
-import { TextField, Typography, InputAdornment } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
+import { TextField, Typography, InputAdornment } from '@mui/material';
 
 const TextForm = ({
   name,

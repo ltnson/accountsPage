@@ -1,7 +1,8 @@
-import { Button, ButtonGroup, MenuItem, TextField } from '@mui/material';
 import { useContext } from 'react';
 import { AccountContext } from '../../../store/AccountContext';
 import { useLocation } from 'react-router-dom';
+
+import { Button, ButtonGroup, MenuItem, TextField } from '@mui/material';
 
 const AccountTabFooter = () => {
   const {

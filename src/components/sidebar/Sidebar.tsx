@@ -1,5 +1,8 @@
 import { useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { AccountContext } from '../../store/AccountContext';
+
+import { Button, Typography } from '@mui/material';
 import DashbroadSVG from '../../assets/SVG/sidebarSVG/DashbroadSVG';
 import PJSVG from '../../assets/SVG/sidebarSVG/PJSVG';
 import StacksSVG from '../../assets/SVG/sidebarSVG/StacksSVG';
@@ -8,8 +11,6 @@ import UsersSVG from '../../assets/SVG/sidebarSVG/UsersSVG';
 import SettingSVG from '../../assets/SVG/sidebarSVG/SettingSVG';
 import NotificationSVG from '../../assets/SVG/sidebarSVG/NotificationSVG';
 import LogoutSVG from '../../assets/SVG/sidebarSVG/LogoutSVG';
-import { Button, Typography } from '@mui/material';
-import { AccountContext } from '../../store/AccountContext';
 
 const Sidebar = () => {
   const [logoutCart, setLogoutCart] = useState<boolean>(false);

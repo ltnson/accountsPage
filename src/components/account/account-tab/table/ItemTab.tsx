@@ -1,10 +1,11 @@
-import { TableRow, TableCell } from '@mui/material';
 import { useContext } from 'react';
 import { AccountContext } from '../../../../store/AccountContext';
+import { useNavigate } from 'react-router-dom';
+
+import { TableRow, TableCell } from '@mui/material';
 import { Account } from '../../../../model/types';
 import EyeSVG from '../../../../assets/SVG/accountsSVG/EyeSVG';
 import WriteSVG from '../../../../assets/SVG/accountsSVG/WriteSVG';
-import { useNavigate } from 'react-router-dom';
 
 const ItemTab = ({ item }: { item: Account }) => {
   const { showArr, setShowArr, setIdDetail } = useContext(AccountContext);

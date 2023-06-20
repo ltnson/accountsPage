@@ -1,23 +1,24 @@
-import TextForm from '../components/account/account-add-edit/TextForm';
-import SelectForm from '../components/account/account-add-edit/SelectForm';
-import DateForm from '../components/account/account-add-edit/DateForm';
-import SkillForm from '../components/account/account-add-edit/SkillForm';
-import PhoneForm from '../components/account/account-add-edit/PhoneForm';
-import { Button } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { EditForm } from '../model/types';
 import {
   getAccountDetail,
   postAccountEdit,
   postAccountAdd,
   catchErr,
 } from '../hooks/Accounts';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { EditForm } from '../model/types';
-import { Toaster, toast } from 'react-hot-toast';
 
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { Toaster, toast } from 'react-hot-toast';
+
+import TextForm from '../components/account/account-add-edit/TextForm';
+import SelectForm from '../components/account/account-add-edit/SelectForm';
+import DateForm from '../components/account/account-add-edit/DateForm';
+import SkillForm from '../components/account/account-add-edit/SkillForm';
+import PhoneForm from '../components/account/account-add-edit/PhoneForm';
+import { Button } from '@mui/material';
 
 const schema = yup.object({
   firstName: yup
@@ -56,10 +57,8 @@ const schema = yup.object({
 const AccountAdd = () => {
   const [editData, setEditData] = useState<EditForm | null>(null);
   const { idAccount } = useParams();
+  const navigate = useNavigate();
 
-  const editDataQuery = idAccount
-    ? getAccountDetail(parseInt(idAccount))
-    : null;
   const formMethod = useForm<EditForm>({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -75,7 +74,9 @@ const AccountAdd = () => {
   });
   const { handleSubmit } = formMethod;
 
-  const navigate = useNavigate();
+  const editDataQuery = idAccount
+    ? getAccountDetail(parseInt(idAccount))
+    : null;
 
   useEffect(() => {
     if (editDataQuery?.error) {
@@ -94,13 +95,11 @@ const AccountAdd = () => {
     }
   }, [editDataQuery?.data]);
 
-  useEffect(() => {}, []);
   useEffect(() => {
     if (editData) formMethod.reset(editData);
   }, [editData]);
 
   const editMutation = idAccount ? postAccountEdit(parseInt(idAccount)) : null;
-
   const addMutation = postAccountAdd();
 
   const onSubmit = (data: EditForm) => {
