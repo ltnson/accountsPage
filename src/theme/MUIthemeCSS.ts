@@ -106,7 +106,7 @@ const theme = createTheme({
           '&.btn-group-n': {
             color: '#9DA7B9',
             border: '1px solid #9DA7B9',
-            '@media (max-width: 720px)': {
+            '@media (max-width: 767px)': {
               display: 'none',
             },
             '&:hover': {

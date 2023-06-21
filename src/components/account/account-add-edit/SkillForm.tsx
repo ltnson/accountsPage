@@ -52,6 +52,7 @@ const SkillForm = () => {
         }}
       />
       <TextField
+        disabled
         className="input-form skill-form"
         InputProps={{
           startAdornment: (
@@ -83,7 +84,7 @@ const SkillForm = () => {
             </div>
           ),
         }}
-      ></TextField>
+      />
     </div>
   );
 };

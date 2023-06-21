@@ -12,7 +12,7 @@ export const getAccountsLimit = (pathName: string) => {
   return useQuery({
     queryKey: ['limit', pathName],
     queryFn: () => typeApi.getAccounts(pathName),
-    staleTime: 50000,
+    staleTime: 5 * 60 * 1000,
   });
 };
 
@@ -20,7 +20,7 @@ export const getAccountDetail = (id: number) => {
   return useQuery({
     queryKey: ['detail', id],
     queryFn: () => typeApi.getDetail(id),
-    staleTime: 50000,
+    staleTime: 5 * 60 * 1000,
   });
 };
 
