@@ -1,8 +1,8 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import typeApi from "../api/typeApi";
-import { EditForm, LoginData } from "../model/types";
-import axios from "axios";
-import { toast } from "react-hot-toast";
+import { useMutation, useQuery } from '@tanstack/react-query';
+import typeApi from '../api/typeApi';
+import { EditForm, LoginData } from '../model/types';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 export const loginAccountMutation = () => {
   return useMutation((data: LoginData) => typeApi.login(data));
@@ -10,21 +10,23 @@ export const loginAccountMutation = () => {
 
 export const getAccountsLimit = (pathName: string) => {
   return useQuery({
-    queryKey: ["limit", pathName],
+    queryKey: ['limit', pathName],
     queryFn: () => typeApi.getAccounts(pathName),
+    staleTime: 50000,
   });
 };
 
 export const getAccountDetail = (id: number) => {
   return useQuery({
-    queryKey: ["detail", id],
+    queryKey: ['detail', id],
     queryFn: () => typeApi.getDetail(id),
+    staleTime: 50000,
   });
 };
 
 export const postAccountEdit = (id: number) => {
   return useMutation((payload: EditForm) =>
-    typeApi.postEditAccount(id, payload)
+    typeApi.postEditAccount(id, payload),
   );
 };
 
