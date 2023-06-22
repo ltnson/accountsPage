@@ -123,58 +123,52 @@ const AccountAdd = () => {
   };
 
   return (
-    <div className="w-full h-screen pt-14 sm:pt-20 p-2 sm:p-4 bg-account-page">
+    <div className="bg-white w-full h-full rounded-xl p-5 overflow-y-auto">
       <Toaster />
-      <div className="bg-white w-full h-full rounded-xl p-5 overflow-y-auto">
-        <FormProvider {...formMethod}>
-          <form className="max-w-[680px]" onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 pb-4 sm:pb-6 border-b border-t-neutral/DE">
-              <TextForm label="First Name" span="1" name="firstName" />
-              <TextForm label="Last Name" span="1" name="lastName" />
-              <TextForm label="Alias" span="1" name="username" />
-              <SelectForm label="Role" span="1" array={['1', '2']} />
-              <TextForm label="Email" span="2" name="email" />
-              <PhoneForm label="Phone" span="2" name="phone" />
-            </div>
-            <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 py-4 sm:py-6 border-b border-t-neutral/DE">
-              <SelectForm
-                label="Contract type"
-                span="2"
-                array={['Email', 'Phone', 'Test']}
-              />
-              <DateForm label="Contract Start Date" span="1" name="birthDate" />
-              <DateForm label="Contract End Date" span="1" name="today" />
-              <SelectForm
-                label="Company"
-                span="1"
-                array={['Vinova', 'Another']}
-              />
-              <SelectForm
-                label="Office"
-                span="1"
-                array={['Another', 'Test 1']}
-              />
-            </div>
-            <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 py-4 sm:py-6">
-              <SelectForm
-                label="Team"
-                span="1"
-                array={['Front-end', 'Back-end']}
-              />
-              <SelectForm
-                label="Position"
-                span="1"
-                array={['Absolute', 'Fixed']}
-              />
-              <SelectForm label="Level" span="2" array={['Intern', 'Junior']} />
-              <SkillForm />
-            </div>
-            <Button className="save col-span-2" type="submit">
-              Save
-            </Button>
-          </form>
-        </FormProvider>
-      </div>
+      <FormProvider {...formMethod}>
+        <form className="max-w-[680px]" onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 pb-4 sm:pb-6 border-b border-t-neutral/DE">
+            <TextForm label="First Name" span="1" name="firstName" />
+            <TextForm label="Last Name" span="1" name="lastName" />
+            <TextForm label="Alias" span="1" name="username" />
+            <SelectForm label="Role" span="1" array={['1', '2']} />
+            <TextForm label="Email" span="2" name="email" />
+            <PhoneForm label="Phone" span="2" name="phone" />
+          </div>
+          <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 py-4 sm:py-6 border-b border-t-neutral/DE">
+            <SelectForm
+              label="Contract type"
+              span="2"
+              array={['Email', 'Phone', 'Test']}
+            />
+            <DateForm label="Contract Start Date" span="1" name="birthDate" />
+            <DateForm label="Contract End Date" span="1" name="today" />
+            <SelectForm
+              label="Company"
+              span="1"
+              array={['Vinova', 'Another']}
+            />
+            <SelectForm label="Office" span="1" array={['Another', 'Test 1']} />
+          </div>
+          <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 py-4 sm:py-6">
+            <SelectForm
+              label="Team"
+              span="1"
+              array={['Front-end', 'Back-end']}
+            />
+            <SelectForm
+              label="Position"
+              span="1"
+              array={['Absolute', 'Fixed']}
+            />
+            <SelectForm label="Level" span="2" array={['Intern', 'Junior']} />
+            <SkillForm />
+          </div>
+          <Button className="save col-span-2" type="submit">
+            Save
+          </Button>
+        </form>
+      </FormProvider>
     </div>
   );
 };

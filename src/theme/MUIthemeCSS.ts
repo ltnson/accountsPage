@@ -44,7 +44,6 @@ const theme = createTheme({
           },
 
           '&.layout-sideber': {
-            flexGrow: '0',
             width: '80px',
             '@media (max-width: 640px)': {
               width: '64px',

@@ -14,17 +14,26 @@ function App() {
   return (
     <div className="flex justify-center">
       {authLogin ? (
-        <div className="flex w-full max-w-[1440px]  ">
+        <div className="flex w-full max-w-[1440px]">
           <Navbar />
           {showArr.sidebar && <Sidebar />}
-          <Routes>
-            <Route path="/" element={<Navigate to="/accounts" />} />
-            <Route path="/accounts" element={<AccountTab />} />
-            <Route path="/accounts/:pageNumber" element={<AccountTab />} />
-            <Route path="/accounts/:search" element={<AccountTab />} />
-            <Route path="/accounts/add" element={<AccountAdd />} />
-            <Route path="/accounts/edit/:idAccount" element={<AccountAdd />} />
-          </Routes>
+          <div
+            className={`${
+              showArr.sidebar && 'sm:w-[calc(100%-80px)]'
+            } w-full h-screen pt-14 sm:pt-20 p-2 sm:p-4 bg-account-page flex`}
+          >
+            <Routes>
+              <Route path="/" element={<Navigate to="/accounts" />} />
+              <Route path="/accounts" element={<AccountTab />} />
+              <Route path="/accounts/:pageNumber" element={<AccountTab />} />
+              <Route path="/accounts/:search" element={<AccountTab />} />
+              <Route path="/accounts/add" element={<AccountAdd />} />
+              <Route
+                path="/accounts/edit/:idAccount"
+                element={<AccountAdd />}
+              />
+            </Routes>
+          </div>
         </div>
       ) : (
         <Routes>
