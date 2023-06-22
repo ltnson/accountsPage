@@ -12,8 +12,8 @@ const AccountTab = () => {
   const { showArr } = useContext(AccountContext);
 
   return (
-    <div className="w-full h-screen pt-14 sm:pt-20 p-2 sm:p-4 ">
-      <div className="bg-white w-full h-full rounded-xl flex flex-col grow-0">
+    <div className="w-full h-screen pt-14 sm:pt-20 p-2 sm:p-4 grow bg-account-page">
+      <div className="bg-white w-full h-full rounded-xl flex flex-col ">
         <AccountTabHeader />
         <AccountTabTable />
         <AccountTabFooter />

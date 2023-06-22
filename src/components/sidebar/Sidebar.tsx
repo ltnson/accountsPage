@@ -24,7 +24,7 @@ const Sidebar = () => {
   };
 
   return (
-    <Typography className="sidebar" component="div">
+    <Typography className="layout-sidebar" component="div">
       <div className="w-16 sm:w-20 px-3 pb-4 h-screen pt-16 top-0 left-0 flex flex-col justify-between fixed sm:static bg-white z-10">
         <div>
           <DashbroadSVG className="sidebar" />

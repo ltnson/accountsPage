@@ -123,7 +123,7 @@ const AccountAdd = () => {
   };
 
   return (
-    <div className="w-full h-screen pt-14 sm:pt-20 p-2 sm:p-4 ">
+    <div className="w-full h-screen pt-14 sm:pt-20 p-2 sm:p-4 bg-account-page">
       <Toaster />
       <div className="bg-white w-full h-full rounded-xl p-5 overflow-y-auto">
         <FormProvider {...formMethod}>

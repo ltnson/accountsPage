@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="flex justify-center">
       {authLogin ? (
-        <div className="flex w-full max-w-[1440px] bg-account-page ">
+        <div className="flex w-full max-w-[1440px]  ">
           <Navbar />
           {showArr.sidebar && <Sidebar />}
           <Routes>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { TextField, TextareaAutosize, Typography } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import CloseSVG2 from '../../../assets/SVG/accountsSVG/CloseSVG2';
 
 const SkillForm = () => {
