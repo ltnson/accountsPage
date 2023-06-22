@@ -30,8 +30,10 @@ const AccountDetail = () => {
           >
             <CloseSVG />
           </div>
-          <div className="grid grid-cols-3 border-b border-t-light gap-4 pb-4">
-            <p className="col-span-3 font-semibold">Account Detail</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 grid-flow-row-dense border-b border-t-light gap-2 sm:gap-4 pb-4">
+            <p className="col-span-2 sm:col-span-3 font-semibold">
+              Account Detail
+            </p>
             <div>
               <Typography className="s12-gray">Frist Name</Typography>
               <Typography className="s14">{data.firstName}</Typography>
@@ -48,9 +50,9 @@ const AccountDetail = () => {
               <Typography className="s12-gray">Role</Typography>
               <Typography className="s14">{data.age}</Typography>
             </div>
-            <div>
+            <div className="col-span-2 sm:col-span-1">
               <Typography className="s12-gray">Email</Typography>
-              <Typography className="s14">{data.email}</Typography>
+              <Typography className="s14 email-break">{data.email}</Typography>
             </div>
             <div>
               <Typography className="s12-gray">Status</Typography>
@@ -65,7 +67,7 @@ const AccountDetail = () => {
               <Typography className="s14">{data.phone}</Typography>
             </div>
           </div>
-          <div className="grid grid-cols-3 border-b border-t-light gap-4 py-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 border-b border-t-light gap-4 py-4">
             <div>
               <Typography className="s12-gray">Contract Type</Typography>
               <Typography className="s14">{data.company.title}</Typography>
@@ -87,7 +89,7 @@ const AccountDetail = () => {
               <Typography className="s14">{data.address.state}</Typography>
             </div>
           </div>
-          <div className="grid grid-cols-3 border-b border-t-light gap-4 py-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 border-b border-t-light gap-4 py-4">
             <div>
               <Typography className="s12-gray">Team</Typography>
               <Typography className="s14">{data.address.city}</Typography>
@@ -100,7 +102,7 @@ const AccountDetail = () => {
               <Typography className="s12-gray">Level</Typography>
               <Typography className="s14">{data.age}</Typography>
             </div>
-            <div className="col-span-3">
+            <div className="col-span-2 sm:col-span-3">
               <Typography className="s12-gray">Skill</Typography>
               <Typography className="s14">{data.university}</Typography>
             </div>

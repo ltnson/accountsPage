@@ -53,7 +53,6 @@ const PhoneForm = ({
             {label} <span className="pb-2 pl-1 text-t-red100">*</span>
           </Typography>
           <TextField
-            // type="tel"
             className="input-form"
             helperText={error ? error?.message : null}
             name={name}

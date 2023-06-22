@@ -21,6 +21,10 @@ const theme = createTheme({
 
           '&.s14': {
             fontSize: '14px',
+            whiteSpace: 'normal',
+          },
+          '&.email-break': {
+            wordBreak: 'break-word',
           },
 
           '&.s12': {

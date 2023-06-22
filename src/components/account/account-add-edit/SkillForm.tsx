@@ -1,12 +1,11 @@
 import { useState } from 'react';
 
-import { TextField, Typography } from '@mui/material';
+import { TextField, TextareaAutosize, Typography } from '@mui/material';
 import CloseSVG2 from '../../../assets/SVG/accountsSVG/CloseSVG2';
 
 const SkillForm = () => {
   const [newSk, setNewSk] = useState<string[]>([
     '.NET',
-    'PM',
     'Native React',
     'Node.Js',
     'Next',
@@ -16,7 +15,7 @@ const SkillForm = () => {
   return (
     <div className="col-span-2">
       <TextField
-        className="input-form"
+        className="input-form input-skill"
         InputProps={{
           startAdornment: (
             <div className="flex gap-x-1 items-center flex-nowrap  ml-2 w-auto pr-2">
