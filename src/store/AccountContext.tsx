@@ -37,17 +37,17 @@ export const AccountProvider = ({
   children: React.ReactNode;
 }) => {
   const [authLogin, setAuthLogin] = useState<boolean>(true);
+  const [userData, setUserData] = useState<User | null>(null);
+
   const [showArr, setShowArr] = useState<ShowArr>({
     sidebar: false,
     detail: false,
     filter: false,
     update: false,
   });
-
-  const [userData, setUserData] = useState<User | null>(null);
   const [limitTab, setLimitTab] = useState<number>(10);
-  const [totalTab, setTotalTab] = useState<number>(100);
   const [skipTab, setSkipTab] = useState<number>(0);
+  const [totalTab, setTotalTab] = useState<number>(100);
   const [idDetail, setIdDetail] = useState<number>(0);
   const [opMember, setOpMember] = useState<string>('all');
   const [filter, setFilter] = useState<string>('');

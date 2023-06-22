@@ -18,7 +18,7 @@ function App() {
           <Navbar />
           {showArr.sidebar && <Sidebar />}
           <Routes>
-            <Route path="/" element={<Navigate to="/accounts/:pageNumber" />} />
+            <Route path="/" element={<Navigate to="/accounts" />} />
             <Route path="/accounts" element={<AccountTab />} />
             <Route path="/accounts/:pageNumber" element={<AccountTab />} />
             <Route path="/accounts/:search" element={<AccountTab />} />

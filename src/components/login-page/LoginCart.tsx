@@ -47,7 +47,7 @@ const LoginCart = () => {
         localStorage.setItem('user', JSON.stringify(data));
         setUserData(data);
         setAuthLogin(true);
-        navigate('/accounts/page=1');
+        navigate('/accounts');
       },
       onError: (error) => catchErr(error),
     });
