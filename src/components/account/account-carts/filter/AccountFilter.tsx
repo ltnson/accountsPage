@@ -48,8 +48,14 @@ const AccountFilter = () => {
   };
 
   return (
-    <div className="bg-cart">
-      <div className="cart-filter relative">
+    <div
+      className="bg-cart"
+      onClick={() => setShowArr({ ...showArr, filter: false })}
+    >
+      <div
+        className="cart-filter relative"
+        onClick={(event) => event.stopPropagation()}
+      >
         <p className="font-bold ">Filter</p>
         <FilterForm
           label="Hair Color"

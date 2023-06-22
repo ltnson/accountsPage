@@ -101,7 +101,7 @@ const AccountTabTable = () => {
       </div>
       {data?.users && (
         <TableContainer component={Paper}>
-          <Table>
+          <Table border={1}>
             <HeadTab />
             <BodyTab accountsArray={data.users} />
           </Table>

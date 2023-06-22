@@ -19,11 +19,17 @@ const AccountDetail = () => {
   }, [error]);
 
   return (
-    <div className="bg-cart">
+    <div
+      className="bg-cart"
+      onClick={() => setShowArr({ ...showArr, detail: false })}
+    >
       <Toaster />
       {isLoading && <CircularProgress size="lg" />}
       {data && (
-        <div className="cart-detail">
+        <div
+          className="cart-detail"
+          onClick={(event) => event.stopPropagation()}
+        >
           <div
             className="absolute top-6 right-8"
             onClick={() => setShowArr({ ...showArr, detail: false })}

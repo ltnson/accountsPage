@@ -9,8 +9,11 @@ const AccountUpdate = () => {
   const { setShowArr, showArr } = useContext(AccountContext);
 
   return (
-    <div className="bg-cart">
-      <div className="cart-update">
+    <div
+      className="bg-cart"
+      onClick={() => setShowArr({ ...showArr, update: false })}
+    >
+      <div className="cart-update" onClick={(event) => event.stopPropagation()}>
         <div
           className="absolute top-6 right-6"
           onClick={() => setShowArr({ ...showArr, update: false })}
@@ -39,7 +42,12 @@ const AccountUpdate = () => {
             </ul>
           </div>
         </div>
-        <Button className="save">Submit</Button>
+        <Button
+          className="save"
+          onClick={() => setShowArr({ ...showArr, update: false })}
+        >
+          Submit
+        </Button>
       </div>
     </div>
   );

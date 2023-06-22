@@ -24,7 +24,7 @@
   }
   .cart-detail {
     @apply w-full h-full sm:w-[550px] sm:h-[550px] md:h-[610px] md:w-[610px] p-6 sm:p-8 
-          flex flex-col flex-nowrap overflow-auto
+          flex flex-col flex-nowrap overflow-auto 
           justify-between bg-white relative sm:rounded-lg;
   }
   .cart-update {

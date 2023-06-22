@@ -319,6 +319,9 @@ const theme = createTheme({
           borderRadius: '0',
           boxShadow: '0',
           flexGrow: '1',
+          '& td,th': {
+            borderRight: '1px solid rgba(224, 224, 224, 1)',
+          },
         },
       },
     },
@@ -329,6 +332,7 @@ const theme = createTheme({
           position: 'sticky',
           top: '0',
           background: 'white',
+          borderBottom: '2px solid rgba(224, 224, 224, 1)',
         },
       },
     },
@@ -350,6 +354,9 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           padding: '4px 6px 4px 0',
+          '&.Mui-checked': {
+            color: '#5E90F0',
+          },
         },
       },
     },
