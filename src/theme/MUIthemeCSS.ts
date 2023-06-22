@@ -360,6 +360,16 @@ const theme = createTheme({
         },
       },
     },
+
+    MuiCircularProgress: {
+      styleOverrides: {
+        root: {
+          width: '200px',
+          height: 'auto',
+          color: '#5E90F0',
+        },
+      },
+    },
   },
 });
 

@@ -24,7 +24,11 @@ const AccountDetail = () => {
       onClick={() => setShowArr({ ...showArr, detail: false })}
     >
       <Toaster />
-      {isLoading && <CircularProgress size="lg" />}
+      {isLoading && (
+        <div className="w-full p-8 h-full flex justify-center items-center">
+          <CircularProgress size="lg" />
+        </div>
+      )}
       {data && (
         <div
           className="cart-detail"

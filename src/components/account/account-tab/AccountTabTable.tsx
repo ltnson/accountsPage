@@ -108,7 +108,7 @@ const AccountTabTable = () => {
         </TableContainer>
       )}
       {isLoading && (
-        <div className="flex items-center justify-center h-full">
+        <div className="w-full p-8 h-full flex justify-center items-center">
           <CircularProgress size="lg" />
         </div>
       )}
