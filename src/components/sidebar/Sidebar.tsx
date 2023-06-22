@@ -20,7 +20,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('user');
-    return setAuthLogin(false);
+    setAuthLogin(false);
   };
 
   return (

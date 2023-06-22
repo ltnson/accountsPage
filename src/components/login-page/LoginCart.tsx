@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { AccountContext } from '../../store/AccountContext';
+import { useNavigate } from 'react-router-dom';
 
 import { loginAccountMutation, catchErr } from '../../hooks/Accounts';
 import { LoginData } from '../../model/types';
@@ -28,6 +29,7 @@ const loginSchema = yup.object().shape({
 
 const LoginCart = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -45,6 +47,7 @@ const LoginCart = () => {
         localStorage.setItem('user', JSON.stringify(data));
         setUserData(data);
         setAuthLogin(true);
+        navigate('/accounts/page=1');
       },
       onError: (error) => catchErr(error),
     });
