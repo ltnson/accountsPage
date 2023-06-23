@@ -20,7 +20,7 @@ const HeadTab = () => {
         {headerData.map((title, index) => (
           <TableCell key={index}>
             <div className="flex flex-nowrap gap-2 justify-evenly items-center">
-              <p className="text-t-light">{title}</p>
+              <p className="text-t-light whitespace-nowrap">{title}</p>
               <SortTwoSVG />
             </div>
           </TableCell>

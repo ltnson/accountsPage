@@ -49,6 +49,13 @@ const theme = createTheme({
               width: '64px',
             },
           },
+
+          '&.skill-op': {
+            padding: '2px 6px',
+            display: 'flex',
+            width: 'auto',
+            whiteSpace: 'nowrap',
+          },
         },
       },
     },
@@ -394,8 +401,13 @@ const theme = createTheme({
           '&.MuiPagination-ul': {
             gap: '0',
           },
+
           '&.MuiPagination-text': {
             color: '#9DA7B9',
+          },
+
+          '& ul > li > div': {
+            paddingTop: '8px',
           },
         },
       },
@@ -411,32 +423,39 @@ const theme = createTheme({
           borderBottom: '1px solid #9DA7B9',
           borderLeft: '1px solid #9DA7B9',
           margin: '0',
+
           '&:hover': {
             color: 'white',
             background: '#5E90F0',
           },
+
           '&.Mui-selected': {
             color: 'white',
             background: '#5E90F0',
           },
+
           '@media (max-width: 579px)': {
             display: 'none',
           },
+
           '@media (max-width: 640px)': {
             height: '28px',
             fontSize: '14px',
           },
         },
+
         previousNext: {
           border: '0',
           padding: '0',
           '@media (max-width: 579px)': {
             display: 'inline-block',
           },
+
           '@media (max-width: 640px)': {
             height: '28px',
             fontSize: '14px',
           },
+
           '&:hover': {
             background: 'none',
           },

@@ -26,15 +26,7 @@ const SkillForm = () => {
                   }`}
                   key={index}
                 >
-                  <Typography
-                    className="s12-gray"
-                    sx={{
-                      padding: '2px 6px',
-                      display: 'flex',
-                      width: 'auto',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
+                  <Typography className="s12-gray skill-op">
                     <CloseSVG2
                       onClick={() => {
                         setNewSk([...newSk, sk]);
@@ -67,17 +59,7 @@ const SkillForm = () => {
                     setNewSk(() => newSk.filter((_, i) => i !== index));
                   }}
                 >
-                  <Typography
-                    className="s12-gray"
-                    sx={{
-                      padding: '2px 6px',
-                      display: 'flex',
-                      width: 'auto',
-                      whiteSpace: 'nowrap',
-                    }}
-                  >
-                    {sk}
-                  </Typography>
+                  <Typography className="s12-gray skill-op">{sk}</Typography>
                 </div>
               ))}
             </div>
