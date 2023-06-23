@@ -18,30 +18,6 @@ const PhoneForm = ({
   span: string;
 }) => {
   const { control } = useFormContext();
-  const setPhoneCode = (value: string) => {
-    if (value.split(' ')[1] === undefined) {
-      return value;
-    }
-    return value.split(' ')[0] + ' ';
-  };
-  const selectPhoneCode = (value: string, e: string) => {
-    if (value.split(' ')[1] === undefined || value.split(' ')[1] === '') {
-      return e + ' ';
-    }
-    return e + ' ' + value.slice(value.indexOf(value.split(' ')[1]));
-  };
-  const setPhoneNumb = (value: string) => {
-    if (value.split(' ')[1] === undefined || value.split(' ')[1] === '') {
-      return '';
-    }
-    return value.slice(value.indexOf(value.split(' ')[1]));
-  };
-  const changePhoneNumb = (value: string, e: string) => {
-    if (e.length > 0) {
-      return value.split(' ')[0] + ' ' + e;
-    }
-    return value.split(' ')[0];
-  };
 
   return (
     <Controller
@@ -57,24 +33,32 @@ const PhoneForm = ({
             helperText={error ? error?.message : null}
             name={name}
             error={!!error}
-            value={setPhoneNumb(value)}
+            value={value.split(' ').slice(1).join(' ')}
             onChange={(e) =>
-              e.target.value.length < 19
-                ? onChange(changePhoneNumb(value, e.target.value))
-                : onChange(changePhoneNumb(value, e.target.value.slice(0, -1)))
+              value.replace(/\s/g, '').length < 18
+                ? onChange(value.split(' ')[0] + ' ' + e.target.value)
+                : onChange(
+                    value.split(' ')[0] + ' ' + e.target.value.slice(0, -1),
+                  )
             }
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
                   <Select
-                    value={setPhoneCode(value)}
+                    value={value.split(' ')[0]}
                     onChange={(e) =>
-                      onChange(selectPhoneCode(value, e.target.value))
+                      onChange(
+                        value.split(' ')[1].includes('+') ||
+                          value.split(' ')[1] === ''
+                          ? e.target.value
+                          : e.target.value +
+                              value.split(' ').slice(1).join(' '),
+                      )
                     }
                     sx={{ minWidth: '90px' }}
                   >
-                    <MenuItem value={setPhoneCode(value)}>
-                      {setPhoneCode(value)}
+                    <MenuItem value={value.split(' ')[0]}>
+                      {value.split(' ')[0]}
                     </MenuItem>
                     <MenuItem value="+7 ">+7</MenuItem>
                     <MenuItem value="+84 ">+84</MenuItem>

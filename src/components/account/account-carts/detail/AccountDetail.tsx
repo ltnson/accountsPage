@@ -25,7 +25,7 @@ const AccountDetail = () => {
     >
       <Toaster />
       {isLoading && (
-        <div className="w-full p-8 h-full flex justify-center items-center">
+        <div className="cart-loading">
           <CircularProgress size="lg" />
         </div>
       )}

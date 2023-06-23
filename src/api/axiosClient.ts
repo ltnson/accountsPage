@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const LOGIN_URL = import.meta.env.VITE_REACT_POST_LOGIN;
 const ACCOUNTS_URL = import.meta.env.VITE_REACT_ACCOUNTS_URL;
@@ -15,8 +15,8 @@ const axiosClient = {
           password: data.password,
         },
         {
-          headers: { "Content-Type": "application/json" },
-        }
+          headers: { 'Content-Type': 'application/json' },
+        },
       );
       return response.data;
     } catch (error) {
@@ -62,7 +62,7 @@ const axiosClient = {
   updateAccount: async (id: number, payload: any) => {
     try {
       const response = await axios.put(`${ACCOUNTS_URL}/${id}`, {
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           lastName: payload,
         }),
@@ -76,11 +76,9 @@ const axiosClient = {
   addAccount: async (payload: any) => {
     try {
       const response = await axios.post(`${ADD_ACCOUNT_URL}`, {
-        headers: { "Content-Type": "application/json" },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          firstName: payload,
-          lastName: "Ovi",
-          age: 250,
+          payload,
         }),
       });
       return response.data;

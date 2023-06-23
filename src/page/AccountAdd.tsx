@@ -18,7 +18,7 @@ import SelectForm from '../components/account/account-add-edit/SelectForm';
 import DateForm from '../components/account/account-add-edit/DateForm';
 import SkillForm from '../components/account/account-add-edit/SkillForm';
 import PhoneForm from '../components/account/account-add-edit/PhoneForm';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 
 const schema = yup.object({
   firstName: yup
@@ -37,9 +37,21 @@ const schema = yup.object({
   phone: yup
     .string()
     .required('Phone is required')
-    .min(6, 'Phone is too short')
-    .max(18, 'Phone is too long')
-    .matches(/^[+0-9\s]+$/, 'Phone must only contain numbers'),
+    .matches(/^[+0-9\s]+$/, 'Phone must only contain numbers')
+    .test('test-name', 'Phone is invalid', (value) => {
+      if (value) {
+        const length = value.replace(/\s+/g, '').length;
+        return length < 17;
+      }
+      return true;
+    })
+    .test('test2-name', 'Phone is required', (value) => {
+      if (value) {
+        if (value.split(' ')[1].includes('+') || value.split(' ')[1] === '')
+          return false;
+      }
+      return true;
+    }),
   username: yup
     .string()
     .min(2, 'User Name is required')
@@ -103,7 +115,6 @@ const AccountAdd = () => {
   const addMutation = postAccountAdd();
 
   const onSubmit = (data: EditForm) => {
-    console.log(data);
     if (idAccount) {
       return editMutation?.mutate(data, {
         onSuccess: (data) => {
@@ -114,8 +125,8 @@ const AccountAdd = () => {
       });
     }
     addMutation?.mutate(data, {
-      onSuccess: () => {
-        toast.success(`New Account are Created`);
+      onSuccess: (newData) => {
+        toast.success(`New Account with id ${newData.id}  are Created`);
         navigate('/accounts');
       },
       onError: (error) => catchErr(error),
@@ -125,6 +136,11 @@ const AccountAdd = () => {
   return (
     <div className="bg-white w-full h-full rounded-xl p-5 overflow-y-auto">
       <Toaster />
+      {editDataQuery?.isLoading && (
+        <div className="w-full h-full flex justify-center items-center">
+          <CircularProgress size="lg" />
+        </div>
+      )}
       <FormProvider {...formMethod}>
         <form className="max-w-[680px]" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 pb-4 sm:pb-6 border-b border-t-neutral/DE">
