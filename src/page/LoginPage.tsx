@@ -1,5 +1,5 @@
-import LoginBackground from '../components/login-page/LoginBackground';
-import LoginCart from '../components/login-page/LoginCart';
+import LoginBackground from '../components/Auth/LoginBackground';
+import LoginCart from '../components/Auth/LoginCart';
 
 const LoginPage = () => {
   return (

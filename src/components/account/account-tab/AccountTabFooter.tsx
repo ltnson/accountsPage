@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 
 const AccountTabFooter = () => {
+  const { pathname } = useLocation();
   const {
     totalTab,
     skipTab,
@@ -21,7 +22,12 @@ const AccountTabFooter = () => {
     opMember,
   } = useContext(AccountContext);
 
-  const { pathname } = useLocation();
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number,
+  ) => {
+    setSkipTab(value * limitTab - limitTab);
+  };
 
   if (pathname.includes('/accounts/search')) {
     return (
@@ -55,17 +61,10 @@ const AccountTabFooter = () => {
       </div>
     );
   }
-  const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
-    value: number,
-  ) => {
-    console.log(skipTab, limitTab, totalTab);
-    setSkipTab(value * limitTab - limitTab);
-  };
 
   return (
     <div className="grow-0 p-2 sm:p-4 flex flex-col lg:flex-row justify-between items-center text-t-light sm:text-base text-sm">
-      <p className="pb-1 lg:pb-0 ">
+      <p className="md:pb-1 lg:pb-0 ">
         Showing {skipTab + 1} to {skipTab + limitTab} of {totalTab} entries
       </p>
       <div className="flex gap-4">

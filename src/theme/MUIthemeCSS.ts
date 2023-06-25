@@ -408,6 +408,10 @@ const theme = createTheme({
 
           '& ul > li > div': {
             paddingTop: '8px',
+            '&:hover': {
+              background: 'inherit',
+              color: '#9DA7B9',
+            },
           },
         },
       },

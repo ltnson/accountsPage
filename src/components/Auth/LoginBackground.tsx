@@ -12,7 +12,7 @@ const LoginBackground = () => {
       <div className="flex items-center col-span-5 w-full">
         <div className="z-10 top-0 right-0 py-12 h-screen w-full relative">
           <BgLoginSVG />
-          <div className="bg-login z-20 fixed flex items-center h-full w-auto  justify-end w-5/8 absolute top-0 right-0">
+          <div className="bg-login z-20 fixed flex items-center h-full w-auto justify-end w-5/8 absolute top-0 right-0">
             <div className="z-20 h-2/3">
               <BgLoginFrame />
             </div>
