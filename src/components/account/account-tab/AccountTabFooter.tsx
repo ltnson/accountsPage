@@ -3,7 +3,6 @@ import { AccountContext } from '../../../store/AccountContext';
 import { useLocation } from 'react-router-dom';
 
 import {
-  Button,
   MenuItem,
   TextField,
   Pagination,
@@ -87,10 +86,14 @@ const AccountTabFooter = () => {
             <PaginationItem
               slots={{
                 previous: () => (
-                  <Typography className="btn-group-prev">Prev.</Typography>
+                  <Typography className="btn-group-prev s14-gray">
+                    Prev.
+                  </Typography>
                 ),
                 next: () => (
-                  <Typography className="btn-group-next">Next</Typography>
+                  <Typography className="btn-group-next s14-gray">
+                    Next
+                  </Typography>
                 ),
               }}
               {...item}

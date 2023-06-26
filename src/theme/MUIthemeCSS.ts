@@ -65,8 +65,9 @@ const theme = createTheme({
             borderBottomLeftRadius: '0',
             borderTopRightRadius: '4px',
             borderBottomRightRadius: '4px',
-            padding: '6px 8px',
-
+            padding: '0 8px',
+            display: 'flex',
+            alignItems: 'center',
             '&:hover': {
               color: 'white',
               background: '#5E90F0',
@@ -74,7 +75,6 @@ const theme = createTheme({
             '@media (max-width: 640px)': {
               height: '28px',
               fontSize: '14px',
-              padding: '4px 8px',
             },
           },
 
@@ -89,7 +89,9 @@ const theme = createTheme({
             borderBottomLeftRadius: '4px',
             borderTopRightRadius: '0',
             borderBottomRightRadius: '0',
-            padding: '6px 8px',
+            padding: '0 8px',
+            display: 'flex',
+            alignItems: 'center',
             '&:hover': {
               color: 'white',
               background: '#5E90F0',
@@ -97,7 +99,6 @@ const theme = createTheme({
             '@media (max-width: 640px)': {
               height: '28px',
               fontSize: '14px',
-              padding: '4px 8px',
             },
             '@media (max-width: 579px)': {
               border: '1px solid #9DA7B9',
