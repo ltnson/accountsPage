@@ -56,6 +56,53 @@ const theme = createTheme({
             width: 'auto',
             whiteSpace: 'nowrap',
           },
+
+          '&.btn-group-next': {
+            color: '#9DA7B9',
+            height: '36px',
+            border: '1px solid #9DA7B9',
+            borderTopLeftRadius: '0',
+            borderBottomLeftRadius: '0',
+            borderTopRightRadius: '4px',
+            borderBottomRightRadius: '4px',
+            padding: '6px 8px',
+
+            '&:hover': {
+              color: 'white',
+              background: '#5E90F0',
+            },
+            '@media (max-width: 640px)': {
+              height: '28px',
+              fontSize: '14px',
+              padding: '4px 8px',
+            },
+          },
+
+          '&.btn-group-prev': {
+            color: '#9DA7B9',
+            height: '36px',
+            borderTop: '1px solid #9DA7B9',
+            borderBottom: '1px solid #9DA7B9',
+            borderLeft: '1px solid #9DA7B9',
+            borderRight: '0',
+            borderTopLeftRadius: '4px',
+            borderBottomLeftRadius: '4px',
+            borderTopRightRadius: '0',
+            borderBottomRightRadius: '0',
+            padding: '6px 8px',
+            '&:hover': {
+              color: 'white',
+              background: '#5E90F0',
+            },
+            '@media (max-width: 640px)': {
+              height: '28px',
+              fontSize: '14px',
+              padding: '4px 8px',
+            },
+            '@media (max-width: 579px)': {
+              border: '1px solid #9DA7B9',
+            },
+          },
         },
       },
     },
@@ -102,48 +149,6 @@ const theme = createTheme({
               height: '32px',
               width: '120px',
               fontSize: '12px',
-            },
-          },
-
-          '&.btn-group-next': {
-            color: '#9DA7B9',
-            height: '36px',
-            border: '1px solid #9DA7B9',
-            borderTopLeftRadius: '0',
-            borderBottomLeftRadius: '0',
-            borderTopRightRadius: '4px',
-            borderBottomRightRadius: '4px',
-            '&:hover': {
-              color: 'white',
-              background: '#5E90F0',
-            },
-            '@media (max-width: 640px)': {
-              height: '28px',
-              fontSize: '14px',
-            },
-          },
-
-          '&.btn-group-prev': {
-            color: '#9DA7B9',
-            height: '36px',
-            borderTop: '1px solid #9DA7B9',
-            borderBottom: '1px solid #9DA7B9',
-            borderLeft: '1px solid #9DA7B9',
-            borderRight: '0',
-            borderTopLeftRadius: '4px',
-            borderBottomLeftRadius: '4px',
-            borderTopRightRadius: '0',
-            borderBottomRightRadius: '0',
-            '&:hover': {
-              color: 'white',
-              background: '#5E90F0',
-            },
-            '@media (max-width: 640px)': {
-              height: '28px',
-              fontSize: '14px',
-            },
-            '@media (max-width: 579px)': {
-              border: '1px solid #9DA7B9',
             },
           },
 

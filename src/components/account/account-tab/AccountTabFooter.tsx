@@ -8,6 +8,7 @@ import {
   TextField,
   Pagination,
   PaginationItem,
+  Typography,
 } from '@mui/material';
 
 const AccountTabFooter = () => {
@@ -86,9 +87,11 @@ const AccountTabFooter = () => {
             <PaginationItem
               slots={{
                 previous: () => (
-                  <Button className="btn-group-prev">Prev.</Button>
+                  <Typography className="btn-group-prev">Prev.</Typography>
                 ),
-                next: () => <Button className="btn-group-next">Next</Button>,
+                next: () => (
+                  <Typography className="btn-group-next">Next</Typography>
+                ),
               }}
               {...item}
             />

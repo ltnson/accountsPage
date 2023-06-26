@@ -33,7 +33,7 @@ const FilterForm = ({
         fullWidth
         className="filter-form"
         select
-        defaultValue={valueFilter}
+        value={valueFilter}
         onChange={(e) =>
           label !== 'Level' &&
           label !== 'Skill' &&
