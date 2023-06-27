@@ -54,9 +54,9 @@ const LoginCart = () => {
   };
 
   return (
-    <div className="fixed px-8 z-30 top-0 py-12 w-full h-screen">
+    <div className="fixed sm:px-8 z-30 top-0 sm:py-12 w-full h-screen">
       <Toaster />
-      <div className="cart-css">
+      <div className="cart-login">
         <VinovaSVG />
         <p className="text-xl lg:text-2xl xl:text-3xl font-extrabold">
           RESOURCE MANAGEMENT

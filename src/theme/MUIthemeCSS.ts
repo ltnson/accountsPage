@@ -43,13 +43,6 @@ const theme = createTheme({
             borderRadius: '3px',
           },
 
-          '&.layout-sideber': {
-            width: '80px',
-            '@media (max-width: 640px)': {
-              width: '64px',
-            },
-          },
-
           '&.skill-op': {
             padding: '2px 6px',
             display: 'flex',
@@ -118,6 +111,9 @@ const theme = createTheme({
             borderRadius: '5px',
             color: '#80A2D9',
             width: '100%',
+            '&:hover': {
+              background: '#EDF3FE',
+            },
           },
 
           '&.login-btn-1': {
@@ -125,6 +121,9 @@ const theme = createTheme({
             borderRadius: '5px',
             color: 'white',
             width: '100%',
+            '&:hover': {
+              background: '#5C78DB',
+            },
           },
 
           '&.logout': {
@@ -134,6 +133,9 @@ const theme = createTheme({
             width: '100%',
             '@media (max-width: 640px)': {
               height: '32px',
+            },
+            '&:hover': {
+              background: '#ffa8a8',
             },
           },
 
@@ -222,9 +224,9 @@ const theme = createTheme({
           },
 
           '&.sidebar-toggle': {
-            width: '36px',
-            height: 'auto',
-            padding: '4px',
+            width: 'auto',
+            height: '100%',
+            padding: '10px',
             zIndex: '99',
             '&:hover': {
               backgroundColor: '#FFF3F4',

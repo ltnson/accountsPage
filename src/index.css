@@ -8,10 +8,21 @@
 }
 
 @layer components {
-  .cart-css {
-    @apply w-full max-w-[520px] sm:w-9/12 md:w-2/4 lg:w-5/12 bg-white h-full md:pl-6
+  .cart-login {
+    @apply w-full sm:max-w-[520px] sm:w-9/12 md:w-2/4 lg:w-5/12 bg-white h-full md:pl-6
      md:pr-16 py-2 px-6 flex flex-col justify-center flex-nowrap gap-4 overflow-auto;
   }
+
+  .side-bar {
+    @apply w-16 sm:w-20 px-2 sm:px-3 pb-4 h-screen pt-[58px] sm:pt-[66px] top-0 left-0
+           flex flex-col justify-between fixed sm:static bg-white z-10;
+  }
+
+  .logout-cart {
+    @apply w-56 sm:w-64 sm:h-36 p-4 absolute z-10 bottom-2 left-12 rounded-xl
+           shadow-xl flex flex-col justify-between bg-white;
+  }
+
   .btn-w-a {
     @apply border border-t-blue bg-white inline-block rounded p-1 sm:p-2 ml-4 hover:bg-blue/10;
   }
@@ -40,8 +51,13 @@
     @apply bg-white w-full h-screen sm:w-72 sm:h-[550px] md:w-80 md:h-[630px]
      z-20 rounded shadow-md text-sm p-4 sm:p-6 gap-4 flex flex-col overflow-auto;
   }
+
   .update-import {
     @apply w-full h-60 md:h-64 border-dashed border-2 border-t-neutral/d2 bg-neutral/f5 
     flex flex-col items-center justify-center text-t-neutral/6 rounded-md;
+  }
+
+  .tab-header-select {
+    @apply py-1 px-2 border-b-2 hover:border-t-blue hover:text-t-blue;
   }
 }

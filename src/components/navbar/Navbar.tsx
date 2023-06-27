@@ -34,14 +34,16 @@ const Navbar = () => {
   }
   return (
     <div className="flex justify-center fixed top-0 left-0 w-full z-20">
-      <div className="max-w-[1440px] w-full flex h-12 sm:h-16 px-2 sm:px-3  bg-white z-20 items-center">
-        <div className=" px-2 flex items-center w-full ">
-          <SidebarButton
-            className="sidebar-toggle"
-            onClick={() =>
-              setShowArr({ ...showArr, sidebar: !showArr.sidebar })
-            }
-          />
+      <div className="max-w-[1440px] w-full flex h-12 sm:h-16 pr-2 sm:pr-3  bg-white z-20 items-center">
+        <div className=" pr-2 flex items-center w-full ">
+          <div className="h-16 sm:h-20 p-2 sm:p-3 ">
+            <SidebarButton
+              className="sidebar-toggle"
+              onClick={() =>
+                setShowArr({ ...showArr, sidebar: !showArr.sidebar })
+              }
+            />
+          </div>
           {title}
         </div>
         {!pathname.includes('/accounts/add') &&

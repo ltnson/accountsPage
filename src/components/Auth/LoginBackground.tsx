@@ -19,7 +19,7 @@ const LoginBackground = () => {
           </div>
         </div>
       </div>
-      <div className="text-cyan-paraph absolute bottom-4 flex justify-center w-full">
+      <div className="text-cyan-paraph absolute bottom-4 flex justify-center w-full z-40 sm:text-base text-sm">
         <p>Version 1.1.24</p>
       </div>
     </div>
