@@ -23,8 +23,16 @@ import EyeOpen from '../../assets/SVG/loginSVG/EyeOpen';
 import VinovaSVG from '../../assets/SVG/VinovaSVG';
 
 const loginSchema = yup.object().shape({
-  username: yup.string().required(),
-  password: yup.string().required(),
+  username: yup
+    .string()
+    .min(4, 'Username is too short')
+    .max(20, 'Username is invalid')
+    .required('Fist Name is required'),
+  password: yup
+    .string()
+    .min(4, 'Password is too short')
+    .max(20, 'Password is invalid')
+    .required('Fist Name is required'),
 });
 
 const LoginCart = () => {
@@ -54,7 +62,7 @@ const LoginCart = () => {
   };
 
   return (
-    <div className="fixed sm:px-8 z-30 top-0 sm:py-12 w-full h-screen">
+    <Typography component="div" className=" login-layout">
       <Toaster />
       <div className="cart-login">
         <VinovaSVG />
@@ -76,7 +84,6 @@ const LoginCart = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div>
             <label className="text-sm md:text-base">User Name</label>
-            <p>kminchelle</p>
             <TextField
               size="small"
               placeholder="User Name"
@@ -87,7 +94,6 @@ const LoginCart = () => {
           </div>
           <div>
             <label className="text-sm md:text-base">Password</label>
-            <p>0lelplR</p>
             <TextField
               size="small"
               placeholder="Password"
@@ -133,7 +139,7 @@ const LoginCart = () => {
           <Button className="login-btn-2">Login with SSO</Button>
         </form>
       </div>
-    </div>
+    </Typography>
   );
 };
 

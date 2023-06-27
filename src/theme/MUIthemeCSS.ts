@@ -9,6 +9,24 @@ const theme = createTheme({
     MuiTypography: {
       styleOverrides: {
         root: {
+          '&.login-layout': {
+            position: 'fixed',
+            zIndex: '30',
+            width: '100%',
+            height: '100vh',
+            top: '0',
+            padding: '40px 32px',
+            '@media (max-width: 640px)': {
+              padding: '0',
+            },
+            '@media (max-height: 640px)': {
+              padding: '0 32px',
+              '@media (max-width: 640px)': {
+                padding: '0',
+              },
+            },
+          },
+
           '&.s14-gray': {
             fontSize: '14px',
             color: '#9DA7B9',

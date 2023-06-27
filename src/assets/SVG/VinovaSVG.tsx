@@ -10,8 +10,6 @@ const VinovaSVG = (props: SvgIconProps) => {
       sx={{
         width: '121px',
         height: '41px',
-        margin: '10px 0',
-
         '@media (max-width: 420px)': {
           width: '81px',
           height: '14px',
