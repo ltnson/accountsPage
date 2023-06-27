@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AccountContext } from '../../store/AccountContext';
 
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import DashbroadSVG from '../../assets/SVG/sidebarSVG/DashbroadSVG';
 import PJSVG from '../../assets/SVG/sidebarSVG/PJSVG';
 import StacksSVG from '../../assets/SVG/sidebarSVG/StacksSVG';
@@ -42,7 +42,7 @@ const Sidebar = () => {
         />
         <SettingSVG className="sidebar" />
       </div>
-      <div className="relative flex flex-col items-center gap-12">
+      <Typography component="div" className="footer-side">
         <NotificationSVG className="sidebar" />
         <div
           className="sm:p-2 hover:bg-red/F rounded-xl"
@@ -67,7 +67,7 @@ const Sidebar = () => {
             </Button>
           </div>
         )}
-      </div>
+      </Typography>
     </div>
   );
 };

@@ -97,6 +97,17 @@ const theme = createTheme({
               border: '1px solid #9DA7B9',
             },
           },
+
+          '&.footer-side': {
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '48px',
+            '@media (max-height: 640px)': {
+              gap: '0',
+            },
+          },
         },
       },
     },
