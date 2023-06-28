@@ -33,40 +33,38 @@ const Navbar = () => {
     );
   }
   return (
-    <div className="flex justify-center fixed top-0 left-0 w-full z-20">
-      <div className="max-w-[1440px] w-full flex h-12 sm:h-16 pr-2 sm:pr-3  bg-white z-20 items-center">
-        <div className=" pr-2 flex items-center w-full ">
-          <div className="h-16 sm:h-20 p-2 sm:p-3 ">
-            <SidebarButton
-              className="sidebar-toggle"
-              onClick={() =>
-                setShowArr({ ...showArr, sidebar: !showArr.sidebar })
-              }
-            />
-          </div>
-          {title}
+    <div className=" w-full flex h-12 sm:h-16 pr-2 sm:pr-3  bg-white z-20 items-center fixed top-0 left-0 z-20">
+      <div className=" pr-2 flex items-center w-full ">
+        <div className="h-16 sm:h-20 p-2 sm:p-3 ">
+          <SidebarButton
+            className="sidebar-toggle"
+            onClick={() =>
+              setShowArr({ ...showArr, sidebar: !showArr.sidebar })
+            }
+          />
         </div>
-        {!pathname.includes('/accounts/add') &&
-          !pathname.includes('/accounts/edit') && (
-            <div className="flex gap-2.5 justify-self-end h-12 items-center">
-              <FieldSVG
-                className="navbar"
-                onClick={() => setShowArr({ ...showArr, update: true })}
-              />
-              <UploadSVG
-                className="navbar"
-                onClick={() => setShowArr({ ...showArr, update: true })}
-              />
-              <DownloadSVG className="navbar" />
-              <Button
-                className="navbar"
-                onClick={() => navigate('/accounts/add')}
-              >
-                <PlushSVG /> New Account
-              </Button>
-            </div>
-          )}
+        {title}
       </div>
+      {!pathname.includes('/accounts/add') &&
+        !pathname.includes('/accounts/edit') && (
+          <div className="flex gap-2.5 justify-self-end h-12 items-center">
+            <FieldSVG
+              className="navbar"
+              onClick={() => setShowArr({ ...showArr, update: true })}
+            />
+            <UploadSVG
+              className="navbar"
+              onClick={() => setShowArr({ ...showArr, update: true })}
+            />
+            <DownloadSVG className="navbar" />
+            <Button
+              className="navbar"
+              onClick={() => navigate('/accounts/add')}
+            >
+              <PlushSVG /> New Account
+            </Button>
+          </div>
+        )}
     </div>
   );
 };

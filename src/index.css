@@ -10,7 +10,8 @@
 @layer components {
   .cart-login {
     @apply w-full sm:max-w-[520px] sm:w-9/12 md:w-2/4 lg:w-5/12 bg-white h-full md:pl-6
-     md:pr-16 py-2 px-6 flex flex-col justify-center flex-nowrap gap-3.5 overflow-auto;
+     md:pr-16 py-2 px-6 flex flex-col justify-center flex-nowrap gap-3.5 overflow-auto
+     2xl:max-w-[660px] 2xl:gap-8;
   }
 
   .side-bar {
@@ -26,27 +27,33 @@
   .btn-w-a {
     @apply border border-t-blue bg-white inline-block rounded p-1 sm:p-2 ml-4 hover:bg-blue/10;
   }
+
   .btn-show-cart {
     @apply h-7 w-7 sm:h-8 sm:w-8 flex justify-center items-center border border-t-blue
      bg-white inline-block rounded p-1 sm:p-2 ml-4 hover:bg-blue/10;
   }
+
   .bg-cart {
     @apply fixed w-screen h-screen flex justify-center items-center bg-alpha/4 z-30 top-0 right-0;
   }
+
   .cart-detail {
     @apply w-full h-full sm:w-[550px] sm:h-auto md:h-[610px] md:w-[610px] p-6 sm:p-8 
           flex flex-col flex-nowrap overflow-auto 
           justify-between bg-white relative sm:rounded-lg;
   }
+
   .cart-loading {
     @apply w-full h-full sm:w-[550px] sm:h-[550px] md:h-[610px] md:w-[610px] p-6 sm:p-8 
           flex justify-center items-center bg-white sm:rounded-lg;
   }
+
   .cart-update {
     @apply w-full h-full sm:w-[470px] sm:h-[470px] md:h-[520px] md:w-[520px] p-6 gap-4 
           flex flex-col justify-between flex-nowrap overflow-auto
            bg-white relative sm:rounded-lg;
   }
+
   .cart-filter {
     @apply bg-white w-full h-screen sm:w-72 sm:h-[550px] md:w-80 md:h-[630px]
      z-20 rounded shadow-md text-sm p-4 sm:p-6 gap-4 flex flex-col overflow-auto;

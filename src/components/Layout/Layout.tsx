@@ -10,9 +10,9 @@ const Layout = (props: Props) => {
   const { authLogin, showArr } = useContext(AccountContext);
 
   return (
-    <div className="flex justify-center">
+    <>
       {authLogin ? (
-        <div className="flex w-full max-w-[1440px]">
+        <div className="flex w-full">
           <Navbar />
           <Sidebar />
           <div
@@ -26,7 +26,7 @@ const Layout = (props: Props) => {
       ) : (
         <>{props.children}</>
       )}
-    </div>
+    </>
   );
 };
 export default Layout;
