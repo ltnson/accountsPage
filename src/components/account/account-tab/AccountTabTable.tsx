@@ -11,7 +11,6 @@ import {
   Table,
   TableContainer,
   TextField,
-  Paper,
   CircularProgress,
 } from '@mui/material';
 import SearchBtnSVG from '../../../assets/SVG/accountsSVG/SearchBtnSVG';
@@ -82,7 +81,7 @@ const AccountTabTable = () => {
   };
 
   return (
-    <div className="p-2 sm:p-5  border-b border-t-light grow flex flex-col gap-5 flex-nowrap overflow-auto">
+    <div className="p-2 sm:p-5  border-b border-t-neutral/d2 grow flex flex-col gap-5 flex-nowrap overflow-auto">
       <Toaster />
       <div className="grow-0">
         <TextField
@@ -100,7 +99,7 @@ const AccountTabTable = () => {
         </a>
       </div>
       {data?.users && (
-        <TableContainer component={Paper}>
+        <TableContainer>
           <Table border={1}>
             <HeadTab />
             <BodyTab accountsArray={data.users} />

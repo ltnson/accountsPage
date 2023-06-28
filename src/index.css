@@ -15,7 +15,7 @@
   }
 
   .side-bar {
-    @apply w-16 sm:w-20 px-2 sm:px-3 pb-4 h-screen pt-[58px] sm:pt-[66px] top-0 left-0
+    @apply w-16 sm:w-20 px-2 sm:px-3.5 pb-4 h-screen pt-[58px] sm:pt-[66px] top-0 left-0
            flex flex-col justify-between fixed sm:static bg-white z-10;
   }
 
@@ -65,6 +65,6 @@
   }
 
   .tab-header-select {
-    @apply py-1 px-2 border-b-2 hover:border-t-blue hover:text-t-blue;
+    @apply p-3 border-b-[3px] hover:border-t-blue hover:text-t-blue;
   }
 }

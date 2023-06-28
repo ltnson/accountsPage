@@ -26,8 +26,8 @@ const AccountTabHeader = () => {
   };
 
   return (
-    <div className="px-2 sm:px-5 border-b border-t-light pt-2 grow-0">
-      <ul className="flex text-t-light gap-2">
+    <div className="px-2 sm:px-5 border-b border-t-neutral/d2 pt-2 grow-0">
+      <ul className="flex text-t-light gap-3">
         <li
           className={`tab-header-select ${
             opMember === 'all' && 'border-t-blue text-t-blue'

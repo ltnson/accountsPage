@@ -71,7 +71,7 @@ const theme = createTheme({
           '&.btn-group-next': {
             color: '#9DA7B9',
             height: '36px',
-            border: '1px solid #9DA7B9',
+            border: '1px solid rgba(224, 224, 224, 1)',
             borderTopLeftRadius: '0',
             borderBottomLeftRadius: '0',
             borderTopRightRadius: '4px',
@@ -92,9 +92,9 @@ const theme = createTheme({
           '&.btn-group-prev': {
             color: '#9DA7B9',
             height: '36px',
-            borderTop: '1px solid #9DA7B9',
-            borderBottom: '1px solid #9DA7B9',
-            borderLeft: '1px solid #9DA7B9',
+            borderTop: '1px solid #D2D2D2',
+            borderBottom: '1px solid #D2D2D2',
+            borderLeft: '1px solid #D2D2D2',
             borderRight: '0',
             borderTopLeftRadius: '4px',
             borderBottomLeftRadius: '4px',
@@ -112,7 +112,7 @@ const theme = createTheme({
               fontSize: '14px',
             },
             '@media (max-width: 579px)': {
-              border: '1px solid #9DA7B9',
+              border: '1px solid #D2D2D2',
             },
           },
 
@@ -376,11 +376,20 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: '0',
+          border: '1px solid rgba(224, 224, 224, 1)',
           boxShadow: '0',
           flexGrow: '1',
           '& td,th': {
             borderRight: '1px solid rgba(224, 224, 224, 1)',
           },
+        },
+      },
+    },
+
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          border: 'none',
         },
       },
     },
@@ -391,7 +400,6 @@ const theme = createTheme({
           position: 'sticky',
           top: '0',
           background: 'white',
-          borderBottom: '2px solid rgba(224, 224, 224, 1)',
         },
       },
     },
@@ -460,9 +468,9 @@ const theme = createTheme({
           height: '36px',
           color: '#9DA7B9',
           borderRadius: '0',
-          borderTop: '1px solid #9DA7B9',
-          borderBottom: '1px solid #9DA7B9',
-          borderLeft: '1px solid #9DA7B9',
+          borderTop: '1px solid #D2D2D2',
+          borderBottom: '1px solid #D2D2D2',
+          borderLeft: '1px solid #D2D2D2',
           margin: '0',
 
           '&:hover': {
