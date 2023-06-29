@@ -66,7 +66,7 @@ const PhoneForm = ({
                 </InputAdornment>
               ),
               endAdornment: (
-                <InputAdornment position="end" sx={{ marginTop: '10px' }}>
+                <InputAdornment position="end" sx={{ marginTop: '20px' }}>
                   <Typography className="s12-gray">
                     {value.replace(/\s/g, '').length}/18
                   </Typography>

@@ -63,11 +63,11 @@ const AccountTabFooter = () => {
   }
 
   return (
-    <div className="grow-0 p-2 sm:p-4 flex flex-col lg:flex-row justify-between items-center text-t-light sm:text-base text-sm">
+    <div className="grow-0 p-2 sm:p-5 flex flex-col lg:flex-row justify-between items-center text-t-light sm:text-base text-sm">
       <p className="md:pb-1 lg:pb-0 ">
         Showing {skipTab + 1} to {skipTab + limitTab} of {totalTab} entries
       </p>
-      <div className="flex gap-4">
+      <div className="flex gap-1.5">
         <TextField
           value={limitTab}
           select

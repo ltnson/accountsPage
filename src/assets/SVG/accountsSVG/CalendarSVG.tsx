@@ -2,7 +2,13 @@ import { SvgIcon, SvgIconProps } from '@mui/material';
 
 const CalendarSVG = (props: SvgIconProps) => {
   return (
-    <SvgIcon role="img" viewBox="0 0 20 20" fill="none" {...props}>
+    <SvgIcon
+      role="img"
+      viewBox="0 0 20 20"
+      fill="none"
+      {...props}
+      sx={{ width: '20px', height: '20px' }}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"

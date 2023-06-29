@@ -33,7 +33,7 @@ const TextForm = ({
             }
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end" sx={{ marginTop: '10px' }}>
+                <InputAdornment position="end" sx={{ marginTop: '20px' }}>
                   <Typography className="s12-gray">
                     {value?.length}/50
                   </Typography>

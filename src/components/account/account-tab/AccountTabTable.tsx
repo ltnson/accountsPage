@@ -12,8 +12,10 @@ import {
   TableContainer,
   TextField,
   CircularProgress,
+  InputAdornment,
 } from '@mui/material';
 import SearchBtnSVG from '../../../assets/SVG/accountsSVG/SearchBtnSVG';
+import SearchSVG from '../../../assets/SVG/accountsSVG/SearchSVG';
 
 const AccountTabTable = () => {
   const location = useLocation();
@@ -89,6 +91,13 @@ const AccountTabTable = () => {
           className="search-account"
           size="small"
           onChange={(e) => handleToSearch(e.target.value)}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchSVG />
+              </InputAdornment>
+            ),
+          }}
         />
         <a
           className="btn-w-a w-8 h-8 sm:w-10 sm:h-10"

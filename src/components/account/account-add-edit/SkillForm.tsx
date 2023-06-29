@@ -15,18 +15,18 @@ const SkillForm = () => {
   return (
     <div className="col-span-2">
       <TextField
-        className="input-form input-skill"
+        className="input-form"
         InputProps={{
           startAdornment: (
             <div className="flex gap-x-1 items-center flex-nowrap  ml-2 w-auto pr-2">
               {skill.map((sk, index) => (
                 <div
-                  className={`rounded-xl border border-t-light text-center flex items-center flex-nowrap ${
+                  className={`rounded-3xl border border-t-neutral/d2 text-center flex items-center flex-nowrap ${
                     sk === '' && 'hidden'
                   }`}
                   key={index}
                 >
-                  <Typography className="s12-gray skill-op">
+                  <Typography className="skill-op">
                     <CloseSVG2
                       onClick={() => {
                         setNewSk([...newSk, sk]);
@@ -50,7 +50,7 @@ const SkillForm = () => {
             <div className="flex gap-x-1 items-center flex-nowrap  ml-2 w-auto pr-2">
               {newSk.map((sk, index) => (
                 <div
-                  className={`rounded-xl border border-t-light text-center flex items-center flex-nowrap ${
+                  className={`rounded-3xl border border-t-neutral/d2 text-center flex items-center flex-nowrap ${
                     sk === '' && 'hidden'
                   }`}
                   key={index}
@@ -59,7 +59,7 @@ const SkillForm = () => {
                     setNewSk(() => newSk.filter((_, i) => i !== index));
                   }}
                 >
-                  <Typography className="s12-gray skill-op">{sk}</Typography>
+                  <Typography className="skill-hover skill-op">{sk}</Typography>
                 </div>
               ))}
             </div>

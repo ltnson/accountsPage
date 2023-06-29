@@ -62,10 +62,16 @@ const theme = createTheme({
           },
 
           '&.skill-op': {
-            padding: '2px 6px',
+            padding: '4px 8px',
             display: 'flex',
             width: 'auto',
             whiteSpace: 'nowrap',
+            color: 'black',
+            fontSize: '12px',
+          },
+
+          '&.skill-hover': {
+            cursor: 'pointer',
           },
 
           '&.btn-group-next': {
@@ -256,7 +262,19 @@ const theme = createTheme({
             width: 'auto',
             height: '100%',
             padding: '10px',
-            zIndex: '99',
+            '&:hover': {
+              backgroundColor: '#FFF3F4',
+              borderRadius: '8px',
+              path: {
+                fill: '#FF424A',
+              },
+            },
+          },
+
+          '&.sidebar-toggle-active': {
+            width: 'auto',
+            height: '100%',
+            padding: '6px',
             '&:hover': {
               backgroundColor: '#FFF3F4',
               borderRadius: '8px',
@@ -313,11 +331,24 @@ const theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: '#D2D2D2',
+            },
+            '&:hover fieldset': {
+              borderColor: '#999999',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#999999',
+            },
+          },
           '&.search-account .MuiInputBase-root': {
+            width: '280px',
             height: '40px',
             '@media (max-width: 640px)': {
               height: '32px',
               fontSize: '14px',
+              width: '240px',
             },
           },
 

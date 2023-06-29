@@ -20,14 +20,14 @@ const Navbar = () => {
   );
   if (pathname === '/accounts/add') {
     title = (
-      <p className="text-t-light text-sm sm:text-xl">
+      <p className="text-t-light text-sm sm:text-xl flex items-center gap-2">
         <LeftSVG onClick={() => navigate('..')} /> Accounts / Create New Account
       </p>
     );
   }
   if (pathname.includes('/accounts/edit')) {
     title = (
-      <p className="text-t-light text-sm sm:text-xl">
+      <p className="text-t-light text-sm sm:text-xl flex items-center gap-2">
         <LeftSVG onClick={() => navigate('..')} /> Accounts / Edit Account
       </p>
     );
@@ -35,15 +35,21 @@ const Navbar = () => {
   return (
     <div className=" w-full flex h-12 sm:h-16 pr-2 sm:pr-3  bg-white z-20 items-center fixed top-0 left-0 z-20">
       <div className=" pr-2 flex items-center w-full ">
-        <div className="h-16 sm:h-20 p-2 sm:p-3 ">
+        <div
+          className={`h-16 sm:h-20 p-2 sm:p-4 flex items-center ${
+            showArr.sidebar && 'gap-2 sm:gap-3'
+          }`}
+        >
           <SidebarButton
-            className="sidebar-toggle"
+            className={
+              showArr.sidebar ? 'sidebar-toggle-active' : 'sidebar-toggle'
+            }
             onClick={() =>
               setShowArr({ ...showArr, sidebar: !showArr.sidebar })
             }
           />
+          {title}
         </div>
-        {title}
       </div>
       {!pathname.includes('/accounts/add') &&
         !pathname.includes('/accounts/edit') && (

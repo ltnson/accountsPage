@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { TextField, Typography, MenuItem } from '@mui/material';
+import DownSelectSVG from '../../../assets/SVG/accountsSVG/DownSelectSVG';
 
 const SelectForm = ({
   label,
@@ -22,6 +23,9 @@ const SelectForm = ({
         className="input-form"
         value={value}
         select
+        SelectProps={{
+          IconComponent: DownSelectSVG,
+        }}
         onChange={(e) => setValue(e.target.value)}
       >
         {array?.map((item: string, index) => (
