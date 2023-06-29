@@ -4,12 +4,7 @@ import { TextField, Typography } from '@mui/material';
 import CloseSVG2 from '../../../assets/SVG/accountsSVG/CloseSVG2';
 
 const SkillForm = () => {
-  const [newSk, setNewSk] = useState<string[]>([
-    '.NET',
-    'Native React',
-    'Node.Js',
-    'Next',
-  ]);
+  const [newSk, setNewSk] = useState<string[]>(['.NET', 'Native React', 'PM']);
   const [skill, setSkill] = useState<string[]>(['']);
 
   return (
@@ -18,7 +13,7 @@ const SkillForm = () => {
         className="input-form"
         InputProps={{
           startAdornment: (
-            <div className="flex gap-x-1 items-center flex-nowrap  ml-2 w-auto pr-2">
+            <div className="flex gap-x-1 items-center flex-nowrap sm:flex-nowrap  ml-2 w-auto pr-2 h-6">
               {skill.map((sk, index) => (
                 <div
                   className={`rounded-3xl border border-t-neutral/d2 text-center flex items-center flex-nowrap ${
@@ -47,10 +42,10 @@ const SkillForm = () => {
         className="input-form skill-form"
         InputProps={{
           startAdornment: (
-            <div className="flex gap-x-1 items-center flex-nowrap  ml-2 w-auto pr-2">
+            <div className="flex gap-x-1 items-center flex-nowrap  ml-2 w-auto pr-2 h-6">
               {newSk.map((sk, index) => (
                 <div
-                  className={`rounded-3xl border border-t-neutral/d2 text-center flex items-center flex-nowrap ${
+                  className={`rounded-3xl border border-t-neutral/d2 text-center flex items-center flex-wrap ${
                     sk === '' && 'hidden'
                   }`}
                   key={index}

@@ -68,6 +68,9 @@ const theme = createTheme({
             whiteSpace: 'nowrap',
             color: 'black',
             fontSize: '12px',
+            '@media (max-width: 640px)': {
+              padding: '2px 6px',
+            },
           },
 
           '&.skill-hover': {
@@ -336,10 +339,10 @@ const theme = createTheme({
               borderColor: '#D2D2D2',
             },
             '&:hover fieldset': {
-              borderColor: '#999999',
+              border: '1px solid #9DA7B9',
             },
             '&.Mui-focused fieldset': {
-              borderColor: '#999999',
+              border: '1px solid #9DA7B9',
             },
           },
           '&.search-account .MuiInputBase-root': {
