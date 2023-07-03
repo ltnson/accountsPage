@@ -27,6 +27,18 @@ const theme = createTheme({
             },
           },
 
+          '&.sideber-instance': {
+            position: 'relative',
+            '& div': {
+              display: 'none',
+            },
+            '&:hover': {
+              '& div': {
+                display: 'flex',
+              },
+            },
+          },
+
           '&.s14-gray': {
             fontSize: '14px',
             color: '#9DA7B9',
@@ -130,9 +142,18 @@ const theme = createTheme({
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '48px',
-            '@media (max-height: 640px)': {
-              gap: '0',
+            gap: '40px',
+            '@media (max-height: 680px)': {
+              gap: '16px',
+            },
+          },
+          '&.sidebar-list': {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '32px',
+            '@media (max-height: 680px)': {
+              gap: '16px',
             },
           },
         },
@@ -251,7 +272,6 @@ const theme = createTheme({
             width: '100%',
             height: 'auto',
             padding: '10px',
-            marginBottom: '10px',
             '&:hover': {
               backgroundColor: '#FFF3F4',
               borderRadius: '8px',
@@ -310,6 +330,15 @@ const theme = createTheme({
           '&.notifi-gray': {
             '& path:last-child': {
               fill: '#666666',
+            },
+          },
+
+          '&.filter-text': {
+            padding: '2.5px 0 4px 0',
+            width: '18px',
+            height: '18px',
+            '& path': {
+              stroke: '#5E90F0',
             },
           },
 
@@ -384,10 +413,10 @@ const theme = createTheme({
 
           '&.filter-form .MuiInputBase-root': {
             paddingRight: '10px',
-            height: '32px',
+            height: '36px',
             fontSize: '14px',
             '@media (max-width: 640px)': {
-              height: '30px',
+              height: '32px',
             },
           },
         },
@@ -420,14 +449,6 @@ const theme = createTheme({
       },
     },
 
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          border: 'none',
-        },
-      },
-    },
-
     MuiTableHead: {
       styleOverrides: {
         root: {
@@ -454,9 +475,12 @@ const theme = createTheme({
     MuiCheckbox: {
       styleOverrides: {
         root: {
-          padding: '4px 6px 4px 0',
-          '&.Mui-checked': {
-            color: '#5E90F0',
+          '&.filter': { padding: '4px 6px 4px 0' },
+          '&  path': {
+            fill: '#9DA7B9',
+          },
+          '&.Mui-checked path': {
+            fill: '#5E90F0',
           },
         },
       },

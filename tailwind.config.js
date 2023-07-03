@@ -14,10 +14,8 @@ export default {
       't-blue': '#5E90F0',
       't-neutral/d2': '#D2D2D2',
       't-red100': '#EC7474',
-
       't-neutral/DE': '#EBEBEB',
     },
-
     extend: {
       backgroundColor: {
         'login-page': '#f8f9fa',
@@ -27,6 +25,7 @@ export default {
         'neutral/f5': '#F5F5F5',
         'red/F': '#FFF3F4',
         'tag/green10': '#E5FAE8',
+        'opacity/7': 'rgba(0, 0, 0, 0.70)',
       },
     },
     fontFamily: {

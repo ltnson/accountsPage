@@ -1,6 +1,4 @@
 export interface MyContextData {
-  authLogin: boolean;
-  setAuthLogin: (value: boolean) => void;
   showArr: ShowArr;
   setShowArr: (value: ShowArr) => void;
   limitTab: number;
@@ -11,17 +9,24 @@ export interface MyContextData {
   setTotalTab: (value: number) => void;
   idDetail: number;
   setIdDetail: (value: number) => void;
-  userData: User | null;
-  setUserData: (data: User) => void;
   filter: string;
   setFilter: (value: string) => void;
-  opMember: string;
-  setOpMember: (value: string) => void;
   searchResult: number;
   setSearchResult: (value: number) => void;
-  pathName: string;
-  setPathName: (value: string) => void;
+  searching: boolean;
+  setSearching: (value: boolean) => void;
 }
+
+export type SidebarArr = {
+  logo: (className: string) => JSX.Element;
+  name: string;
+}[];
+
+export type OptionSeenArr = {
+  path: string;
+  name: string;
+  includes: string;
+}[];
 
 export type LoginData = {
   username: string;
@@ -34,7 +39,7 @@ export interface User {
   email: string;
   firstName: string;
   lastName: string;
-  gender: "male" | "female" | "non-binary";
+  gender: 'male' | 'female' | 'non-binary';
   image: string;
   token: string;
 }
@@ -45,7 +50,7 @@ export interface Account {
   lastName: string;
   maidenName?: string;
   age: number;
-  gender: "male" | "female";
+  gender: 'male' | 'female';
   email: string;
   phone: string;
   username: string;
@@ -128,7 +133,7 @@ export type ShowArr = {
 };
 
 export type FilterOption = {
-  "hair.color": string;
-  "hair.type": string;
+  'hair.color': string;
+  'hair.type': string;
   eyeColor: string;
 };

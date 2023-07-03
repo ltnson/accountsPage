@@ -25,6 +25,7 @@ const FilterForm = ({
       <Typography className="s14">
         <Checkbox
           size="small"
+          className="filter"
           onChange={(e) => setCheckBox(e.target.checked)}
         />
         {label}

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
 import theme from './theme/MUIthemeCSS.ts';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -25,15 +24,13 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <AccountProvider>
-              <App />
-            </AccountProvider>
-          </LocalizationProvider>
-        </ThemeProvider>
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <AccountProvider>
+            <App />
+          </AccountProvider>
+        </LocalizationProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>,
 );

@@ -1,6 +1,6 @@
 import { SvgIcon, SvgIconProps } from '@mui/material';
 
-const SearchBtnSVG = (props: SvgIconProps) => {
+const FilterSVG = (props: SvgIconProps) => {
   return (
     <SvgIcon
       role="img"
@@ -19,4 +19,4 @@ const SearchBtnSVG = (props: SvgIconProps) => {
   );
 };
 
-export default SearchBtnSVG;
+export default FilterSVG;

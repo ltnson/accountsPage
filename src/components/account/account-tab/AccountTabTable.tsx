@@ -1,6 +1,6 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AccountContext } from '../../../store/AccountContext';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 
 import { getAccountsLimit, catchErr } from '../../../hooks/Accounts';
 import { Toaster } from 'react-hot-toast';
@@ -14,78 +14,45 @@ import {
   CircularProgress,
   InputAdornment,
 } from '@mui/material';
-import SearchBtnSVG from '../../../assets/SVG/accountsSVG/SearchBtnSVG';
 import SearchSVG from '../../../assets/SVG/accountsSVG/SearchSVG';
+import TabHeadFilter from './table/TabHeadFilter';
 
 const AccountTabTable = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { pageNumber } = useParams();
-  const {
-    pathName,
-    showArr,
-    setShowArr,
-    setTotalTab,
-    setSearchResult,
-    limitTab,
-    skipTab,
-    setPathName,
-    setSkipTab,
-    opMember,
-  } = useContext(AccountContext);
+  const url = useLoaderData() as string;
+  const [pathName, setPathName] = useState<string>('');
 
   useEffect(() => {
-    if (pageNumber)
-      setSkipTab(
-        limitTab * (parseInt(pageNumber?.split('=')[1]) - 1) || skipTab,
-      );
-  }, []);
+    setPathName(url);
+  }, [url]);
 
-  useEffect(() => {
-    navigate(`/accounts/page=${Math.ceil(skipTab / limitTab + 1)}`);
-    setPathName(`?limit=${limitTab}` + '&' + `skip=${skipTab}`);
-  }, [skipTab, limitTab]);
+  const { setTotalTab, setSearchResult, setSearching } =
+    useContext(AccountContext);
 
   const { data, isLoading, error } = getAccountsLimit(pathName);
-  useEffect(() => {
-    if (data) {
-      if (location.pathname.includes('/accounts/search')) {
-        setSearchResult(data.limit);
-      }
-      if (location.pathname.includes('/accounts/filter')) {
-        setSearchResult(data.limit);
-      }
-      setTotalTab(data.total);
-    }
-  }, [data]);
 
   useEffect(() => {
     if (error) {
       catchErr(error);
     }
-  }, [error]);
+    if (data) {
+      setTotalTab(data.total);
+      setSearchResult(data.limit);
+    }
+  }, [error, data]);
 
   const handleToSearch = (e: string) => {
     if (e === '') {
-      if (opMember === 'vinova') {
-        setPathName('/filter?key=gender&value=male');
-        return navigate('/accounts/vinova');
-      }
-      if (opMember === 'partner') {
-        setPathName('/filter?key=gender&value=female');
-        return navigate('/accounts/partner');
-      }
-      navigate(`/accounts/page=${Math.ceil(skipTab / limitTab + 1)}`);
-      return setPathName(`?limit=${limitTab}` + '&' + `skip=${skipTab}`);
+      setSearching(false);
+      return setPathName(url);
     }
-    navigate(`/accounts/search?q=${e}`);
+    setSearching(true);
     setPathName(`/search?q=${e}`);
   };
 
   return (
-    <div className="p-2 sm:p-5  border-b border-t-neutral/d2 grow flex flex-col gap-5 flex-nowrap overflow-auto">
+    <div className="px-2 sm:px-5 pb-3 sm:pb-5 border-b border-t-neutral/d2 grow flex flex-col flex-nowrap overflow-auto">
       <Toaster />
-      <div className="grow-0">
+      <div className="grow-0 sm:py-[28px] py-3 flex flex-wrap">
         <TextField
           placeholder="Search"
           className="search-account"
@@ -99,16 +66,10 @@ const AccountTabTable = () => {
             ),
           }}
         />
-        <a
-          className="btn-w-a w-8 h-8 sm:w-10 sm:h-10"
-          href="#"
-          onClick={() => setShowArr({ ...showArr, filter: true })}
-        >
-          <SearchBtnSVG />
-        </a>
+        <TabHeadFilter />
       </div>
       {data?.users && (
-        <TableContainer>
+        <TableContainer className="scroll-style">
           <Table border={1}>
             <HeadTab />
             <BodyTab accountsArray={data.users} />

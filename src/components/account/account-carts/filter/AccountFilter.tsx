@@ -6,8 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { FilterOption } from '../../../../model/types';
 
 const AccountFilter = () => {
-  const { showArr, setShowArr, setPathName, opMember, skipTab, limitTab } =
-    useContext(AccountContext);
+  const { showArr, setShowArr } = useContext(AccountContext);
   const navigate = useNavigate();
   const [filterOption, setFilterOption] = useState<FilterOption>({
     'hair.color': '',
@@ -17,16 +16,7 @@ const AccountFilter = () => {
 
   const handleClearAll = () => {
     setShowArr({ ...showArr, filter: false });
-    if (opMember === 'vinova') {
-      setPathName('/filter?key=gender&value=male');
-      return navigate('/accounts/vinova');
-    }
-    if (opMember === 'partner') {
-      setPathName('/filter?key=gender&value=female');
-      return navigate('/accounts/partner');
-    }
-    navigate(`/accounts/page=${skipTab / limitTab + 1}`);
-    return setPathName(`?limit=${limitTab}` + '&' + `skip=${skipTab}`);
+    navigate('/accounts/tab?limit=10&page=1');
   };
 
   const handleShowFilterOption = () => {
@@ -41,7 +31,6 @@ const AccountFilter = () => {
       break;
     }
     if (firstNonEmptyKeyValue) {
-      setPathName(`${firstNonEmptyKeyValue}`);
       navigate(`/accounts${firstNonEmptyKeyValue}`);
     }
     setShowArr({ ...showArr, filter: false });
@@ -56,7 +45,7 @@ const AccountFilter = () => {
         className="cart-filter relative"
         onClick={(event) => event.stopPropagation()}
       >
-        <p className="font-bold ">Filter</p>
+        <p className="font-bold p-0">Filter</p>
         <FilterForm
           label="Hair Color"
           array={['Brown', 'Chestnut', 'Black']}
@@ -95,7 +84,7 @@ const AccountFilter = () => {
           array={['Type', 'Type2', 'Type3', 'Type4']}
           onValue={() => setFilterOption(filterOption)}
         />
-        <div className="flex gap-4 w-full">
+        <div className="flex gap-4 w-full sm:pt-10">
           <Button className="filter-clear" onClick={handleClearAll}>
             Clear All
           </Button>

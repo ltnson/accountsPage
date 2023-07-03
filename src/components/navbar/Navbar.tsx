@@ -33,11 +33,11 @@ const Navbar = () => {
     );
   }
   return (
-    <div className=" w-full flex h-12 sm:h-16 pr-2 sm:pr-3  bg-white z-20 items-center fixed top-0 left-0 z-20">
+    <div className="w-full flex h-12 sm:h-16 pr-2 sm:pr-3 lg:pr-5  bg-white z-20 items-center fixed top-0 left-0">
       <div className=" pr-2 flex items-center w-full ">
         <div
-          className={`h-16 sm:h-20 p-2 sm:p-4 flex items-center ${
-            showArr.sidebar && 'gap-2 sm:gap-3'
+          className={`h-16 sm:h-20 p-2 sm:py-4 flex items-center ${
+            showArr.sidebar && 'gap-2 sm:gap-3 sm:p-4'
           }`}
         >
           <SidebarButton

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { AccountContext } from '../../../../store/AccountContext';
 import { useNavigate } from 'react-router-dom';
 
-import { TableRow, TableCell } from '@mui/material';
+import { TableRow, TableCell, Checkbox } from '@mui/material';
 import { Account } from '../../../../model/types';
 import EyeSVG from '../../../../assets/SVG/accountsSVG/EyeSVG';
 import WriteSVG from '../../../../assets/SVG/accountsSVG/WriteSVG';
@@ -17,6 +17,9 @@ const ItemTab = ({ item }: { item: Account }) => {
 
   return (
     <TableRow>
+      <TableCell>
+        <Checkbox size="small" />
+      </TableCell>
       <TableCell>{item.id}</TableCell>
       <TableCell>{item.firstName}</TableCell>
       <TableCell>{item.lastName}</TableCell>

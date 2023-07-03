@@ -1,60 +1,35 @@
-import { useContext } from 'react';
-import { AccountContext } from '../../../store/AccountContext';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import { OptionSeenArr } from '../../../model/types';
 
 const AccountTabHeader = () => {
-  const { setOpMember, opMember, setPathName, limitTab, skipTab } =
-    useContext(AccountContext);
-  const navigate = useNavigate();
-
-  const handleShowAccount = (value: string) => {
-    if (value === 'vinova') {
-      setOpMember('vinova');
-      setPathName('/filter?key=gender&value=male');
-      navigate('/accounts/vinova');
-    }
-    if (value === 'partner') {
-      setOpMember('partner');
-      setPathName('/filter?key=gender&value=female');
-      navigate('/accounts/partner');
-    }
-    if (value === 'all') {
-      setOpMember('all');
-      navigate(`/accounts/page=${Math.ceil(skipTab / limitTab + 1)}`);
-      return setPathName(`?limit=${limitTab}` + '&' + `skip=${skipTab}`);
-    }
-  };
+  const { pathname } = useLocation();
+  const optionSeenArr: OptionSeenArr = [
+    {
+      path: '/accounts/tab?limit=10&page=1',
+      name: 'All',
+      includes: '/accounts/tab',
+    },
+    { path: '/accounts/vinova', name: 'Vinova', includes: '/accounts/vinova' },
+    {
+      path: '/accounts/partner',
+      name: 'Partner',
+      includes: '/accounts/partner',
+    },
+  ];
 
   return (
-    <div className="px-2 sm:px-5 border-b border-t-neutral/d2 pt-2 grow-0">
+    <div className="px-2 sm:px-5 border-b border-t-neutral/d2 pt-[14px] grow-0">
       <ul className="flex text-t-light gap-3">
-        <li
-          className={`tab-header-select ${
-            opMember === 'all' && 'border-t-blue text-t-blue'
-          }`}
-        >
-          <a className="" href="#" onClick={() => handleShowAccount('all')}>
-            All
-          </a>
-        </li>
-        <li
-          className={`tab-header-select ${
-            opMember === 'vinova' && 'border-t-blue text-t-blue'
-          }`}
-        >
-          <a className="" href="#" onClick={() => handleShowAccount('vinova')}>
-            Vinova
-          </a>
-        </li>
-        <li
-          className={`tab-header-select ${
-            opMember === 'partner' && 'border-t-blue text-t-blue'
-          }`}
-        >
-          <a className="" href="#" onClick={() => handleShowAccount('partner')}>
-            Partner
-          </a>
-        </li>
+        {optionSeenArr.map((op, index) => (
+          <li
+            key={index}
+            className={`tab-header-select ${
+              pathname.includes(op.includes) ? 'border-t-blue text-t-blue' : ''
+            }`}
+          >
+            <NavLink to={op.path}>{op.name}</NavLink>
+          </li>
+        ))}
       </ul>
     </div>
   );

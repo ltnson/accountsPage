@@ -1,5 +1,4 @@
-import { useState, useContext } from 'react';
-import { AccountContext } from '../../store/AccountContext';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { loginAccountMutation, catchErr } from '../../hooks/Accounts';
@@ -7,7 +6,7 @@ import { LoginData } from '../../model/types';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { schemaLogin } from '../../util/yupSchema';
 import { Toaster } from 'react-hot-toast';
 
 import {
@@ -22,19 +21,6 @@ import EyeClosed from '../../assets/SVG/loginSVG/EyeClosed';
 import EyeOpen from '../../assets/SVG/loginSVG/EyeOpen';
 import VinovaSVG from '../../assets/SVG/VinovaSVG';
 
-const loginSchema = yup.object().shape({
-  username: yup
-    .string()
-    .min(4, 'Username is too short')
-    .max(20, 'Username is invalid')
-    .required('Fist Name is required'),
-  password: yup
-    .string()
-    .min(4, 'Password is too short')
-    .max(20, 'Password is invalid')
-    .required('Fist Name is required'),
-});
-
 const LoginCart = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -43,19 +29,16 @@ const LoginCart = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginData>({
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(schemaLogin),
   });
 
-  const { setUserData, setAuthLogin } = useContext(AccountContext);
   const { mutate, isLoading } = loginAccountMutation();
 
   const onSubmit = (loginData: LoginData) => {
     mutate(loginData, {
       onSuccess: (data) => {
         localStorage.setItem('user', JSON.stringify(data));
-        setUserData(data);
-        setAuthLogin(true);
-        navigate('/accounts');
+        navigate('/');
       },
       onError: (error) => catchErr(error),
     });

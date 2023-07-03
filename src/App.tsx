@@ -1,61 +1,60 @@
-import { useContext } from 'react';
-import { AccountContext } from './store/AccountContext';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import LoginPage from './page/LoginPage';
-import AccountTab from './page/AccountTab';
+import AccountTab, {
+  loaderFilter,
+  loaderPartner,
+  loaderVinova,
+  loaderTab,
+} from './page/AccountTab';
 import AccountAdd from './page/AccountAdd';
-import Layout from './components/Layout/Layout';
+import Layout from './page/Layout/Layout';
+import NotFound from './page/NotFound';
+import { checkAuth, checkAuthLoginPage } from './util/auth';
+import AccountTabTable from './components/account/account-tab/AccountTabTable';
 
 function App() {
-  const { authLogin } = useContext(AccountContext);
-  return (
-    <Layout>
-      {authLogin ? (
-        <Routes>
-          <Route path="/" element={<Navigate to="/accounts" />} />
-          <Route path="/accounts" element={<AccountTab />} />
-          <Route path="/accounts/:pageNumber" element={<AccountTab />} />
-          <Route path="/accounts/:search" element={<AccountTab />} />
-          <Route path="/accounts/add" element={<AccountAdd />} />
-          <Route path="/accounts/edit/:idAccount" element={<AccountAdd />} />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      )}
-    </Layout>
-  );
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Layout />,
+      loader: checkAuth,
+      children: [
+        { index: true, element: <AccountTab /> },
+        {
+          path: 'accounts',
+          element: <AccountTab />,
+          children: [
+            { index: true, element: <AccountTabTable /> },
+            { path: 'tab', element: <AccountTabTable />, loader: loaderTab },
+            {
+              path: 'filter',
+              element: <AccountTabTable />,
+              loader: loaderFilter,
+            },
+            {
+              path: 'vinova',
+              element: <AccountTabTable />,
+              loader: loaderVinova,
+            },
+            {
+              path: 'partner',
+              element: <AccountTabTable />,
+              loader: loaderPartner,
+            },
+          ],
+        },
+        { path: 'accounts/add', element: <AccountAdd /> },
+        { path: 'accounts/edit/:idAccount', element: <AccountAdd /> },
+      ],
+    },
+    { path: '/login', element: <LoginPage />, loader: checkAuthLoginPage },
+    {
+      path: '*',
+      element: <NotFound />,
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
-
 export default App;
-
-// function App() {
-//   const { authLogin } = useContext(AccountContext);
-//   return (
-//     <Layout>
-//       {authLogin ? (
-//         <Routes>
-//           <Route path="/" element={<Navigate to="/accounts" />} />
-//           <Route path="/accounts" element={<AccountTab />}>
-//             <Route path=":pageNumber" element={<AccountTab />} />
-//             <Route path=":search" element={<AccountTab />} />
-//           </Route>
-//           <Route path="/accounts/edit/:idAccount" element={<AccountAdd />} />
-//           <Route path="/accounts/add" element={<AccountAdd />} />
-//         </Routes>
-//       ) : (
-//         <Routes>
-//           <Route path="/" element={<Navigate to="/login" />} />
-//           <Route path="/login" element={<LoginPage />} />
-//           <Route path="*" element={<Navigate to="/" />} />
-//         </Routes>
-//       )}
-//     </Layout>
-//   );
-// }
-
-// export default App;

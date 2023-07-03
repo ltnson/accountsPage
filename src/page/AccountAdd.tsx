@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { EditForm } from '../model/types';
 import {
@@ -10,69 +10,22 @@ import {
 
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { Toaster, toast } from 'react-hot-toast';
+import { schemaEditAccount } from '../util/yupSchema';
 
-import TextForm from '../components/account/account-add-edit/TextForm';
-import SelectForm from '../components/account/account-add-edit/SelectForm';
-import DateForm from '../components/account/account-add-edit/DateForm';
-import SkillForm from '../components/account/account-add-edit/SkillForm';
-import PhoneForm from '../components/account/account-add-edit/PhoneForm';
+import TextForm from '../components/account/account-add-edit-form/TextForm';
+import SelectForm from '../components/account/account-add-edit-form/SelectForm';
+import DateForm from '../components/account/account-add-edit-form/DateForm';
+import SkillForm from '../components/account/account-add-edit-form/SkillForm';
+import PhoneForm from '../components/account/account-add-edit-form/PhoneForm';
 import { Button, CircularProgress } from '@mui/material';
 
-const schema = yup.object({
-  firstName: yup
-    .string()
-    .min(2, 'Fist Name is required')
-    .required('Fist Name is required'),
-  lastName: yup
-    .string()
-    .min(2, 'Fist Name is required')
-    .required('Last Name is required'),
-  email: yup
-    .string()
-    .email('Email is invalid')
-    .matches(/^\S*$/, "Can't contain spaces")
-    .required('Email is required'),
-  phone: yup
-    .string()
-    .required('Phone is required')
-    .matches(/^[+0-9\s]+$/, 'Phone must only contain numbers')
-    .test('test-name', 'Phone is invalid', (value) => {
-      if (value) {
-        const length = value.replace(/\s+/g, '').length;
-        return length < 17;
-      }
-      return true;
-    })
-    .test('test2-name', 'Phone is required', (value) => {
-      if (value) {
-        if (value.split(' ')[1].includes('+') || value.split(' ')[1] === '')
-          return false;
-      }
-      return true;
-    }),
-  username: yup
-    .string()
-    .min(2, 'User Name is required')
-    .required('User Name is required'),
-  birthDate: yup
-    .string()
-    .min(2, 'Day Name is required')
-    .required('Day Name is required'),
-  today: yup
-    .string()
-    .min(2, 'Day Name is required')
-    .required('Day Name is required'),
-});
-
 const AccountAdd = () => {
-  const [editData, setEditData] = useState<EditForm | null>(null);
   const { idAccount } = useParams();
   const navigate = useNavigate();
 
   const formMethod = useForm<EditForm>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaEditAccount),
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -95,7 +48,7 @@ const AccountAdd = () => {
       catchErr(editDataQuery.error);
     }
     if (editDataQuery?.data) {
-      setEditData({
+      formMethod.reset({
         firstName: editDataQuery.data.firstName,
         lastName: editDataQuery.data.lastName,
         email: editDataQuery.data.email,
@@ -107,26 +60,15 @@ const AccountAdd = () => {
     }
   }, [editDataQuery?.data]);
 
-  useEffect(() => {
-    if (editData) formMethod.reset(editData);
-  }, [editData]);
-
-  const editMutation = idAccount ? postAccountEdit(parseInt(idAccount)) : null;
-  const addMutation = postAccountAdd();
+  const editMutation = idAccount
+    ? postAccountEdit(parseInt(idAccount))
+    : postAccountAdd();
 
   const onSubmit = (data: EditForm) => {
-    if (idAccount) {
-      return editMutation?.mutate(data, {
-        onSuccess: (data) => {
-          toast.success(`Account with id ${data.id} are Update`);
-          navigate('/accounts');
-        },
-        onError: (error) => catchErr(error),
-      });
-    }
-    addMutation?.mutate(data, {
+    console.log(data);
+    return editMutation?.mutate(data, {
       onSuccess: (newData) => {
-        toast.success(`New Account with id ${newData.id}  are Created`);
+        toast.success(`Account with id ${newData.id} are Update`);
         navigate('/accounts');
       },
       onError: (error) => catchErr(error),
@@ -143,7 +85,7 @@ const AccountAdd = () => {
       )}
       <FormProvider {...formMethod}>
         <form className="max-w-[680px]" onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 pb-4 sm:pb-6 border-b border-t-neutral/DE">
+          <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 py-4 sm:pb-8 ">
             <TextForm label="First Name" span="1" name="firstName" />
             <TextForm label="Last Name" span="1" name="lastName" />
             <TextForm label="Alias" span="1" name="username" />
@@ -151,7 +93,8 @@ const AccountAdd = () => {
             <TextForm label="Email" span="2" name="email" />
             <PhoneForm label="Phone" span="2" name="phone" />
           </div>
-          <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 py-4 sm:py-6 border-b border-t-neutral/DE">
+          <hr className="border-b border-t-neutral/DE " />
+          <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 py-4 sm:py-8 ">
             <SelectForm
               label="Contract type"
               span="2"
@@ -166,7 +109,8 @@ const AccountAdd = () => {
             />
             <SelectForm label="Office" span="1" array={['Another', 'Test 1']} />
           </div>
-          <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 py-4 sm:py-6">
+          <hr className="border-b border-t-neutral/DE " />
+          <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 py-4 sm:py-8">
             <SelectForm
               label="Team"
               span="1"

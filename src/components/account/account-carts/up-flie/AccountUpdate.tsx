@@ -15,7 +15,7 @@ const AccountUpdate = () => {
     >
       <div className="cart-update" onClick={(event) => event.stopPropagation()}>
         <div
-          className="absolute top-6 right-6"
+          className="absolute top-7 right-6"
           onClick={() => setShowArr({ ...showArr, update: false })}
         >
           <CloseSVG />
@@ -29,10 +29,9 @@ const AccountUpdate = () => {
             <p>or, click to select a csv file</p>
             <input type="file" className="hidden" id="accounts-file" />
           </label>
-
           <div className="">
             <p className="font-semibold text-sm">Requirement:</p>
-            <ul className="pl-8 list-disc">
+            <ul className="px-6  list-disc leading-4">
               <li>
                 <p>Only csv, excel, xlsx</p>
               </li>

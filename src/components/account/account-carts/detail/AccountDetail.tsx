@@ -35,12 +35,12 @@ const AccountDetail = () => {
           onClick={(event) => event.stopPropagation()}
         >
           <div
-            className="absolute top-6 right-8"
+            className="absolute sm:top-8 sm:right-9 top-6 right-8"
             onClick={() => setShowArr({ ...showArr, detail: false })}
           >
             <CloseSVG />
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 grid-flow-row-dense border-b border-t-light gap-2 sm:gap-4 pb-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 grid-flow-row-dense border-b border-t-light gap-2 sm:gap-5 md:gap-6 pb-3 md:pr-10 lg:pr-16">
             <p className="col-span-2 sm:col-span-3 font-semibold">
               Account Detail
             </p>
@@ -77,7 +77,7 @@ const AccountDetail = () => {
               <Typography className="s14">{data.phone}</Typography>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 border-b border-t-light gap-4 py-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 border-b border-t-light gap-4 py-4 md:pr-10 lg:pr-16">
             <div>
               <Typography className="s12-gray">Contract Type</Typography>
               <Typography className="s14">{data.company.title}</Typography>
@@ -99,7 +99,7 @@ const AccountDetail = () => {
               <Typography className="s14">{data.address.state}</Typography>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 border-b border-t-light gap-4 py-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 border-b border-t-light gap-4 py-4 md:pr-10 lg:pr-16">
             <div>
               <Typography className="s12-gray">Team</Typography>
               <Typography className="s14">{data.address.city}</Typography>
