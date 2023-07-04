@@ -455,6 +455,7 @@ const theme = createTheme({
           position: 'sticky',
           top: '0',
           background: 'white',
+          zIndex: '1',
         },
       },
     },
@@ -565,6 +566,31 @@ const theme = createTheme({
 
           '&:hover': {
             background: 'none',
+          },
+        },
+      },
+    },
+
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          '&.phone-form': {
+            '& .MuiSelect-icon': {
+              position: 'absolute',
+              left: '10px',
+              '@media (max-width: 640px)': {
+                left: '6px',
+              },
+            },
+            '& .MuiSelect-select': {
+              paddingLeft: '38px',
+              '@media (max-width: 640px)': {
+                paddingLeft: '28px',
+              },
+            },
+            '& .MuiSelect-icon svg': {
+              fontSize: '1.2rem',
+            },
           },
         },
       },

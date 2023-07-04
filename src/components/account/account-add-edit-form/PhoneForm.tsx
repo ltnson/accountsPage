@@ -56,24 +56,7 @@ const PhoneForm = ({
                               value.split(' ').slice(1).join(' '),
                       )
                     }
-                    sx={{
-                      '& .MuiSelect-icon': {
-                        position: 'absolute',
-                        left: '10px',
-                        '@media (max-width: 640px)': {
-                          left: '6px',
-                        },
-                      },
-                      '& .MuiSelect-select': {
-                        paddingLeft: '38px',
-                        '@media (max-width: 640px)': {
-                          paddingLeft: '28px',
-                        },
-                      },
-                      '& .MuiSelect-icon svg': {
-                        fontSize: '1.2rem',
-                      },
-                    }}
+                    className="phone-form"
                     IconComponent={DownSelectSVG}
                   >
                     <MenuItem value={value.split(' ')[0]}>
