@@ -30,6 +30,10 @@ const AccountTab = () => {
 
 export default AccountTab;
 
+export function loaderNew() {
+  return redirect('/accounts/tab?limit=10&page=1');
+}
+
 export function loaderVinova() {
   return '/filter?key=gender&value=male';
 }

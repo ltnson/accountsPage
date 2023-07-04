@@ -340,6 +340,9 @@ const theme = createTheme({
             '& path': {
               stroke: '#5E90F0',
             },
+            '&:hover': {
+              cursor: 'default',
+            },
           },
 
           '&.navbar': {

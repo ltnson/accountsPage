@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import LoginPage from './page/LoginPage';
 import AccountTab, {
+  loaderNew,
   loaderFilter,
   loaderPartner,
   loaderVinova,
@@ -20,12 +21,11 @@ function App() {
       element: <Layout />,
       loader: checkAuth,
       children: [
-        { index: true, element: <AccountTab /> },
+        { index: true, element: <AccountTab />, loader: loaderNew },
         {
           path: 'accounts',
           element: <AccountTab />,
           children: [
-            { index: true, element: <AccountTabTable /> },
             { path: 'tab', element: <AccountTabTable />, loader: loaderTab },
             {
               path: 'filter',

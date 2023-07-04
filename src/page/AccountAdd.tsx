@@ -65,11 +65,10 @@ const AccountAdd = () => {
     : postAccountAdd();
 
   const onSubmit = (data: EditForm) => {
-    console.log(data);
     return editMutation?.mutate(data, {
       onSuccess: (newData) => {
         toast.success(`Account with id ${newData.id} are Update`);
-        navigate('/accounts');
+        navigate('/');
       },
       onError: (error) => catchErr(error),
     });

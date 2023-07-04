@@ -52,7 +52,7 @@ const Sidebar = () => {
           : 'w-0 -z-10 fixed sm:static transition-width duration-300 ease-in-out'
       }
     >
-      <Typography className="sidebar-list">
+      <Typography className="sidebar-list" component="div">
         {sidebarArr.map((item) => (
           <NavLink to={item.name.toLowerCase()} key={item.name}>
             <Typography component="div" className="sideber-instance">
