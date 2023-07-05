@@ -5,7 +5,6 @@ import { LoaderFunction, redirect } from 'react-router-dom';
 import AccountTabHeader from '../components/account/account-tab/AccountTabHeader';
 import AccountTabFooter from '../components/account/account-tab/AccountTabFooter';
 import AccountDetail from '../components/account/account-carts/detail/AccountDetail';
-import AccountFilter from '../components/account/account-carts/filter/AccountFilter';
 import AccountUpdate from '../components/account/account-carts/up-flie/AccountUpdate';
 import { Outlet } from 'react-router-dom';
 
@@ -21,7 +20,6 @@ const AccountTab = () => {
       </div>
       <div>
         {showArr.update && <AccountUpdate />}
-        {showArr.filter && <AccountFilter />}
         {showArr.detail && <AccountDetail />}
       </div>
     </>

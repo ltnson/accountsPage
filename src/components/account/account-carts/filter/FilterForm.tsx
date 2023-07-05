@@ -6,10 +6,12 @@ const FilterForm = ({
   label,
   array,
   onValue,
+  onReset,
 }: {
   label: string;
   array: string[];
-  onValue: any;
+  onValue: (value: string) => void;
+  onReset: boolean;
 }) => {
   const [checkBox, setCheckBox] = useState<boolean>(false);
   const [valueFilter, setValueFilter] = useState<string>(array[0]);
@@ -20,19 +22,24 @@ const FilterForm = ({
     }
   }, [checkBox, valueFilter]);
 
+  useEffect(() => {
+    setCheckBox(false);
+  }, [onReset]);
+
   return (
     <div>
       <Typography className="s14">
         <Checkbox
           size="small"
           className="filter"
+          checked={checkBox}
           onChange={(e) => setCheckBox(e.target.checked)}
         />
         {label}
       </Typography>
       <TextField
-        fullWidth
         className="filter-form"
+        fullWidth
         select
         value={valueFilter}
         onChange={(e) =>

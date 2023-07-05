@@ -15,7 +15,7 @@ const TabHeadFilter = () => {
         <a
           className="btn-w-a w-8 h-8 sm:w-10 sm:h-10 bg-blue/10"
           href="#"
-          onClick={() => setShowArr({ ...showArr, filter: true })}
+          onClick={() => setShowArr({ ...showArr, filter: !showArr.filter })}
         >
           <FilterActionSVG />
         </a>
@@ -28,9 +28,11 @@ const TabHeadFilter = () => {
   }
   return (
     <a
-      className="btn-w-a w-8 h-8 sm:w-10 sm:h-10"
+      className={`btn-w-a w-8 h-8 sm:w-10 sm:h-10 ${
+        showArr.filter && 'bg-blue/10'
+      }`}
       href="#"
-      onClick={() => setShowArr({ ...showArr, filter: true })}
+      onClick={() => setShowArr({ ...showArr, filter: !showArr.filter })}
     >
       <FilterSVG />
     </a>

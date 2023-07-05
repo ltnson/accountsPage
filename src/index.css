@@ -14,6 +14,11 @@
      2xl:max-w-[660px] 2xl:gap-8;
   }
 
+  .tab-table {
+    @apply flex flex-col-reverse overflow-y-auto xl:flex-row flex-nowrap grow 
+    overflow-hidden border-b border-t-neutral/d2  px-2 sm:px-5 pb-3 sm:pb-5;
+  }
+
   .side-bar {
     @apply w-16 sm:w-20 px-2 sm:px-3.5 pb-2 h-screen pt-[80px] sm:pt-[92px] top-0 left-0 
     flex flex-col justify-between fixed sm:static bg-white z-10;
@@ -52,9 +57,14 @@
     flex flex-col justify-between flex-nowrap overflow-auto bg-white relative sm:rounded-lg;
   }
 
-  .cart-filter {
+  /* .cart-filter {
     @apply bg-white w-full h-screen sm:w-72 sm:h-[550px] md:w-80 md:h-[630px] 
     z-20 rounded shadow-md text-sm px-4 sm:px-6 gap-[14px] py-2 flex flex-col overflow-auto;
+  } */
+
+  .cart-filter {
+    @apply bg-white  h-full max-h-[634px] flex flex-col gap-4
+    z-20 rounded shadow-md text-sm  gap-[14px] overflow-auto;
   }
 
   .update-import {

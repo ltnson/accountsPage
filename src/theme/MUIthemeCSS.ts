@@ -416,6 +416,7 @@ const theme = createTheme({
 
           '&.filter-form .MuiInputBase-root': {
             paddingRight: '10px',
+            width: '100%',
             height: '36px',
             fontSize: '14px',
             '@media (max-width: 640px)': {
@@ -479,7 +480,12 @@ const theme = createTheme({
     MuiCheckbox: {
       styleOverrides: {
         root: {
-          '&.filter': { padding: '4px 6px 4px 0' },
+          '&.filter': {
+            padding: '4px 6px 4px 0',
+            '&:hover': {
+              background: 'none',
+            },
+          },
           '&  path': {
             fill: '#9DA7B9',
           },
