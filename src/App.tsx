@@ -21,11 +21,11 @@ function App() {
       element: <Layout />,
       loader: checkAuth,
       children: [
-        { index: true, element: <AccountTab />, loader: loaderNew },
         {
           path: 'accounts',
           element: <AccountTab />,
           children: [
+            { index: true, loader: loaderNew },
             { path: 'tab', element: <AccountTabTable />, loader: loaderTab },
             {
               path: 'filter',

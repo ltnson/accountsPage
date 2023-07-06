@@ -9,8 +9,6 @@ export interface MyContextData {
   setTotalTab: (value: number) => void;
   idDetail: number;
   setIdDetail: (value: number) => void;
-  filter: string;
-  setFilter: (value: string) => void;
   searchResult: number;
   setSearchResult: (value: number) => void;
   searching: boolean;
@@ -130,10 +128,4 @@ export type ShowArr = {
   detail: boolean;
   filter: boolean;
   update: boolean;
-};
-
-export type FilterOption = {
-  'hair.color': string;
-  'hair.type': string;
-  eyeColor: string;
 };

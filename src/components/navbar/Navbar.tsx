@@ -21,14 +21,16 @@ const Navbar = () => {
   if (pathname === '/accounts/add') {
     title = (
       <p className="text-t-light text-sm sm:text-xl flex items-center gap-2">
-        <LeftSVG onClick={() => navigate('..')} /> Accounts / Create New Account
+        <LeftSVG onClick={() => navigate('/accounts')} /> Accounts / Create New
+        Account
       </p>
     );
   }
   if (pathname.includes('/accounts/edit')) {
     title = (
       <p className="text-t-light text-sm sm:text-xl flex items-center gap-2">
-        <LeftSVG onClick={() => navigate('..')} /> Accounts / Edit Account
+        <LeftSVG onClick={() => navigate('/accounts')} /> Accounts / Edit
+        Account
       </p>
     );
   }

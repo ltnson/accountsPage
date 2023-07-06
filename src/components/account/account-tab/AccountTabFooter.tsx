@@ -21,7 +21,7 @@ const AccountTabFooter = () => {
       setLimitTab(limit);
       setSkipTab(Math.ceil((page - 1) * limit));
     }
-  }, []);
+  }, [limitStr, pageStr]);
 
   useEffect(() => {
     navigate(

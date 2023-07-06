@@ -58,7 +58,7 @@ const AccountAdd = () => {
         today: new Date().toLocaleDateString('en-US'),
       });
     }
-  }, [editDataQuery?.data]);
+  }, [editDataQuery?.data, editDataQuery?.error]);
 
   const editMutation = idAccount
     ? postAccountEdit(parseInt(idAccount))
@@ -67,8 +67,11 @@ const AccountAdd = () => {
   const onSubmit = (data: EditForm) => {
     return editMutation?.mutate(data, {
       onSuccess: (newData) => {
-        toast.success(`Account with id ${newData.id} are Update`);
-        navigate('/');
+        setTimeout(
+          () => toast.success(`Account with id ${newData.id} are Update`),
+          300,
+        );
+        navigate('/accounts');
       },
       onError: (error) => catchErr(error),
     });

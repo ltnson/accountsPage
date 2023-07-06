@@ -3,15 +3,11 @@ import { useState } from 'react';
 import { Button } from '@mui/material';
 import FilterForm from './FilterForm';
 import { useNavigate } from 'react-router-dom';
-import { FilterOption } from '../../../../model/types';
+import { filterArr, filterOp, FilterOption } from '.';
 
 const AccountFilter = () => {
   const navigate = useNavigate();
-  const [filterOption, setFilterOption] = useState<FilterOption>({
-    'hair.color': '',
-    'hair.type': '',
-    eyeColor: '',
-  });
+  const [filterOption, setFilterOption] = useState<FilterOption>(filterOp);
   const [reset, setReset] = useState<boolean>(false);
 
   const handleClearAll = () => {
@@ -39,51 +35,28 @@ const AccountFilter = () => {
     <div className="cart-filter">
       <div className="px-4 sm:px-6">
         <p className="font-bold p-0 w-full">Filter</p>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-1">
-          <FilterForm
-            label="Hair Color"
-            array={['Brown', 'Chestnut', 'Black']}
-            onValue={(value: string) =>
-              setFilterOption({ ...filterOption, 'hair.color': value })
-            }
-            onReset={reset}
-          />
-          <hr className="text-t-neutral/d2 hidden xl:block" />
-          <FilterForm
-            label="Hair Type"
-            array={['Curly', 'Straight', 'Very curly']}
-            onValue={(value: string) =>
-              setFilterOption({ ...filterOption, 'hair.type': value })
-            }
-            onReset={reset}
-          />
-          <FilterForm
-            label="Eye color"
-            array={['Blue', 'Gray', 'Amber', 'Brown']}
-            onValue={(value: string) =>
-              setFilterOption({ ...filterOption, eyeColor: value })
-            }
-            onReset={reset}
-          />
-          <FilterForm
-            label="Level"
-            array={['Intern ', 'test 1', 'test 2', 'test 3']}
-            onValue={() => setFilterOption(filterOption)}
-            onReset={reset}
-          />
-          <FilterForm
-            label="Skill"
-            array={['React', 'JavaScript', 'HTML', 'CSS']}
-            onValue={() => setFilterOption(filterOption)}
-            onReset={reset}
-          />
-          <hr className="text-t-neutral/d2 hidden xl:block" />
-          <FilterForm
-            label="Contact Type"
-            array={['Type', 'Type2', 'Type3', 'Type4']}
-            onValue={() => setFilterOption(filterOption)}
-            onReset={reset}
-          />
+        <div className="xl:flex flex-wrap gap-4 grid sm:grid-cols-2 lg:grid-cols-3">
+          {filterArr.map((item, index) => (
+            <div
+              className={`w-full ${
+                index === 4 && 'xl:border-b border-t-neutral/d2 xl:pb-4'
+              } ${index === 1 && 'xl:border-b border-t-neutral/d2 xl:pb-4'}`}
+              key={index}
+            >
+              <FilterForm
+                label={item.label}
+                array={item.array}
+                onValue={(value: string) =>
+                  setFilterOption(
+                    item.key
+                      ? { ...filterOption, [item.key]: value }
+                      : filterOption,
+                  )
+                }
+                onReset={reset}
+              />
+            </div>
+          ))}
         </div>
         <div className="flex gap-4 w-80 xl:w-full pt-4 pb-2 xl:pt-10 ">
           <Button className="filter-clear" onClick={handleClearAll}>

@@ -29,7 +29,7 @@ const AccountTab = () => {
 export default AccountTab;
 
 export function loaderNew() {
-  return redirect('/accounts/tab?limit=10&page=1');
+  return redirect('tab?limit=10&page=1');
 }
 
 export function loaderVinova() {

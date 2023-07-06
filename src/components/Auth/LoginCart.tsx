@@ -38,7 +38,7 @@ const LoginCart = () => {
     mutate(loginData, {
       onSuccess: (data) => {
         localStorage.setItem('user', JSON.stringify(data));
-        navigate('/');
+        navigate('/accounts');
       },
       onError: (error) => catchErr(error),
     });

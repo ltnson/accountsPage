@@ -17,8 +17,6 @@ export const AccountContext = createContext<MyContextData>({
   setSkipTab: () => {},
   idDetail: 0,
   setIdDetail: () => {},
-  filter: '',
-  setFilter: () => {},
   searchResult: 0,
   setSearchResult: () => {},
   searching: false,
@@ -41,7 +39,6 @@ export const AccountProvider = ({
   const [skipTab, setSkipTab] = useState<number>(0);
   const [totalTab, setTotalTab] = useState<number>(100);
   const [idDetail, setIdDetail] = useState<number>(0);
-  const [filter, setFilter] = useState<string>('');
   const [searchResult, setSearchResult] = useState<number>(0);
   const [searching, setSearching] = useState<boolean>(false);
 
@@ -58,8 +55,6 @@ export const AccountProvider = ({
     setIdDetail,
     searchResult,
     setSearchResult,
-    filter,
-    setFilter,
     searching,
     setSearching,
   };

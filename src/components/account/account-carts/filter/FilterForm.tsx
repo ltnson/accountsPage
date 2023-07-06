@@ -27,7 +27,7 @@ const FilterForm = ({
   }, [onReset]);
 
   return (
-    <div>
+    <div className="w-full">
       <Typography className="s14">
         <Checkbox
           size="small"
