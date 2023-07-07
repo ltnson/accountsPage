@@ -13,6 +13,7 @@ import Layout from './page/Layout/Layout';
 import NotFound from './page/NotFound';
 import { checkAuth, checkAuthLoginPage } from './util/auth';
 import AccountTabTable from './components/account/account-tab/AccountTabTable';
+import HomePage from './page/HomePage';
 
 function App() {
   const router = createBrowserRouter([
@@ -21,6 +22,10 @@ function App() {
       element: <Layout />,
       loader: checkAuth,
       children: [
+        {
+          index: true,
+          element: <HomePage />,
+        },
         {
           path: 'accounts',
           element: <AccountTab />,

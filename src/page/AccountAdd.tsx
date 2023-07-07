@@ -18,7 +18,7 @@ import SelectForm from '../components/account/account-add-edit-form/SelectForm';
 import DateForm from '../components/account/account-add-edit-form/DateForm';
 import SkillForm from '../components/account/account-add-edit-form/SkillForm';
 import PhoneForm from '../components/account/account-add-edit-form/PhoneForm';
-import { Button, CircularProgress } from '@mui/material';
+import { Button, CircularProgress, LinearProgress } from '@mui/material';
 
 const AccountAdd = () => {
   const { idAccount } = useParams();
@@ -126,9 +126,15 @@ const AccountAdd = () => {
             <SelectForm label="Level" span="2" array={['Intern', 'Junior']} />
             <SkillForm />
           </div>
-          <Button className="save col-span-2" type="submit">
-            Save
-          </Button>
+          {editMutation.isLoading ? (
+            <div className="py-4">
+              <LinearProgress />
+            </div>
+          ) : (
+            <Button className="save col-span-2" type="submit">
+              Save
+            </Button>
+          )}
         </form>
       </FormProvider>
     </div>
