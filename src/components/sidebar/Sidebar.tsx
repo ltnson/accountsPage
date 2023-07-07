@@ -43,7 +43,7 @@ const Sidebar = () => {
       name: 'Role Management',
     },
   ];
-
+  // change width if sidebar showing up
   return (
     <div
       className={

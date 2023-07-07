@@ -14,6 +14,7 @@ const SelectForm = ({
 }) => {
   const [value, setValue] = useState<string>(array ? array[0] : '');
 
+  //change icon of select input and set value if client choosing
   return (
     <div className={`col-span-${span}`}>
       <Typography className="s12">

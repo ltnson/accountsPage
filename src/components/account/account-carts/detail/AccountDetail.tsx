@@ -12,6 +12,8 @@ const AccountDetail = () => {
   const { showArr, setShowArr, idDetail } = useContext(AccountContext);
 
   const { data, isLoading, error } = getAccountDetail(idDetail);
+
+  //if error ,close detail comp and showing error
   useEffect(() => {
     if (error) {
       catchErr(error);

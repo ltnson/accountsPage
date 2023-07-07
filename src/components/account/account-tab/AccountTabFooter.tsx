@@ -14,6 +14,7 @@ const AccountTabFooter = () => {
   const { skipTab, setSkipTab, limitTab, setLimitTab, searching } =
     useContext(AccountContext);
 
+  //change data if client change pathName
   useEffect(() => {
     const limit = limitStr && parseInt(limitStr);
     const page = pageStr && parseInt(pageStr);
@@ -23,6 +24,7 @@ const AccountTabFooter = () => {
     }
   }, [limitStr, pageStr]);
 
+  // rerender if client change option of table
   useEffect(() => {
     navigate(
       `/accounts/tab?limit=${limitTab}&page=${Math.ceil(

@@ -7,6 +7,7 @@ const SkillForm = () => {
   const [newSk, setNewSk] = useState<string[]>(['.NET', 'Native React', 'PM']);
   const [skill, setSkill] = useState<string[]>(['']);
 
+  //option skill and put them to input if client picked
   return (
     <div className="col-span-2">
       <TextField

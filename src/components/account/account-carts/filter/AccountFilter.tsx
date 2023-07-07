@@ -10,11 +10,13 @@ const AccountFilter = () => {
   const [filterOption, setFilterOption] = useState<FilterOption>(filterOp);
   const [reset, setReset] = useState<boolean>(false);
 
+  // reset form and return default data of table
   const handleClearAll = () => {
     setReset(!reset);
     navigate('/accounts/tab?limit=10&page=1');
   };
 
+  // get key and value in filter form and using them in params
   const handleShowFilterOption = () => {
     let firstNonEmptyKeyValue;
     for (const [key, value] of Object.entries(filterOption)) {

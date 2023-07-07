@@ -13,6 +13,7 @@ const FooterPagination = () => {
   const { setSkipTab, setLimitTab, totalTab, skipTab, limitTab } =
     useContext(AccountContext);
 
+  //using pagination of MUI for set limit and skip
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number,

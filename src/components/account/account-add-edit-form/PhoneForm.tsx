@@ -34,7 +34,9 @@ const PhoneForm = ({
             helperText={error ? error?.message : null}
             name={name}
             error={!!error}
+            //first of phone number
             value={value.split(' ').slice(1).join(' ')}
+            // split and set end of phone number
             onChange={(e) =>
               value.replace(/\s/g, '').length < 18
                 ? onChange(value.split(' ')[0] + ' ' + e.target.value)
@@ -47,6 +49,7 @@ const PhoneForm = ({
                 <InputAdornment position="start">
                   <Select
                     value={value.split(' ')[0]}
+                    //select first of phone number
                     onChange={(e) =>
                       onChange(
                         value.split(' ')[1].includes('+') ||

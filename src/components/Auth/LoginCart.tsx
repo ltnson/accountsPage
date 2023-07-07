@@ -24,6 +24,8 @@ import VinovaSVG from '../../assets/SVG/VinovaSVG';
 const LoginCart = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const navigate = useNavigate();
+
+  //hook form of login form and valitate with yup
   const {
     register,
     handleSubmit,

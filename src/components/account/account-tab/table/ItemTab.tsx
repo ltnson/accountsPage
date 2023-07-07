@@ -10,6 +10,8 @@ import WriteSVG from '../../../../assets/SVG/accountsSVG/WriteSVG';
 const ItemTab = ({ item }: { item: Account }) => {
   const { showArr, setShowArr, setIdDetail } = useContext(AccountContext);
   const navigate = useNavigate();
+
+  // show detail and set id for api in detail comp
   const handleShowDetail = (id: number) => {
     setShowArr({ ...showArr, detail: true });
     setIdDetail(id);

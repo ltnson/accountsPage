@@ -28,18 +28,22 @@ const AccountTab = () => {
 
 export default AccountTab;
 
+//loader before go to account page
 export function loaderNew() {
   return redirect('tab?limit=10&page=1');
 }
 
+//return search params before go /vinova
 export function loaderVinova() {
   return '/filter?key=gender&value=male';
 }
 
+//return search params before go /partner
 export function loaderPartner() {
   return '/filter?key=gender&value=female';
 }
 
+// get key and value in url and return params for api
 export const loaderFilter: LoaderFunction = ({ request }) => {
   const searchParams = new URL(request.url).searchParams;
   const key = searchParams.get('key');
@@ -47,6 +51,7 @@ export const loaderFilter: LoaderFunction = ({ request }) => {
   return `/filter?key=${key}&value=${value}`;
 };
 
+// get limit and page in url and return params for api
 export const loaderTab: LoaderFunction = ({ request }) => {
   const searchParams = new URL(request.url).searchParams;
   const limitStr = searchParams.get('limit');

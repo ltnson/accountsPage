@@ -28,6 +28,7 @@ export const AccountProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  // array of sidebar, detail, filter status
   const [showArr, setShowArr] = useState<ShowArr>({
     sidebar: false,
     detail: false,
@@ -35,6 +36,7 @@ export const AccountProvider = ({
     update: false,
   });
 
+  //limit ,skip ,total ,search status of table
   const [limitTab, setLimitTab] = useState<number>(10);
   const [skipTab, setSkipTab] = useState<number>(0);
   const [totalTab, setTotalTab] = useState<number>(100);

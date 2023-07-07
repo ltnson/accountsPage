@@ -19,6 +19,7 @@ import TabHeadFilter from './table/TabHeadFilter';
 import AccountFilter from '../account-carts/filter/AccountFilter';
 
 const AccountTabTable = () => {
+  // get url after loader in router return
   const url = useLoaderData() as string;
   const [pathName, setPathName] = useState<string>('');
 
@@ -29,8 +30,10 @@ const AccountTabTable = () => {
   const { setTotalTab, setSearchResult, setSearching, showArr } =
     useContext(AccountContext);
 
+  //get data of table
   const { data, isLoading, error } = getAccountsLimit(pathName);
 
+  //check data
   useEffect(() => {
     if (error) {
       catchErr(error);
@@ -41,6 +44,7 @@ const AccountTabTable = () => {
     }
   }, [error, data]);
 
+  //search and reget data of table
   const handleToSearch = (e: string) => {
     if (e === '') {
       setSearching(false);

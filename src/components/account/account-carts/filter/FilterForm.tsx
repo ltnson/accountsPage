@@ -16,12 +16,14 @@ const FilterForm = ({
   const [checkBox, setCheckBox] = useState<boolean>(false);
   const [valueFilter, setValueFilter] = useState<string>(array[0]);
 
+  //check checkbox then set value select to form
   useEffect(() => {
     if (checkBox) {
       onValue(valueFilter);
     }
   }, [checkBox, valueFilter]);
 
+  //reset form if handleClearAll didmount
   useEffect(() => {
     setCheckBox(false);
   }, [onReset]);

@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { Typography } from '@mui/material';
 import CalendarSVG from '../../../assets/SVG/accountsSVG/CalendarSVG';
 
+//icon of datepicker input
 const icon = (props: any) => {
   return <CalendarSVG onClick={props.onClick} />;
 };
@@ -20,6 +21,8 @@ const DateForm = ({
   span: string;
 }) => {
   const { control } = useFormContext();
+
+  // using datepicker for date select and change icon of input date
   return (
     <Controller
       name={name}

@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 
+//validate for edit accounts
 export const schemaEditAccount = yup.object({
   firstName: yup
     .string()
@@ -46,6 +47,7 @@ export const schemaEditAccount = yup.object({
     .required('Day Name is required'),
 });
 
+//validate if user login
 export const schemaLogin = yup.object().shape({
   username: yup
     .string()

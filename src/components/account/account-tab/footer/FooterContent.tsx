@@ -7,6 +7,7 @@ const FooterContent = () => {
     useContext(AccountContext);
   const { pathname } = useLocation();
 
+  //change content of footer table if pathname change because result of other data dont have skip table
   if (searching) {
     return (
       <div className="grow-0 p-4 text-t-light sm:text-base text-sm">

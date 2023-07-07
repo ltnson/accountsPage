@@ -24,6 +24,7 @@ const AccountAdd = () => {
   const { idAccount } = useParams();
   const navigate = useNavigate();
 
+  //form data
   const formMethod = useForm<EditForm>({
     resolver: yupResolver(schemaEditAccount),
     defaultValues: {
@@ -39,10 +40,12 @@ const AccountAdd = () => {
   });
   const { handleSubmit } = formMethod;
 
+  //get data if editing
   const editDataQuery = idAccount
     ? getAccountDetail(parseInt(idAccount))
     : null;
 
+  //reset data of form if edit
   useEffect(() => {
     if (editDataQuery?.error) {
       catchErr(editDataQuery.error);
@@ -60,6 +63,7 @@ const AccountAdd = () => {
     }
   }, [editDataQuery?.data, editDataQuery?.error]);
 
+  //query post data edit
   const editMutation = idAccount
     ? postAccountEdit(parseInt(idAccount))
     : postAccountAdd();

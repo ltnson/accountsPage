@@ -12,6 +12,7 @@ const Layout = () => {
     <div className="flex w-full">
       <Navbar />
       <Sidebar />
+      {/* change width if sidebar showing up */}
       <div
         className={`${
           showArr.sidebar && 'sm:w-[calc(100%-80px)] '

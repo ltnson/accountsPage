@@ -1,6 +1,7 @@
 import { redirect } from 'react-router-dom';
 import { User } from '../model/types';
 
+//token and check token in localstorage
 export function getAuthUser() {
   const userString = localStorage.getItem('user');
   if (!userString) {
