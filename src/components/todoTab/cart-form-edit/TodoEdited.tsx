@@ -20,6 +20,10 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
   const [axiosLoading, setAxiosLoading] = useState<boolean>(false);
   const idTodoQuery = useSelector(idQueryEditSelector);
   const idTodoAxios = useSelector(idAxiosEditSelector);
+  const { resetEditFormAxios, setIdTodoEditAxios, setShowEditedFormAxios } =
+    todoAxiosSlice.actions;
+  const { resetEditFormQuery, setIdTodoEditQuery, setShowEditedFormQuery } =
+    todoQuerySlice.actions;
 
   const updateTodoAxios = async () => {
     try {
@@ -36,9 +40,9 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
           )},Todo with Id: ${idTodoAxios} is updated`,
         );
       }
-      dispatch(todoAxiosSlice.actions.resetEditForm());
-      dispatch(todoAxiosSlice.actions.setIdTodoEdit('New'));
-      dispatch(todoAxiosSlice.actions.setShowEditedForm(false));
+      dispatch(resetEditFormAxios());
+      dispatch(setIdTodoEditAxios('New'));
+      dispatch(setShowEditedFormAxios(false));
       setAxiosLoading(false);
     } catch (err) {
       setAxiosLoading(false);
@@ -57,9 +61,9 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
               ? `Todo with Id : ${data} is created`
               : `${data}, Todo with Id : ${idTodoQuery} is updated`,
           );
-          dispatch(todoQuerySlice.actions.resetEditForm());
-          dispatch(todoQuerySlice.actions.setIdTodoEdit('New'));
-          dispatch(todoQuerySlice.actions.setShowEditedForm(false));
+          dispatch(resetEditFormQuery());
+          dispatch(setIdTodoEditQuery('New'));
+          dispatch(setShowEditedFormQuery(false));
         },
         onError: (err) => {
           catchErr(err);
@@ -72,10 +76,12 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
   return (
     <div className="border border-t-neutral/d2 p-4 rounded">
       <Toaster />
-      <div className="grid grid-cols-4 text-base ">
+      <div className="grid grid-cols-4 text-base gap-4">
         <div>
           <Typography className="s14-gray">ID</Typography>
-          <p>{pathname === '/todoquery' ? idTodoQuery : idTodoAxios}</p>
+          <p className="break-words">
+            {pathname === '/todoquery' ? idTodoQuery : idTodoAxios}
+          </p>
         </div>
         <div>
           <Typography className="s14-gray">Text</Typography>
@@ -83,7 +89,9 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
         </div>
         <div>
           <Typography className="s14-gray">Complete</Typography>
-          <p>{item.complete ? 'Completed' : 'Unfinished'}</p>
+          <p className={item.complete ? 'text-t-green' : 'text-t-red'}>
+            {item.complete ? 'Completed' : 'Unfinished'}
+          </p>
         </div>
         <div>
           <Typography className="s14-gray">Author</Typography>
@@ -95,7 +103,7 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
           <LinearProgress />
         ) : (
           <Button className="navbar" onClick={handleUpdateTodo}>
-            Save your Select ?
+            Update Server ?
           </Button>
         )}
       </div>

@@ -10,8 +10,9 @@ const HeadTableTodo = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const allCheckbox = useSelector(allCheckboxSelector);
+  const { setAllCheckbox } = accountsSlice.actions;
   useEffect(() => {
-    dispatch(accountsSlice.actions.setAllCheckbox(false));
+    dispatch(setAllCheckbox(false));
   }, [pathname]);
   const headerData: string[] = [
     'ID',
@@ -29,9 +30,7 @@ const HeadTableTodo = () => {
           <Checkbox
             size="small"
             checked={allCheckbox}
-            onChange={(e) =>
-              dispatch(accountsSlice.actions.setAllCheckbox(e.target.checked))
-            }
+            onChange={(e) => dispatch(setAllCheckbox(e.target.checked))}
           />
         </TableCell>
         {headerData.map((title, index) => (

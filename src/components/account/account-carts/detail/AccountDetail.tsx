@@ -12,6 +12,7 @@ import { idDetailSelector } from '../../../../store/selects';
 const AccountDetail = () => {
   const idDetail = useSelector(idDetailSelector);
   const dispatch = useDispatch();
+  const { setShowDetail } = accountsSlice.actions;
 
   const { data, isLoading, error } = getAccountDetail(idDetail);
 
@@ -19,15 +20,12 @@ const AccountDetail = () => {
   useEffect(() => {
     if (error) {
       catchErr(error);
-      dispatch(accountsSlice.actions.setShowDetail());
+      dispatch(setShowDetail());
     }
   }, [error]);
 
   return (
-    <div
-      className="bg-cart"
-      onClick={() => dispatch(accountsSlice.actions.setShowDetail())}
-    >
+    <div className="bg-cart" onClick={() => dispatch(setShowDetail())}>
       <Toaster />
       {isLoading && (
         <div className="cart-loading">
@@ -38,7 +36,7 @@ const AccountDetail = () => {
         <div className="cart-detail" onClick={(e) => e.stopPropagation()}>
           <div
             className="absolute sm:top-8 sm:right-9 top-6 right-8"
-            onClick={() => dispatch(accountsSlice.actions.setShowDetail())}
+            onClick={() => dispatch(setShowDetail())}
           >
             <CloseSVG />
           </div>

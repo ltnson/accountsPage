@@ -14,6 +14,7 @@ import { accountsSlice } from '../../../store/slice/AccountSlice';
 
 const AccountTabFooter = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
   const limitStr = searchParams.get('limit');
@@ -21,15 +22,15 @@ const AccountTabFooter = () => {
   const limitTab = useSelector(limitTabSelector);
   const skipTab = useSelector(skipTabSelector);
   const searching = useSelector(searchingSelector);
-  const dispatch = useDispatch();
+  const { setLimitTab, setSkipTab } = accountsSlice.actions;
 
   //change data if client change pathName
   useEffect(() => {
     const limit = limitStr && parseInt(limitStr);
     const page = pageStr && parseInt(pageStr);
     if (limit && page) {
-      dispatch(accountsSlice.actions.setLimitTab(limit));
-      dispatch(accountsSlice.actions.setSkipTab(Math.ceil((page - 1) * limit)));
+      dispatch(setLimitTab(limit));
+      dispatch(setSkipTab(Math.ceil((page - 1) * limit)));
     }
   }, [limitStr, pageStr]);
 

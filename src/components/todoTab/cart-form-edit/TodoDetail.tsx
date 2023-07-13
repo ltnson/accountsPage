@@ -7,20 +7,16 @@ import CloseSVG from '../../../assets/SVG/accountsSVG/CloseSVG';
 const TodoDetail = () => {
   const item = useSelector(todoDetailDataSelector);
   const dispatch = useDispatch();
+  const { setShowDetail } = todoQueryCartSlice.actions;
   return (
-    <div
-      className="bg-cart"
-      onClick={() => dispatch(todoQueryCartSlice.actions.setShowDetail(false))}
-    >
+    <div className="bg-cart" onClick={() => dispatch(setShowDetail(false))}>
       <div
         className="flex flex-col bg-white rounded px-8 py-4 relative"
         onClick={(e) => e.stopPropagation()}
       >
         <div
           className="absolute sm:top-4 sm:right-5 top-2 right-4"
-          onClick={() =>
-            dispatch(todoQueryCartSlice.actions.setShowDetail(false))
-          }
+          onClick={() => dispatch(setShowDetail(false))}
         >
           <CloseSVG />
         </div>

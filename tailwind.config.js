@@ -42,6 +42,7 @@ export default {
         't-red100': '#EC7474',
         't-neutral/DE': '#EBEBEB',
         't-red': '#ff8787',
+        't-green': '#2B8143',
       },
     },
     fontFamily: {

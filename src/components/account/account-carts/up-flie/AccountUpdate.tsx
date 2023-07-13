@@ -6,16 +6,14 @@ import { accountsSlice } from '../../../../store/slice/AccountSlice';
 
 const AccountUpdate = () => {
   const dispatch = useDispatch();
+  const { setShowUpdate } = accountsSlice.actions;
 
   return (
-    <div
-      className="bg-cart"
-      onClick={() => dispatch(accountsSlice.actions.setShowUpdate())}
-    >
+    <div className="bg-cart" onClick={() => dispatch(setShowUpdate())}>
       <div className="cart-update" onClick={(event) => event.stopPropagation()}>
         <div
           className="absolute top-7 right-6"
-          onClick={() => dispatch(accountsSlice.actions.setShowUpdate())}
+          onClick={() => dispatch(setShowUpdate())}
         >
           <CloseSVG />
         </div>
@@ -40,10 +38,7 @@ const AccountUpdate = () => {
             </ul>
           </div>
         </div>
-        <Button
-          className="save"
-          onClick={() => dispatch(accountsSlice.actions.setShowUpdate())}
-        >
+        <Button className="save" onClick={() => dispatch(setShowUpdate())}>
           Submit
         </Button>
       </div>

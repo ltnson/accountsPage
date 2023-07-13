@@ -19,6 +19,7 @@ const Navbar = ({ title }: { title: string }) => {
   const showUpdate = useSelector(showUpdateSelector);
   const showDetail = useSelector(showDetailSelector);
   const showTodoDetail = useSelector(showTodoDetailSelector);
+  const { setShowSidebar } = accountsSlice.actions;
 
   const { pathname } = useLocation();
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const Navbar = ({ title }: { title: string }) => {
               className={
                 showSidebar ? 'sidebar-toggle-active' : 'sidebar-toggle'
               }
-              onClick={() => dispatch(accountsSlice.actions.setShowSidebar())}
+              onClick={() => dispatch(setShowSidebar())}
             />
             <TitleNavbar title={title} />
           </div>

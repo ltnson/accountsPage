@@ -21,6 +21,12 @@ const TodoAddEditUsingCart = () => {
   const dispatch = useDispatch();
   const idTodo = useSelector(idQueryCartEditSelector);
   const editData = useSelector(todoQueryCartEditDataSelector);
+  const {
+    resetEditFormQueryCart,
+    setIdTodoEditQueryCart,
+    setShowEditedFormQueryCart,
+  } = todoQueryCartSlice.actions;
+
   const formTodo = useForm<EditTodo>({
     resolver: yupResolver(schemaTodo),
     defaultValues: editData,
@@ -34,9 +40,9 @@ const TodoAddEditUsingCart = () => {
     todoMutation.mutate(data, {
       onSuccess: (result) => {
         toast.success(`${result}, Todo with id ${idTodo} is Succes`);
-        dispatch(todoQueryCartSlice.actions.resetEditForm());
-        dispatch(todoQueryCartSlice.actions.setIdTodoEdit('New'));
-        dispatch(todoQueryCartSlice.actions.setShowEditedForm(false));
+        dispatch(resetEditFormQueryCart());
+        dispatch(setIdTodoEditQueryCart('New'));
+        dispatch(setShowEditedFormQueryCart(false));
       },
       onError: (err) => {
         catchErr(err);
@@ -46,9 +52,7 @@ const TodoAddEditUsingCart = () => {
   return (
     <div
       className="bg-cart"
-      onClick={() =>
-        dispatch(todoQueryCartSlice.actions.setShowEditedForm(false))
-      }
+      onClick={() => dispatch(setShowEditedFormQueryCart(false))}
     >
       <FormProvider {...formTodo}>
         <form
@@ -58,9 +62,7 @@ const TodoAddEditUsingCart = () => {
         >
           <div
             className="absolute sm:top-8 sm:right-9 top-6 right-8"
-            onClick={() =>
-              dispatch(todoQueryCartSlice.actions.setShowEditedForm(false))
-            }
+            onClick={() => dispatch(setShowEditedFormQueryCart(false))}
           >
             <CloseSVG />
           </div>

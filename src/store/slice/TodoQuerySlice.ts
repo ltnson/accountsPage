@@ -15,16 +15,16 @@ export const todoQuerySlice = createSlice({
   name: 'todoQuery',
   initialState: initialState,
   reducers: {
-    setEditForm: (state, action) => {
+    setEditFormQuery: (state, action) => {
       state.editForm = action.payload;
     },
-    resetEditForm: (state) => {
+    resetEditFormQuery: (state) => {
       state.editForm = initialState.editForm;
     },
-    setShowEditedForm: (state, action) => {
+    setShowEditedFormQuery: (state, action) => {
       state.showEditedForm = action.payload;
     },
-    setIdTodoEdit: (state, action) => {
+    setIdTodoEditQuery: (state, action) => {
       state.idTodoEdit = action.payload;
     },
   },

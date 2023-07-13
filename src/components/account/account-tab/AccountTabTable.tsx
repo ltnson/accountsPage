@@ -27,6 +27,7 @@ const AccountTabTable = () => {
   const [pathName, setPathName] = useState<string>(url);
   const showFilter = useSelector(showFilterSelector);
   const dispatch = useDispatch();
+  const { setSearching, setTotalTab, setSearchResult } = accountsSlice.actions;
 
   useEffect(() => {
     setPathName(url);
@@ -41,19 +42,19 @@ const AccountTabTable = () => {
       catchErr(error);
     }
     if (data) {
-      dispatch(accountsSlice.actions.setTotalTab(data.total));
-      dispatch(accountsSlice.actions.setSearchResult(data.limit));
+      dispatch(setTotalTab(data.total));
+      dispatch(setSearchResult(data.limit));
     }
   }, [error, data]);
 
   //search and reget data of table
   const handleToSearch = (e: string) => {
     if (e === '') {
-      dispatch(accountsSlice.actions.setSearching(false));
+      dispatch(setSearching(false));
       return setPathName(url);
     }
     setTimeout(() => {
-      dispatch(accountsSlice.actions.setSearching(true));
+      dispatch(setSearching(true));
       setPathName(`/search?q=${e}`);
     }, 1000);
   };

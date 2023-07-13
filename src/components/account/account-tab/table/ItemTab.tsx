@@ -14,11 +14,12 @@ const ItemTab = ({ item }: { item: Account }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [checkbox, setCheckbox] = useState<boolean>(false);
+  const { setShowDetail, setIdDetail } = accountsSlice.actions;
 
   // show detail and set id for api in detail comp
   const handleShowDetail = (id: number) => {
-    dispatch(accountsSlice.actions.setShowDetail());
-    dispatch(accountsSlice.actions.setIdDetail(id));
+    dispatch(setShowDetail());
+    dispatch(setIdDetail(id));
   };
 
   return (

@@ -20,31 +20,36 @@ const TodoQueryForm = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { idTodoParams } = useParams();
   const editQueryData = useSelector(todoQueryEditDataSelector);
   const editAxiosData = useSelector(todoAxiosEditDataSelector);
+  const { setEditFormQuery, setIdTodoEditQuery, setShowEditedFormQuery } =
+    todoQuerySlice.actions;
+  const { setEditFormAxios, setIdTodoEditAxios, setShowEditedFormAxios } =
+    todoAxiosSlice.actions;
+
   const formTodo = useForm<EditTodo>({
     resolver: yupResolver(schemaTodo),
     defaultValues: pathname.includes('/todoquery')
       ? editQueryData
       : editAxiosData,
   });
-  const { idTodoParams } = useParams();
 
   const { handleSubmit } = formTodo;
   const onSubmit = (data: EditTodo) => {
     if (pathname.includes('/todoquery')) {
       if (idTodoParams) {
-        dispatch(todoQuerySlice.actions.setIdTodoEdit(idTodoParams));
+        dispatch(setIdTodoEditQuery(idTodoParams));
       }
-      dispatch(todoQuerySlice.actions.setEditForm(data));
-      dispatch(todoQuerySlice.actions.setShowEditedForm(true));
+      dispatch(setEditFormQuery(data));
+      dispatch(setShowEditedFormQuery(true));
       return navigate('/todoquery');
     }
     if (idTodoParams) {
-      dispatch(todoAxiosSlice.actions.setIdTodoEdit(idTodoParams));
+      dispatch(setIdTodoEditAxios(idTodoParams));
     }
-    dispatch(todoAxiosSlice.actions.setEditForm(data));
-    dispatch(todoAxiosSlice.actions.setShowEditedForm(true));
+    dispatch(setEditFormAxios(data));
+    dispatch(setShowEditedFormAxios(true));
     navigate('/todoaxios');
   };
 

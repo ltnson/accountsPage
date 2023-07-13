@@ -20,6 +20,16 @@ const TailNavbar = ({ title }: { title: string }) => {
   const dispatch = useDispatch();
   const showEditedQuery = useSelector(showEditedQuerySelector);
   const showEditedAxios = useSelector(showEditedAxiosSelector);
+  const { setShowUpdate } = accountsSlice.actions;
+  const { resetEditFormQuery, setIdTodoEditQuery, setShowEditedFormQuery } =
+    todoQuerySlice.actions;
+  const {
+    resetEditFormQueryCart,
+    setIdTodoEditQueryCart,
+    setShowEditedFormQueryCart,
+  } = todoQueryCartSlice.actions;
+  const { resetEditFormAxios, setIdTodoEditAxios, setShowEditedFormAxios } =
+    todoAxiosSlice.actions;
 
   const handleGoAdd = () => {
     if (pathname === '/todoquery') {
@@ -31,9 +41,9 @@ const TailNavbar = ({ title }: { title: string }) => {
           return;
         }
       }
-      dispatch(todoQuerySlice.actions.resetEditForm());
-      dispatch(todoQuerySlice.actions.setIdTodoEdit('New'));
-      dispatch(todoQuerySlice.actions.setShowEditedForm(false));
+      dispatch(resetEditFormQuery());
+      dispatch(setIdTodoEditQuery('New'));
+      dispatch(setShowEditedFormQuery(false));
     }
     if (pathname === '/todoaxios') {
       if (showEditedAxios) {
@@ -44,14 +54,14 @@ const TailNavbar = ({ title }: { title: string }) => {
           return;
         }
       }
-      dispatch(todoAxiosSlice.actions.resetEditForm());
-      dispatch(todoAxiosSlice.actions.setIdTodoEdit('New'));
-      dispatch(todoAxiosSlice.actions.setShowEditedForm(false));
+      dispatch(resetEditFormAxios());
+      dispatch(setIdTodoEditAxios('New'));
+      dispatch(setShowEditedFormAxios(false));
     }
     if (pathname === '/todoquerycart') {
-      dispatch(todoQueryCartSlice.actions.resetEditForm());
-      dispatch(todoQueryCartSlice.actions.setIdTodoEdit('New'));
-      return dispatch(todoQueryCartSlice.actions.setShowEditedForm(true));
+      dispatch(resetEditFormQueryCart());
+      dispatch(setIdTodoEditQueryCart('New'));
+      return dispatch(setShowEditedFormQueryCart(true));
     }
     navigate('add');
   };
@@ -61,11 +71,11 @@ const TailNavbar = ({ title }: { title: string }) => {
         <div className="flex gap-2.5 justify-self-end h-12 items-center">
           <FieldSVG
             className="navbar"
-            onClick={() => dispatch(accountsSlice.actions.setShowUpdate())}
+            onClick={() => dispatch(setShowUpdate())}
           />
           <UploadSVG
             className="navbar"
-            onClick={() => dispatch(accountsSlice.actions.setShowUpdate())}
+            onClick={() => dispatch(setShowUpdate())}
           />
           <DownloadSVG className="navbar" />
           <Button className=" btn-navbar" onClick={handleGoAdd}>

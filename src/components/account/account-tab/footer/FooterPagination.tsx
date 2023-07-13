@@ -18,13 +18,14 @@ const FooterPagination = () => {
   const skipTab = useSelector(skipTabSelector);
   const limitTab = useSelector(limitTabSelector);
   const dispatch = useDispatch();
+  const { setSkipTab, setLimitTab } = accountsSlice.actions;
 
   //using pagination of MUI for set limit and skip
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number,
   ) => {
-    dispatch(accountsSlice.actions.setSkipTab(value * limitTab - limitTab));
+    dispatch(setSkipTab(value * limitTab - limitTab));
   };
 
   return (
@@ -33,9 +34,7 @@ const FooterPagination = () => {
         value={limitTab}
         select
         className="account-tab-select"
-        onChange={(e) =>
-          dispatch(accountsSlice.actions.setLimitTab(parseInt(e.target.value)))
-        }
+        onChange={(e) => dispatch(setLimitTab(parseInt(e.target.value)))}
       >
         <MenuItem value={20}>20 per page</MenuItem>
         <MenuItem value={10}>10 per page</MenuItem>

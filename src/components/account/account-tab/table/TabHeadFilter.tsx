@@ -15,6 +15,7 @@ const TabHeadFilter = () => {
   const showFilter = useSelector(showFilterSelector);
   const totalTab = useSelector(totalTabSelector);
   const dispatch = useDispatch();
+  const { setShowFilter } = accountsSlice.actions;
 
   if (pathname.includes('/accounts/filter')) {
     return (
@@ -22,7 +23,7 @@ const TabHeadFilter = () => {
         <a
           className="btn-w-a w-8 h-8 sm:w-10 sm:h-10 bg-blue/10"
           href="#"
-          onClick={() => dispatch(accountsSlice.actions.setShowFilter())}
+          onClick={() => dispatch(setShowFilter())}
         >
           <FilterActionSVG />
         </a>
@@ -39,7 +40,7 @@ const TabHeadFilter = () => {
         showFilter && 'bg-blue/10'
       }`}
       href="#"
-      onClick={() => dispatch(accountsSlice.actions.setShowFilter())}
+      onClick={() => dispatch(setShowFilter())}
     >
       <FilterSVG />
     </a>

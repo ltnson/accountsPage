@@ -18,6 +18,16 @@ const ItemAddEditCell = ({ item }: { item: Todo }) => {
   const dispatch = useDispatch();
   const showEditedQuery = useSelector(showEditedQuerySelector);
   const showEditedAxios = useSelector(showEditedAxiosSelector);
+  const { setEditFormQuery } = todoQuerySlice.actions;
+  const { setEditFormAxios } = todoAxiosSlice.actions;
+  const {
+    setEditFormQueryCart,
+    setIdTodoEditQueryCart,
+    setShowEditedFormQueryCart,
+    setDetailData,
+    setShowDetail,
+  } = todoQueryCartSlice.actions;
+
   const handleGoEditTodo = () => {
     if (pathname === '/todoquery') {
       if (showEditedQuery) {
@@ -26,7 +36,7 @@ const ItemAddEditCell = ({ item }: { item: Todo }) => {
         );
         if (confirmed) {
           dispatch(
-            todoQuerySlice.actions.setEditForm({
+            setEditFormQuery({
               text: item.text,
               complete: item.complete,
               author: item.author,
@@ -38,7 +48,7 @@ const ItemAddEditCell = ({ item }: { item: Todo }) => {
         }
       }
       dispatch(
-        todoQuerySlice.actions.setEditForm({
+        setEditFormQuery({
           text: item.text,
           complete: item.complete,
           author: item.author,
@@ -52,7 +62,7 @@ const ItemAddEditCell = ({ item }: { item: Todo }) => {
         );
         if (confirmed) {
           dispatch(
-            todoAxiosSlice.actions.setEditForm({
+            setEditFormAxios({
               text: item.text,
               complete: item.complete,
               author: item.author,
@@ -64,7 +74,7 @@ const ItemAddEditCell = ({ item }: { item: Todo }) => {
         }
       }
       dispatch(
-        todoAxiosSlice.actions.setEditForm({
+        setEditFormAxios({
           text: item.text,
           complete: item.complete,
           author: item.author,
@@ -73,21 +83,21 @@ const ItemAddEditCell = ({ item }: { item: Todo }) => {
     }
     if (pathname === '/todoquerycart') {
       dispatch(
-        todoQueryCartSlice.actions.setEditForm({
+        setEditFormQueryCart({
           text: item.text,
           complete: item.complete,
           author: item.author,
         }),
       );
-      dispatch(todoQueryCartSlice.actions.setIdTodoEdit(item._id));
-      return dispatch(todoQueryCartSlice.actions.setShowEditedForm(true));
+      dispatch(setIdTodoEditQueryCart(item._id));
+      return dispatch(setShowEditedFormQueryCart(true));
     }
     navigate(`edit/${item._id}`);
   };
 
   const handleShowTodo = () => {
-    dispatch(todoQueryCartSlice.actions.setDetailData(item));
-    dispatch(todoQueryCartSlice.actions.setShowDetail(true));
+    dispatch(setDetailData(item));
+    dispatch(setShowDetail(true));
   };
 
   return (

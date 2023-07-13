@@ -23,16 +23,16 @@ export const todoQueryCartSlice = createSlice({
   name: 'todoQueryCart',
   initialState: initialState,
   reducers: {
-    setEditForm: (state, action) => {
+    setEditFormQueryCart: (state, action) => {
       state.editForm = action.payload;
     },
-    resetEditForm: (state) => {
+    resetEditFormQueryCart: (state) => {
       state.editForm = initialState.editForm;
     },
-    setShowEditedForm: (state, action) => {
+    setShowEditedFormQueryCart: (state, action) => {
       state.showEditedForm = action.payload;
     },
-    setIdTodoEdit: (state, action) => {
+    setIdTodoEditQueryCart: (state, action) => {
       state.idTodoEdit = action.payload;
     },
     setDetailData: (state, action) => {
