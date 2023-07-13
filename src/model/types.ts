@@ -179,6 +179,7 @@ export type TodoAxiosSlice = {
   };
   showEditedForm: boolean;
   idTodoEdit: string;
+  reloadTodo: boolean;
 };
 
 export type TodoQueryCartSlice = {

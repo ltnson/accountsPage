@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast';
 
 const TodoTabListWithQuery = () => {
   const { data, isLoading, error } = getTodosList();
+
   useEffect(() => {
     if (error) {
       catchErr(error);

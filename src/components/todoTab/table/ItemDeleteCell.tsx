@@ -1,17 +1,22 @@
 import { Todo } from '../../../model/types';
 import { CircularProgress, SvgIcon } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { deleteTodo } from '../../../hooks/Todos';
+import { deleteTodo, reloadTodoKey } from '../../../hooks/Todos';
 import { toast } from 'react-hot-toast';
 import { catchErr } from '../../../hooks/Accounts';
 import axiosTodos from '../../../api/axiosTodos';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { useDispatch } from 'react-redux';
+import { todoAxiosSlice } from '../../../store/slice/TodoAxiosSlice';
 
 const ItemDeleteCell = ({ item }: { item: Todo }) => {
   const { pathname } = useLocation();
   const [axiosLoading, setAxiosLoading] = useState<boolean>(false);
   const deleteMutation = deleteTodo();
+  const queryClient = useQueryClient();
+  const dispatch = useDispatch();
   const deleteWithAxios = async () => {
     try {
       setAxiosLoading(true);
@@ -20,6 +25,7 @@ const ItemDeleteCell = ({ item }: { item: Todo }) => {
           item._id
         } is deleted`,
       );
+      dispatch(todoAxiosSlice.actions.setReloadTodo(true));
       setAxiosLoading(false);
     } catch (err) {
       setAxiosLoading(false);
@@ -34,11 +40,8 @@ const ItemDeleteCell = ({ item }: { item: Todo }) => {
         return deleteWithAxios();
       }
       deleteMutation.mutate(item._id, {
-        onSuccess: (data) => {
-          toast.success(`${data}, Todo with ID: ${item._id} is deleted`);
-        },
-        onError: (err) => {
-          catchErr(err);
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: reloadTodoKey });
         },
       });
     }

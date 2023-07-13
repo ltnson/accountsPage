@@ -1,4 +1,4 @@
-import { postEditTodo, postNewTodo } from '../../../hooks/Todos';
+import { postEditTodo, postNewTodo, reloadTodoKey } from '../../../hooks/Todos';
 import { catchErr } from '../../../hooks/Accounts';
 import { toast, Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +13,7 @@ import { useLocation } from 'react-router-dom';
 import axiosTodos from '../../../api/axiosTodos';
 import { useState } from 'react';
 import { todoAxiosSlice } from '../../../store/slice/TodoAxiosSlice';
+import { useQueryClient } from '@tanstack/react-query';
 
 const TodoEdited = ({ item }: { item: EditTodo }) => {
   const dispatch = useDispatch();
@@ -20,10 +21,9 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
   const [axiosLoading, setAxiosLoading] = useState<boolean>(false);
   const idTodoQuery = useSelector(idQueryEditSelector);
   const idTodoAxios = useSelector(idAxiosEditSelector);
-  const { resetEditFormAxios, setIdTodoEditAxios, setShowEditedFormAxios } =
-    todoAxiosSlice.actions;
-  const { resetEditFormQuery, setIdTodoEditQuery, setShowEditedFormQuery } =
-    todoQuerySlice.actions;
+  const { resetEditFormAxios, setReloadTodo } = todoAxiosSlice.actions;
+  const { resetEditFormQuery } = todoQuerySlice.actions;
+  const queryClient = useQueryClient();
 
   const updateTodoAxios = async () => {
     try {
@@ -41,8 +41,7 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
         );
       }
       dispatch(resetEditFormAxios());
-      dispatch(setIdTodoEditAxios('New'));
-      dispatch(setShowEditedFormAxios(false));
+      dispatch(setReloadTodo(true));
       setAxiosLoading(false);
     } catch (err) {
       setAxiosLoading(false);
@@ -55,18 +54,9 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
   const handleUpdateTodo = () => {
     if (pathname === '/todoquery') {
       return todoMutation.mutate(item, {
-        onSuccess: (data) => {
-          toast.success(
-            idTodoQuery === 'New'
-              ? `Todo with Id : ${data} is created`
-              : `${data}, Todo with Id : ${idTodoQuery} is updated`,
-          );
+        onSuccess: () => {
           dispatch(resetEditFormQuery());
-          dispatch(setIdTodoEditQuery('New'));
-          dispatch(setShowEditedFormQuery(false));
-        },
-        onError: (err) => {
-          catchErr(err);
+          queryClient.invalidateQueries({ queryKey: reloadTodoKey });
         },
       });
     }

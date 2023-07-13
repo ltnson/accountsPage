@@ -34,6 +34,8 @@ export const showEditedAxiosSelector = (state: RootState) =>
   state.todoAxios.showEditedForm;
 export const idAxiosEditSelector = (state: RootState) =>
   state.todoAxios.idTodoEdit;
+export const reloadTodoSelector = (state: RootState) =>
+  state.todoAxios.reloadTodo;
 
 //TodoQueryCart
 export const todoQueryCartEditDataSelector = (state: RootState) =>

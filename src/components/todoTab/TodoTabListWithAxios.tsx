@@ -6,10 +6,15 @@ import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { TodosList } from '../../model/types';
 import axiosTodos from '../../api/axiosTodos';
+import { useDispatch, useSelector } from 'react-redux';
+import { reloadTodoSelector } from '../../store/selects';
+import { todoAxiosSlice } from '../../store/slice/TodoAxiosSlice';
 
 const TodoTabListWithAxios = () => {
   const [todosList, setTodosList] = useState<TodosList | null>(null);
   const [axiosLoading, setAxiosLoading] = useState<boolean>(true);
+  const reloadTodoAxios = useSelector(reloadTodoSelector);
+  const dispatch = useDispatch();
 
   const getTodoListData = async () => {
     try {
@@ -28,10 +33,18 @@ const TodoTabListWithAxios = () => {
     getTodoListData();
   }, []);
 
+  useEffect(() => {
+    console.log(reloadTodoAxios);
+    if (reloadTodoAxios) {
+      getTodoListData();
+      dispatch(todoAxiosSlice.actions.setReloadTodo(false));
+    }
+    return;
+  }, [reloadTodoAxios]);
+
   return (
     <>
       <Toaster />
-
       {todosList && (
         <TableContainer className="scroll-style">
           <Table border={1}>

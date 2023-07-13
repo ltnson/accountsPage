@@ -6,26 +6,23 @@ import { EditTodo } from '../../../model/types';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaTodo } from '../../../util/yupSchema';
 import { Button, LinearProgress } from '@mui/material';
-import { postEditTodo, postNewTodo } from '../../../hooks/Todos';
+import { postEditTodo, postNewTodo, reloadTodoKey } from '../../../hooks/Todos';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   idQueryCartEditSelector,
   todoQueryCartEditDataSelector,
 } from '../../../store/selects';
-import { catchErr } from '../../../hooks/Accounts';
-import { toast } from 'react-hot-toast';
 import { todoQueryCartSlice } from '../../../store/slice/TodoQueryCartSlice';
 import CloseSVG from '../../../assets/SVG/accountsSVG/CloseSVG';
+import { useQueryClient } from '@tanstack/react-query';
 
 const TodoAddEditUsingCart = () => {
   const dispatch = useDispatch();
   const idTodo = useSelector(idQueryCartEditSelector);
   const editData = useSelector(todoQueryCartEditDataSelector);
-  const {
-    resetEditFormQueryCart,
-    setIdTodoEditQueryCart,
-    setShowEditedFormQueryCart,
-  } = todoQueryCartSlice.actions;
+  const { resetEditFormQueryCart, setShowEditedFormQueryCart } =
+    todoQueryCartSlice.actions;
+  const queryClient = useQueryClient();
 
   const formTodo = useForm<EditTodo>({
     resolver: yupResolver(schemaTodo),
@@ -38,14 +35,9 @@ const TodoAddEditUsingCart = () => {
   const { handleSubmit } = formTodo;
   const onSubmit = (data: EditTodo) => {
     todoMutation.mutate(data, {
-      onSuccess: (result) => {
-        toast.success(`${result}, Todo with id ${idTodo} is Succes`);
+      onSuccess: () => {
         dispatch(resetEditFormQueryCart());
-        dispatch(setIdTodoEditQueryCart('New'));
-        dispatch(setShowEditedFormQueryCart(false));
-      },
-      onError: (err) => {
-        catchErr(err);
+        queryClient.invalidateQueries({ queryKey: reloadTodoKey });
       },
     });
   };

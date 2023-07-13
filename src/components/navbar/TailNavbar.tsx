@@ -21,15 +21,9 @@ const TailNavbar = ({ title }: { title: string }) => {
   const showEditedQuery = useSelector(showEditedQuerySelector);
   const showEditedAxios = useSelector(showEditedAxiosSelector);
   const { setShowUpdate } = accountsSlice.actions;
-  const { resetEditFormQuery, setIdTodoEditQuery, setShowEditedFormQuery } =
-    todoQuerySlice.actions;
-  const {
-    resetEditFormQueryCart,
-    setIdTodoEditQueryCart,
-    setShowEditedFormQueryCart,
-  } = todoQueryCartSlice.actions;
-  const { resetEditFormAxios, setIdTodoEditAxios, setShowEditedFormAxios } =
-    todoAxiosSlice.actions;
+  const { resetEditFormQuery } = todoQuerySlice.actions;
+  const { resetEditFormQueryCart } = todoQueryCartSlice.actions;
+  const { resetEditFormAxios } = todoAxiosSlice.actions;
 
   const handleGoAdd = () => {
     if (pathname === '/todoquery') {
@@ -42,8 +36,6 @@ const TailNavbar = ({ title }: { title: string }) => {
         }
       }
       dispatch(resetEditFormQuery());
-      dispatch(setIdTodoEditQuery('New'));
-      dispatch(setShowEditedFormQuery(false));
     }
     if (pathname === '/todoaxios') {
       if (showEditedAxios) {
@@ -55,13 +47,9 @@ const TailNavbar = ({ title }: { title: string }) => {
         }
       }
       dispatch(resetEditFormAxios());
-      dispatch(setIdTodoEditAxios('New'));
-      dispatch(setShowEditedFormAxios(false));
     }
     if (pathname === '/todoquerycart') {
-      dispatch(resetEditFormQueryCart());
-      dispatch(setIdTodoEditQueryCart('New'));
-      return dispatch(setShowEditedFormQueryCart(true));
+      return dispatch(resetEditFormQueryCart());
     }
     navigate('add');
   };

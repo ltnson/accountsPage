@@ -19,25 +19,25 @@ export const accountsSlice = createSlice({
   name: 'accounts',
   initialState: initialState,
   reducers: {
-    setSkipTab: (state, action) => {
+    setSkipTab: (state, action: { type: string; payload: number }) => {
       state.skipTab = action.payload;
     },
-    setTotalTab: (state, action) => {
+    setTotalTab: (state, action: { type: string; payload: number }) => {
       state.totalTab = action.payload;
     },
-    setLimitTab: (state, action) => {
+    setLimitTab: (state, action: { type: string; payload: number }) => {
       state.limitTab = action.payload;
     },
-    setSearching: (state, action) => {
+    setSearching: (state, action: { type: string; payload: boolean }) => {
       state.searching = action.payload;
     },
-    setAllCheckbox: (state, action) => {
+    setAllCheckbox: (state, action: { type: string; payload: boolean }) => {
       state.allCheckbox = action.payload;
     },
-    setIdDetail: (state, action) => {
+    setIdDetail: (state, action: { type: string; payload: number }) => {
       state.idDetail = action.payload;
     },
-    setSearchResult: (state, action) => {
+    setSearchResult: (state, action: { type: string; payload: number }) => {
       state.searchResults = action.payload;
     },
     setShowSidebar: (state) => {
