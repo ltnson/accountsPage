@@ -24,7 +24,7 @@ const TodoAddEditUsingCart = () => {
   const formTodo = useForm<EditTodo>({
     resolver: yupResolver(schemaTodo),
     defaultValues: editData,
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
   const todoMutation = idTodo === 'New' ? postNewTodo() : postEditTodo(idTodo);

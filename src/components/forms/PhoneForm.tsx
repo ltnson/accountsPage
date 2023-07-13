@@ -16,7 +16,7 @@ const PhoneForm = ({
 }) => {
   const { control } = useFormContext();
   const {
-    field: { onChange, value },
+    field: { onChange, value, ref },
     fieldState: { error },
   } = useController({
     name: name,
@@ -31,6 +31,7 @@ const PhoneForm = ({
         className="input-form"
         helperText={error ? error?.message : null}
         name={name}
+        inputRef={ref}
         error={!!error}
         //first of phone number
         value={value ? value.split(' ').slice(1).join(' ') : ''}

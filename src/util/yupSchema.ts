@@ -19,17 +19,8 @@ export const schemaEditAccount = yup.object({
     .string()
     .required('Phone is required')
     .matches(/^[+0-9\s]+$/, 'Phone must only contain numbers')
-    .test('check-length-phone-number', 'Phone is invalid', (value) => {
-      if (value) {
-        const length = value.replace(/\s+/g, '').length;
-        return length < 17;
-      }
-      if (value) {
-        if (value.split(' ')[1].includes('+') || value.split(' ')[1] === '')
-          return false;
-      }
-      return true;
-    }),
+    .min(13, 'Phone is too invalid')
+    .max(20, 'Phone is too invalid'),
   username: yup
     .string()
     .min(3, 'User Name is required')

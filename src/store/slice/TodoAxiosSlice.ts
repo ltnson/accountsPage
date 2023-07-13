@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { TodoAxiosSlice } from '../../model/types';
 
-const initialState = {
+const initialState: TodoAxiosSlice = {
   editForm: {
     text: '',
     complete: false,

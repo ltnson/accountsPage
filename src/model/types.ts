@@ -160,3 +160,41 @@ export type AccountSlice = {
   searching: boolean;
   allCheckbox: boolean;
 };
+
+export type TodoQuerySlice = {
+  editForm: {
+    text: string;
+    complete: boolean;
+    author: string;
+  };
+  showEditedForm: boolean;
+  idTodoEdit: string;
+};
+
+export type TodoAxiosSlice = {
+  editForm: {
+    text: string;
+    complete: boolean;
+    author: string;
+  };
+  showEditedForm: boolean;
+  idTodoEdit: string;
+};
+
+export type TodoQueryCartSlice = {
+  editForm: {
+    text: string;
+    complete: boolean;
+    author: string;
+  };
+  showEditedForm: boolean;
+  idTodoEdit: string;
+  detalData: {
+    _id: string;
+    text: string;
+    complete: boolean;
+    author: string;
+    createdDate: string;
+  };
+  shoDetail: boolean;
+};

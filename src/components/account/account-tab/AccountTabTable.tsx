@@ -24,7 +24,7 @@ import { accountsSlice } from '../../../store/slice/AccountSlice';
 const AccountTabTable = () => {
   // get url after loader in router return
   const url = useLoaderData() as string;
-  const [pathName, setPathName] = useState<string>('');
+  const [pathName, setPathName] = useState<string>(url);
   const showFilter = useSelector(showFilterSelector);
   const dispatch = useDispatch();
 

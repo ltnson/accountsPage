@@ -21,7 +21,7 @@ const DateForm = ({
 }) => {
   const { control } = useFormContext();
   const {
-    field: { onChange, value },
+    field: { onChange, value, ref },
   } = useController({
     name: name,
     defaultValue: new Date().toLocaleDateString('en-US'),
@@ -36,6 +36,7 @@ const DateForm = ({
         slots={{
           openPickerButton: icon,
         }}
+        inputRef={ref}
         className="input-form"
         defaultValue={dayjs(value)}
         onChange={(date: any) =>

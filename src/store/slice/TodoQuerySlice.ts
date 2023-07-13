@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { TodoQuerySlice } from '../../model/types';
 
-const initialState = {
+const initialState: TodoQuerySlice = {
   editForm: {
     text: '',
     complete: false,

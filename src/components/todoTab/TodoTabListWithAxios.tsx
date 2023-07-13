@@ -16,15 +16,16 @@ const TodoTabListWithAxios = () => {
       const data = await axiosTodos.getTodoList();
       if (data) {
         setTodosList(data);
+        setAxiosLoading(false);
       }
     } catch (err) {
       catchErr(err);
+      setAxiosLoading(false);
     }
   };
 
   useEffect(() => {
     getTodoListData();
-    setAxiosLoading(false);
   }, []);
 
   return (

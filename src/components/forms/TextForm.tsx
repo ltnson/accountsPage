@@ -14,7 +14,7 @@ const TextForm = ({
 }) => {
   const { control } = useFormContext();
   const {
-    field: { onChange, value },
+    field: { onChange, value, ref },
     fieldState: { error },
   } = useController({
     name: name,
@@ -30,6 +30,7 @@ const TextForm = ({
         error={!!error}
         name={name}
         value={value}
+        inputRef={ref}
         onChange={(e) =>
           value?.length < 50
             ? onChange(e.target.value)

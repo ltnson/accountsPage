@@ -27,9 +27,26 @@ const AccountAdd = () => {
   //form data
   const formMethod = useForm<EditForm>({
     resolver: yupResolver(schemaEditAccount),
-    mode: 'onChange',
+    mode: 'onBlur',
   });
-  const { handleSubmit } = formMethod;
+  const {
+    handleSubmit,
+    formState: { errors },
+    setFocus,
+  } = formMethod;
+
+  useEffect(() => {
+    const firstError = (
+      Object.keys(errors) as Array<keyof typeof errors>
+    ).reduce<keyof typeof errors | null>((field, a) => {
+      const fieldKey = field as keyof typeof errors;
+      return !!errors[fieldKey] ? fieldKey : a;
+    }, null) as keyof EditForm;
+
+    if (firstError) {
+      setFocus(firstError);
+    }
+  }, [errors, setFocus]);
 
   //get data if editing
   const editDataQuery = idAccount
