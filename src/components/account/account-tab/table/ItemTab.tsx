@@ -8,6 +8,8 @@ import WriteSVG from '../../../../assets/SVG/accountsSVG/WriteSVG';
 import { useDispatch, useSelector } from 'react-redux';
 import { accountsSlice } from '../../../../store/slice/AccountSlice';
 import { allCheckboxSelector } from '../../../../store/selects';
+import { useQueryClient } from '@tanstack/react-query';
+import typeApi from '../../../../api/typeApi';
 
 const ItemTab = ({ item }: { item: Account }) => {
   const allCheckbox = useSelector(allCheckboxSelector);
@@ -15,11 +17,19 @@ const ItemTab = ({ item }: { item: Account }) => {
   const navigate = useNavigate();
   const [checkbox, setCheckbox] = useState<boolean>(false);
   const { setShowDetail, setIdDetail } = accountsSlice.actions;
+  const queryClient = useQueryClient();
 
   // show detail and set id for api in detail comp
   const handleShowDetail = (id: number) => {
     dispatch(setShowDetail());
     dispatch(setIdDetail(id));
+  };
+
+  const callAheadDetail = (id: number) => {
+    queryClient.prefetchQuery(['detail', id], {
+      queryFn: () => typeApi.getDetail(id),
+      staleTime: 1000 * 10,
+    });
   };
 
   return (
@@ -55,6 +65,7 @@ const ItemTab = ({ item }: { item: Account }) => {
           <a
             href="#"
             onClick={() => handleShowDetail(item.id)}
+            onMouseEnter={() => callAheadDetail(item.id)}
             className="btn-show-cart"
           >
             <EyeSVG />
@@ -62,6 +73,7 @@ const ItemTab = ({ item }: { item: Account }) => {
           <a
             href="#"
             onClick={() => navigate(`/accounts/edit/${item.id}`)}
+            onMouseEnter={() => callAheadDetail(item.id)}
             className="btn-show-cart "
           >
             <WriteSVG />

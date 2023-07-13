@@ -12,6 +12,8 @@ import {
   totalTabSelector,
 } from '../../../../store/selects';
 import { accountsSlice } from '../../../../store/slice/AccountSlice';
+import { useQueryClient } from '@tanstack/react-query';
+import typeApi from '../../../../api/typeApi';
 
 const FooterPagination = () => {
   const totalTab = useSelector(totalTabSelector);
@@ -19,6 +21,38 @@ const FooterPagination = () => {
   const limitTab = useSelector(limitTabSelector);
   const dispatch = useDispatch();
   const { setSkipTab, setLimitTab } = accountsSlice.actions;
+  const queryClient = useQueryClient();
+
+  const callAheadPageNext = () => {
+    if (limitTab + skipTab >= totalTab) {
+      return;
+    }
+    queryClient.prefetchQuery(
+      ['limit', `?limit=${limitTab}` + '&' + `skip=${skipTab + limitTab}`],
+      {
+        queryFn: () =>
+          typeApi.getAccounts(
+            `?limit=${limitTab}` + '&' + `skip=${skipTab + limitTab}`,
+          ),
+        staleTime: 1000 * 10,
+      },
+    );
+  };
+  const callAheadPagePrev = () => {
+    if (skipTab === 0) {
+      return;
+    }
+    queryClient.prefetchQuery(
+      ['limit', `?limit=${limitTab}` + '&' + `skip=${skipTab - limitTab}`],
+      {
+        queryFn: () =>
+          typeApi.getAccounts(
+            `?limit=${limitTab}` + '&' + `skip=${skipTab + limitTab}`,
+          ),
+        staleTime: 1000 * 10,
+      },
+    );
+  };
 
   //using pagination of MUI for set limit and skip
   const handlePageChange = (
@@ -48,14 +82,18 @@ const FooterPagination = () => {
           <PaginationItem
             slots={{
               previous: () => (
-                <Typography className="btn-group-prev s14-gray">
-                  Prev.
-                </Typography>
+                <div onMouseEnter={callAheadPagePrev}>
+                  <Typography className="btn-group-prev s14-gray">
+                    Prev.
+                  </Typography>
+                </div>
               ),
               next: () => (
-                <Typography className="btn-group-next s14-gray">
-                  Next
-                </Typography>
+                <div onMouseEnter={callAheadPageNext}>
+                  <Typography className="btn-group-next s14-gray">
+                    Next
+                  </Typography>
+                </div>
               ),
             }}
             {...item}
