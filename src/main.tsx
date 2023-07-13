@@ -12,7 +12,9 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import isBetweenPlugin from 'dayjs/plugin/isBetween';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { AccountProvider } from './store/AccountContext.tsx';
+
+import { Provider } from 'react-redux';
+import store from './store/store.ts';
 
 dayjs.extend(weekOfYear);
 dayjs.extend(customParseFormat);
@@ -23,14 +25,14 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <AccountProvider>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <App />
-          </AccountProvider>
-        </LocalizationProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+          </LocalizationProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </Provider>
   </React.StrictMode>,
 );

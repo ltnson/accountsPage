@@ -19,14 +19,11 @@ export const schemaEditAccount = yup.object({
     .string()
     .required('Phone is required')
     .matches(/^[+0-9\s]+$/, 'Phone must only contain numbers')
-    .test('test-name', 'Phone is invalid', (value) => {
+    .test('check-length-phone-number', 'Phone is invalid', (value) => {
       if (value) {
         const length = value.replace(/\s+/g, '').length;
         return length < 17;
       }
-      return true;
-    })
-    .test('test2-name', 'Phone is required', (value) => {
       if (value) {
         if (value.split(' ')[1].includes('+') || value.split(' ')[1] === '')
           return false;
@@ -59,4 +56,19 @@ export const schemaLogin = yup.object().shape({
     .min(4, 'Password is too short')
     .max(20, 'Password is invalid')
     .required('Fist Name is required'),
+});
+
+//validate todo form
+export const schemaTodo = yup.object().shape({
+  text: yup
+    .string()
+    .min(2, 'Text is too short')
+    .max(20, 'Text is invalid')
+    .required('Text is required'),
+  complete: yup.bool(),
+  author: yup
+    .string()
+    .min(4, 'Author is too short')
+    .max(20, 'Author is invalid')
+    .required('Author is required'),
 });

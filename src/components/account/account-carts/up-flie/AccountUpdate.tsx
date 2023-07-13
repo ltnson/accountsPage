@@ -1,22 +1,21 @@
-import { useContext } from 'react';
-import { AccountContext } from '../../../../store/AccountContext';
-
 import { Button } from '@mui/material';
 import CloseSVG from '../../../../assets/SVG/accountsSVG/CloseSVG';
 import ImportSVG from '../../../../assets/SVG/accountsSVG/ImportSVG';
+import { useDispatch } from 'react-redux';
+import { accountsSlice } from '../../../../store/slice/AccountSlice';
 
 const AccountUpdate = () => {
-  const { setShowArr, showArr } = useContext(AccountContext);
+  const dispatch = useDispatch();
 
   return (
     <div
       className="bg-cart"
-      onClick={() => setShowArr({ ...showArr, update: false })}
+      onClick={() => dispatch(accountsSlice.actions.setShowUpdate())}
     >
       <div className="cart-update" onClick={(event) => event.stopPropagation()}>
         <div
           className="absolute top-7 right-6"
-          onClick={() => setShowArr({ ...showArr, update: false })}
+          onClick={() => dispatch(accountsSlice.actions.setShowUpdate())}
         >
           <CloseSVG />
         </div>
@@ -43,7 +42,7 @@ const AccountUpdate = () => {
         </div>
         <Button
           className="save"
-          onClick={() => setShowArr({ ...showArr, update: false })}
+          onClick={() => dispatch(accountsSlice.actions.setShowUpdate())}
         >
           Submit
         </Button>

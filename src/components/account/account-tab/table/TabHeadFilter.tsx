@@ -1,21 +1,28 @@
-import { useContext } from 'react';
-import { AccountContext } from '../../../../store/AccountContext';
 import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import FilterSVG from '../../../../assets/SVG/accountsSVG/FilterSVG';
 import CloseSVG2 from '../../../../assets/SVG/accountsSVG/CloseSVG2';
 import FilterActionSVG from '../../../../assets/SVG/accountsSVG/FilterActionSVG';
+import {
+  showFilterSelector,
+  totalTabSelector,
+} from '../../../../store/selects';
+import { accountsSlice } from '../../../../store/slice/AccountSlice';
 
 const TabHeadFilter = () => {
-  const { setShowArr, showArr, totalTab } = useContext(AccountContext);
   const { pathname } = useLocation();
+  const showFilter = useSelector(showFilterSelector);
+  const totalTab = useSelector(totalTabSelector);
+  const dispatch = useDispatch();
+
   if (pathname.includes('/accounts/filter')) {
     return (
       <>
         <a
           className="btn-w-a w-8 h-8 sm:w-10 sm:h-10 bg-blue/10"
           href="#"
-          onClick={() => setShowArr({ ...showArr, filter: !showArr.filter })}
+          onClick={() => dispatch(accountsSlice.actions.setShowFilter())}
         >
           <FilterActionSVG />
         </a>
@@ -29,10 +36,10 @@ const TabHeadFilter = () => {
   return (
     <a
       className={`btn-w-a w-8 h-8 sm:w-10 sm:h-10 ${
-        showArr.filter && 'bg-blue/10'
+        showFilter && 'bg-blue/10'
       }`}
       href="#"
-      onClick={() => setShowArr({ ...showArr, filter: !showArr.filter })}
+      onClick={() => dispatch(accountsSlice.actions.setShowFilter())}
     >
       <FilterSVG />
     </a>

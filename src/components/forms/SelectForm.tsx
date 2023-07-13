@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import { TextField, Typography, MenuItem } from '@mui/material';
-import DownSelectSVG from '../../../assets/SVG/accountsSVG/DownSelectSVG';
+import { TextField, MenuItem } from '@mui/material';
+import DownSelectSVG from '../../assets/SVG/accountsSVG/DownSelectSVG';
+import LabelForm from './label-inputAdorment/LabelForm';
 
 const SelectForm = ({
   label,
@@ -17,9 +18,7 @@ const SelectForm = ({
   //change icon of select input and set value if client choosing
   return (
     <div className={`col-span-${span}`}>
-      <Typography className="s12">
-        {label} <span className="pb-2 pl-1 text-t-red100">*</span>
-      </Typography>
+      <LabelForm label={label} />
       <TextField
         className="input-form"
         value={value}

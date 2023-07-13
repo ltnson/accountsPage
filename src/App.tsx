@@ -4,16 +4,20 @@ import LoginPage from './page/LoginPage';
 import AccountTab, {
   loaderNew,
   loaderFilter,
-  loaderPartner,
-  loaderVinova,
+  loaderFemale,
+  loaderMale,
   loaderTab,
-} from './page/AccountTab';
-import AccountAdd from './page/AccountAdd';
+} from './page/account/AccountTab';
+import AccountAdd from './page/account/AccountAdd';
 import Layout from './page/Layout/Layout';
 import NotFound from './page/NotFound';
 import { checkAuth, checkAuthLoginPage } from './util/auth';
-import AccountTabTable from './components/account/account-tab/AccountTabTable';
 import HomePage from './page/HomePage';
+import TodoAddEditForm from './page/todo/TodoAddEditForm';
+import Navbar from './page/Layout/Navbar';
+import TodoQueryTab from './page/todo/TodoQueryTab';
+import TodoQueryCartTab from './page/todo/TodoQueryCartTab';
+import TodoAxiosTab from './page/todo/TodoAxiosTab';
 
 function App() {
   const router = createBrowserRouter([
@@ -28,29 +32,58 @@ function App() {
         },
         {
           path: 'accounts',
-          element: <AccountTab />,
+          element: <Navbar title="Account" />,
           children: [
             { index: true, loader: loaderNew },
-            { path: 'tab', element: <AccountTabTable />, loader: loaderTab },
+            { path: 'tab', element: <AccountTab />, loader: loaderTab },
             {
               path: 'filter',
-              element: <AccountTabTable />,
+              element: <AccountTab />,
               loader: loaderFilter,
             },
             {
-              path: 'vinova',
-              element: <AccountTabTable />,
-              loader: loaderVinova,
+              path: 'male',
+              element: <AccountTab />,
+              loader: loaderMale,
             },
             {
-              path: 'partner',
-              element: <AccountTabTable />,
-              loader: loaderPartner,
+              path: 'female',
+              element: <AccountTab />,
+              loader: loaderFemale,
+            },
+            { path: 'add', element: <AccountAdd /> },
+            {
+              path: 'edit/:idAccount',
+              element: <AccountAdd />,
             },
           ],
         },
-        { path: 'accounts/add', element: <AccountAdd /> },
-        { path: 'accounts/edit/:idAccount', element: <AccountAdd /> },
+        {
+          path: 'todoquery',
+          element: <Navbar title="TodoQuery" />,
+          children: [
+            {
+              index: true,
+              element: <TodoQueryTab />,
+            },
+            { path: 'add', element: <TodoAddEditForm /> },
+            { path: 'edit/:idTodoParams', element: <TodoAddEditForm /> },
+          ],
+        },
+        {
+          path: 'todoquerycart',
+          element: <Navbar title="TodoQueryCart" />,
+          children: [{ index: true, element: <TodoQueryCartTab /> }],
+        },
+        {
+          path: 'todoaxios',
+          element: <Navbar title="TodoAxios" />,
+          children: [
+            { index: true, element: <TodoAxiosTab /> },
+            { path: 'add', element: <TodoAddEditForm /> },
+            { path: 'edit/:idTodoParams', element: <TodoAddEditForm /> },
+          ],
+        },
       ],
     },
     { path: '/login', element: <LoginPage />, loader: checkAuthLoginPage },

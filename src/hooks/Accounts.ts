@@ -14,7 +14,6 @@ export const getAccountsLimit = (pathName: string) => {
   return useQuery({
     queryKey: ['limit', pathName],
     queryFn: () => typeApi.getAccounts(pathName),
-    staleTime: 5 * 60 * 1000,
   });
 };
 
@@ -23,7 +22,6 @@ export const getAccountDetail = (id: number) => {
   return useQuery({
     queryKey: ['detail', id],
     queryFn: () => typeApi.getDetail(id),
-    staleTime: 5 * 60 * 1000,
   });
 };
 
@@ -42,7 +40,10 @@ export const postAccountAdd = () => {
 //catch err and thow in toast to showing up
 export const catchErr = (error: any) => {
   if (axios.isAxiosError(error)) {
-    toast.error(error?.response?.data.message);
+    if (error.response?.data.message) {
+      return toast.error(error.response.data.message);
+    }
+    toast.error(error.message);
   } else {
     console.log(error);
   }

@@ -1,26 +1,28 @@
-import { useContext } from 'react';
-import { AccountContext } from '../store/AccountContext';
 import { LoaderFunction, redirect } from 'react-router-dom';
 
-import AccountTabHeader from '../components/account/account-tab/AccountTabHeader';
-import AccountTabFooter from '../components/account/account-tab/AccountTabFooter';
-import AccountDetail from '../components/account/account-carts/detail/AccountDetail';
-import AccountUpdate from '../components/account/account-carts/up-flie/AccountUpdate';
-import { Outlet } from 'react-router-dom';
+import AccountTabHeader from '../../components/account/account-tab/AccountTabHeader';
+import AccountTabFooter from '../../components/account/account-tab/AccountTabFooter';
+import AccountDetail from '../../components/account/account-carts/detail/AccountDetail';
+import AccountUpdate from '../../components/account/account-carts/up-flie/AccountUpdate';
+import AccountTabTable from '../../components/account/account-tab/AccountTabTable';
+
+import { useSelector } from 'react-redux';
+import { showDetailSelector, showUpdateSelector } from '../../store/selects';
 
 const AccountTab = () => {
-  const { showArr } = useContext(AccountContext);
+  const showUpdate = useSelector(showUpdateSelector);
+  const showDetail = useSelector(showDetailSelector);
 
   return (
     <>
       <div className="bg-white w-full h-full rounded-xl flex flex-col ">
         <AccountTabHeader />
-        <Outlet />
+        <AccountTabTable />
         <AccountTabFooter />
       </div>
       <div>
-        {showArr.update && <AccountUpdate />}
-        {showArr.detail && <AccountDetail />}
+        {showUpdate && <AccountUpdate />}
+        {showDetail && <AccountDetail />}
       </div>
     </>
   );
@@ -34,12 +36,12 @@ export function loaderNew() {
 }
 
 //return search params before go /vinova
-export function loaderVinova() {
+export function loaderMale() {
   return '/filter?key=gender&value=male';
 }
 
 //return search params before go /partner
-export function loaderPartner() {
+export function loaderFemale() {
   return '/filter?key=gender&value=female';
 }
 

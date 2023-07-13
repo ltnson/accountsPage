@@ -1,6 +1,3 @@
-import { useContext } from 'react';
-import { AccountContext } from '../../../../store/AccountContext';
-
 import {
   MenuItem,
   TextField,
@@ -8,17 +5,26 @@ import {
   PaginationItem,
   Typography,
 } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  limitTabSelector,
+  skipTabSelector,
+  totalTabSelector,
+} from '../../../../store/selects';
+import { accountsSlice } from '../../../../store/slice/AccountSlice';
 
 const FooterPagination = () => {
-  const { setSkipTab, setLimitTab, totalTab, skipTab, limitTab } =
-    useContext(AccountContext);
+  const totalTab = useSelector(totalTabSelector);
+  const skipTab = useSelector(skipTabSelector);
+  const limitTab = useSelector(limitTabSelector);
+  const dispatch = useDispatch();
 
   //using pagination of MUI for set limit and skip
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number,
   ) => {
-    setSkipTab(value * limitTab - limitTab);
+    dispatch(accountsSlice.actions.setSkipTab(value * limitTab - limitTab));
   };
 
   return (
@@ -27,7 +33,9 @@ const FooterPagination = () => {
         value={limitTab}
         select
         className="account-tab-select"
-        onChange={(e) => setLimitTab(parseInt(e.target.value))}
+        onChange={(e) =>
+          dispatch(accountsSlice.actions.setLimitTab(parseInt(e.target.value)))
+        }
       >
         <MenuItem value={20}>20 per page</MenuItem>
         <MenuItem value={10}>10 per page</MenuItem>

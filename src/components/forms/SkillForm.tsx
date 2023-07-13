@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { TextField, Typography } from '@mui/material';
-import CloseSVG2 from '../../../assets/SVG/accountsSVG/CloseSVG2';
+import CloseSVG2 from '../../assets/SVG/accountsSVG/CloseSVG2';
 
 const SkillForm = () => {
   const [newSk, setNewSk] = useState<string[]>(['.NET', 'Native React', 'PM']);

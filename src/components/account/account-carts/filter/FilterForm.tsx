@@ -19,8 +19,9 @@ const FilterForm = ({
   //check checkbox then set value select to form
   useEffect(() => {
     if (checkBox) {
-      onValue(valueFilter);
+      return onValue(valueFilter);
     }
+    onValue('');
   }, [checkBox, valueFilter]);
 
   //reset form if handleClearAll didmount

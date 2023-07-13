@@ -1,26 +1,34 @@
-import { useContext } from 'react';
-import { AccountContext } from '../../../../store/AccountContext';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 import { TableRow, TableCell, Checkbox } from '@mui/material';
 import { Account } from '../../../../model/types';
 import EyeSVG from '../../../../assets/SVG/accountsSVG/EyeSVG';
 import WriteSVG from '../../../../assets/SVG/accountsSVG/WriteSVG';
+import { useDispatch, useSelector } from 'react-redux';
+import { accountsSlice } from '../../../../store/slice/AccountSlice';
+import { allCheckboxSelector } from '../../../../store/selects';
 
 const ItemTab = ({ item }: { item: Account }) => {
-  const { showArr, setShowArr, setIdDetail } = useContext(AccountContext);
+  const allCheckbox = useSelector(allCheckboxSelector);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [checkbox, setCheckbox] = useState<boolean>(false);
 
   // show detail and set id for api in detail comp
   const handleShowDetail = (id: number) => {
-    setShowArr({ ...showArr, detail: true });
-    setIdDetail(id);
+    dispatch(accountsSlice.actions.setShowDetail());
+    dispatch(accountsSlice.actions.setIdDetail(id));
   };
 
   return (
     <TableRow>
       <TableCell>
-        <Checkbox size="small" />
+        <Checkbox
+          size="small"
+          checked={allCheckbox ? allCheckbox : checkbox}
+          onChange={() => setCheckbox(!checkbox)}
+        />
       </TableCell>
       <TableCell>{item.id}</TableCell>
       <TableCell>{item.firstName}</TableCell>

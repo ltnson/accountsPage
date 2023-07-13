@@ -66,6 +66,11 @@ const theme = createTheme({
             color: '#2B8143',
           },
 
+          '&.s14-red': {
+            fontSize: '14px',
+            color: '#fa5252',
+          },
+
           '&.s12-green-bg': {
             fontSize: '12px',
             color: '#2B8143',
@@ -164,6 +169,19 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: 'none',
+
+          '&.btn-navbar': {
+            whiteSpace: 'nowrap',
+            width: 'auto',
+            height: '40px',
+            background: '#5E90F0',
+            borderRadius: '4px',
+            color: 'white',
+            '@media (max-width: 640px)': {
+              height: '32px',
+              fontSize: '12px',
+            },
+          },
 
           '&.login-btn-2': {
             border: '1px solid #80A2D9',
@@ -359,6 +377,8 @@ const theme = createTheme({
               height: '32px',
             },
           },
+
+          '&.delete-icon': { color: '#ff8787' },
         },
       },
     },

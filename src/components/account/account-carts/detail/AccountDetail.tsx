@@ -1,15 +1,17 @@
-import { useContext, useEffect } from 'react';
-import { AccountContext } from '../../../../store/AccountContext';
-
+import { useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 
 import { catchErr, getAccountDetail } from '../../../../hooks/Accounts';
 import { Typography, CircularProgress } from '@mui/material';
 import CloseSVG from '../../../../assets/SVG/accountsSVG/CloseSVG';
 import { detailArr1, detailArr2, detailArr3 } from '.';
+import { useDispatch, useSelector } from 'react-redux';
+import { accountsSlice } from '../../../../store/slice/AccountSlice';
+import { idDetailSelector } from '../../../../store/selects';
 
 const AccountDetail = () => {
-  const { showArr, setShowArr, idDetail } = useContext(AccountContext);
+  const idDetail = useSelector(idDetailSelector);
+  const dispatch = useDispatch();
 
   const { data, isLoading, error } = getAccountDetail(idDetail);
 
@@ -17,14 +19,14 @@ const AccountDetail = () => {
   useEffect(() => {
     if (error) {
       catchErr(error);
-      setShowArr({ ...showArr, detail: false });
+      dispatch(accountsSlice.actions.setShowDetail());
     }
   }, [error]);
 
   return (
     <div
       className="bg-cart"
-      onClick={() => setShowArr({ ...showArr, detail: false })}
+      onClick={() => dispatch(accountsSlice.actions.setShowDetail())}
     >
       <Toaster />
       {isLoading && (
@@ -33,13 +35,10 @@ const AccountDetail = () => {
         </div>
       )}
       {data && (
-        <div
-          className="cart-detail"
-          onClick={(event) => event.stopPropagation()}
-        >
+        <div className="cart-detail" onClick={(e) => e.stopPropagation()}>
           <div
             className="absolute sm:top-8 sm:right-9 top-6 right-8"
-            onClick={() => setShowArr({ ...showArr, detail: false })}
+            onClick={() => dispatch(accountsSlice.actions.setShowDetail())}
           >
             <CloseSVG />
           </div>

@@ -1,9 +1,16 @@
-import { useContext, useEffect } from 'react';
-import { AccountContext } from '../../../store/AccountContext';
+import { useEffect } from 'react';
+
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 import FooterContent from './footer/FooterContent';
 import FooterPagination from './footer/FooterPagination';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  limitTabSelector,
+  searchingSelector,
+  skipTabSelector,
+} from '../../../store/selects';
+import { accountsSlice } from '../../../store/slice/AccountSlice';
 
 const AccountTabFooter = () => {
   const navigate = useNavigate();
@@ -11,26 +18,29 @@ const AccountTabFooter = () => {
   const [searchParams] = useSearchParams();
   const limitStr = searchParams.get('limit');
   const pageStr = searchParams.get('page');
-  const { skipTab, setSkipTab, limitTab, setLimitTab, searching } =
-    useContext(AccountContext);
+  const limitTab = useSelector(limitTabSelector);
+  const skipTab = useSelector(skipTabSelector);
+  const searching = useSelector(searchingSelector);
+  const dispatch = useDispatch();
 
   //change data if client change pathName
   useEffect(() => {
     const limit = limitStr && parseInt(limitStr);
     const page = pageStr && parseInt(pageStr);
     if (limit && page) {
-      setLimitTab(limit);
-      setSkipTab(Math.ceil((page - 1) * limit));
+      dispatch(accountsSlice.actions.setLimitTab(limit));
+      dispatch(accountsSlice.actions.setSkipTab(Math.ceil((page - 1) * limit)));
     }
   }, [limitStr, pageStr]);
 
   // rerender if client change option of table
   useEffect(() => {
-    navigate(
-      `/accounts/tab?limit=${limitTab}&page=${Math.ceil(
-        skipTab / limitTab + 1,
-      )}`,
-    );
+    if (pathname.includes('/accounts/tab'))
+      navigate(
+        `/accounts/tab?limit=${limitTab}&page=${Math.ceil(
+          skipTab / limitTab + 1,
+        )}`,
+      );
   }, [limitTab, skipTab]);
 
   return (

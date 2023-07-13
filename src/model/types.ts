@@ -13,6 +13,8 @@ export interface MyContextData {
   setSearchResult: (value: number) => void;
   searching: boolean;
   setSearching: (value: boolean) => void;
+  allCheckbox: boolean;
+  setAllCheckbox: (value: boolean) => void;
 }
 
 export type SidebarArr = {
@@ -23,7 +25,6 @@ export type SidebarArr = {
 export type OptionSeenArr = {
   path: string;
   name: string;
-  includes: string;
 }[];
 
 export type LoginData = {
@@ -128,4 +129,34 @@ export type ShowArr = {
   detail: boolean;
   filter: boolean;
   update: boolean;
+};
+
+export type EditTodo = {
+  text: string;
+  complete: boolean;
+  author: string;
+};
+
+export type Todo = {
+  _id: string;
+  text: string;
+  complete: boolean;
+  author: string;
+  createdDate: string;
+};
+
+export type TodosList = Todo[];
+
+export type AccountSlice = {
+  showUpdate: boolean;
+  showDetail: boolean;
+  showSidebar: boolean;
+  showFilter: boolean;
+  totalTab: number;
+  limitTab: number;
+  skipTab: number;
+  idDetail: number;
+  searchResults: number;
+  searching: boolean;
+  allCheckbox: boolean;
 };

@@ -1,38 +1,25 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { loginAccountMutation, catchErr } from '../../hooks/Accounts';
 import { LoginData } from '../../model/types';
 
-import { useForm } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaLogin } from '../../util/yupSchema';
 import { Toaster } from 'react-hot-toast';
 
-import {
-  Typography,
-  TextField,
-  InputAdornment,
-  IconButton,
-  Button,
-  LinearProgress,
-} from '@mui/material';
-import EyeClosed from '../../assets/SVG/loginSVG/EyeClosed';
-import EyeOpen from '../../assets/SVG/loginSVG/EyeOpen';
+import { Typography, Button, LinearProgress } from '@mui/material';
 import VinovaSVG from '../../assets/SVG/VinovaSVG';
+import { EmailInput, PasswordInput } from '../forms/LoginForm';
 
 const LoginCart = () => {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
   const navigate = useNavigate();
 
   //hook form of login form and valitate with yup
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginData>({
+  const formLogin = useForm<LoginData>({
     resolver: yupResolver(schemaLogin),
   });
+  const { handleSubmit } = formLogin;
 
   const { mutate, isLoading } = loginAccountMutation();
 
@@ -66,63 +53,39 @@ const LoginCart = () => {
             <p className="border my-2"></p>
           </div>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-          <div>
-            <label className="text-sm md:text-base">User Name</label>
-            <TextField
-              size="small"
-              placeholder="User Name"
-              fullWidth
-              {...register('username')}
-            />
-            <p className="text-red">{errors.username?.message}</p>
-          </div>
-          <div>
-            <label className="text-sm md:text-base">Password</label>
-            <TextField
-              size="small"
-              placeholder="Password"
-              fullWidth
-              type={showPassword ? 'text' : 'password'}
-              {...register('password')}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton onClick={() => setShowPassword(!showPassword)}>
-                      {showPassword ? <EyeClosed /> : <EyeOpen />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
-            <p className="text-red">{errors.password?.message}</p>
-          </div>
-
-          <Typography className="text-sm md:text-md font-light">
-            <a href="#">Forgot your password?</a>
-          </Typography>
-          {isLoading ? (
-            <div className="py-4">
-              <LinearProgress />
-            </div>
-          ) : (
-            <Button className="login-btn-1" type="submit">
-              Login
-            </Button>
-          )}
-          <div className="flex justify-between ">
-            <div className="grow px-2">
-              <p className="border my-2"></p>
-            </div>
-            <Typography className="text-sm md:text-md grow-0">
-              Or continue with
+        <FormProvider {...formLogin}>
+          <form
+            className="flex flex-col gap-4"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <EmailInput name="username" />
+            <PasswordInput name="password" />
+            <Typography className="text-sm md:text-md font-light">
+              <a href="#">Forgot your password?</a>
             </Typography>
-            <div className="grow px-2">
-              <p className="border my-2"></p>
+            {isLoading ? (
+              <div className="py-4">
+                <LinearProgress />
+              </div>
+            ) : (
+              <Button className="login-btn-1" type="submit">
+                Login
+              </Button>
+            )}
+            <div className="flex justify-between ">
+              <div className="grow px-2">
+                <p className="border my-2"></p>
+              </div>
+              <Typography className="text-sm md:text-md grow-0">
+                Or continue with
+              </Typography>
+              <div className="grow px-2">
+                <p className="border my-2"></p>
+              </div>
             </div>
-          </div>
-          <Button className="login-btn-2">Login with SSO</Button>
-        </form>
+            <Button className="login-btn-2">Login with SSO</Button>
+          </form>
+        </FormProvider>
       </div>
     </Typography>
   );
