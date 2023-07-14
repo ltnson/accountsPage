@@ -20,8 +20,7 @@ const TodoAddEditUsingCart = () => {
   const dispatch = useDispatch();
   const idTodo = useSelector(idQueryCartEditSelector);
   const editData = useSelector(todoQueryCartEditDataSelector);
-  const { resetEditFormQueryCart, setShowEditedFormQueryCart } =
-    todoQueryCartSlice.actions;
+  const { resetEditFormQueryCart } = todoQueryCartSlice.actions;
   const queryClient = useQueryClient();
 
   const formTodo = useForm<EditTodo>({
@@ -42,10 +41,7 @@ const TodoAddEditUsingCart = () => {
     });
   };
   return (
-    <div
-      className="bg-cart"
-      onClick={() => dispatch(setShowEditedFormQueryCart(false))}
-    >
+    <div className="bg-cart" onClick={() => dispatch(resetEditFormQueryCart())}>
       <FormProvider {...formTodo}>
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -54,7 +50,7 @@ const TodoAddEditUsingCart = () => {
         >
           <div
             className="absolute sm:top-8 sm:right-9 top-6 right-8"
-            onClick={() => dispatch(setShowEditedFormQueryCart(false))}
+            onClick={() => dispatch(resetEditFormQueryCart())}
           >
             <CloseSVG />
           </div>

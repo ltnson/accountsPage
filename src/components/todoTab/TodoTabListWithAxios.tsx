@@ -34,7 +34,6 @@ const TodoTabListWithAxios = () => {
   }, []);
 
   useEffect(() => {
-    console.log(reloadTodoAxios);
     if (reloadTodoAxios) {
       getTodoListData();
       dispatch(todoAxiosSlice.actions.setReloadTodo(false));

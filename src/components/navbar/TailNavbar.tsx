@@ -22,7 +22,7 @@ const TailNavbar = ({ title }: { title: string }) => {
   const showEditedAxios = useSelector(showEditedAxiosSelector);
   const { setShowUpdate } = accountsSlice.actions;
   const { resetEditFormQuery } = todoQuerySlice.actions;
-  const { resetEditFormQueryCart } = todoQueryCartSlice.actions;
+  const { setShowEditedFormQueryCart } = todoQueryCartSlice.actions;
   const { resetEditFormAxios } = todoAxiosSlice.actions;
 
   const handleGoAdd = () => {
@@ -49,7 +49,7 @@ const TailNavbar = ({ title }: { title: string }) => {
       dispatch(resetEditFormAxios());
     }
     if (pathname === '/todoquerycart') {
-      return dispatch(resetEditFormQueryCart());
+      return dispatch(setShowEditedFormQueryCart(true));
     }
     navigate('add');
   };
