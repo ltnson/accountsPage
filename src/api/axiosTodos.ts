@@ -34,6 +34,9 @@ const axiosTodos = {
       if (typeof response.data !== 'string') {
         throw response.data.join('\n');
       }
+      if (response.data === 'Error: undefined') {
+        throw response.data + ' ,Id of todo invalid!!';
+      }
       return response.data;
     } catch (error) {
       throw error;
