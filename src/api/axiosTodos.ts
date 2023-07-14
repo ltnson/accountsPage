@@ -42,9 +42,7 @@ const axiosTodos = {
 
   deleteTodo: async (id: string) => {
     try {
-      const response = await axios.delete(
-        `${TODOS_URL}/${id}lkndslkfnsdkfmdsf`,
-      );
+      const response = await axios.delete(`${TODOS_URL}/${id}`);
       if (response.data === 'Error: undefined') {
         throw response.data + ' ,Id of todo invalid!!';
       }
