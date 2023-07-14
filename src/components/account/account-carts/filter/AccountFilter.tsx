@@ -19,7 +19,6 @@ const AccountFilter = () => {
   // get key and value in filter form and using them in params
   const handleShowFilterOption = () => {
     let firstNonEmptyKeyValue;
-    console.log(filterOption);
     for (const [key, value] of Object.entries(filterOption)) {
       if (value.trim() === '') {
         continue;

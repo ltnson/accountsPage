@@ -45,6 +45,6 @@ export const catchErr = (error: any) => {
     }
     toast.error(error.message);
   } else {
-    console.log(error);
+    toast.error(error);
   }
 };

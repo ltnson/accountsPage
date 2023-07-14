@@ -17,6 +17,9 @@ const axiosTodos = {
       const response = await axios.post(TODOS_URL, data, {
         headers: { 'Content-Type': 'application/json' },
       });
+      if (typeof response.data !== 'string') {
+        throw response.data.join('\n');
+      }
       return response.data;
     } catch (error) {
       throw error;
@@ -28,6 +31,9 @@ const axiosTodos = {
       const response = await axios.post(`${TODOS_URL}/${id}`, data, {
         headers: { 'Content-Type': 'application/json' },
       });
+      if (typeof response.data !== 'string') {
+        throw response.data.join('\n');
+      }
       return response.data;
     } catch (error) {
       throw error;
@@ -36,7 +42,12 @@ const axiosTodos = {
 
   deleteTodo: async (id: string) => {
     try {
-      const response = await axios.delete(`${TODOS_URL}/${id}`);
+      const response = await axios.delete(
+        `${TODOS_URL}/${id}lkndslkfnsdkfmdsf`,
+      );
+      if (response.data === 'Error: undefined') {
+        throw response.data + ' ,Id of todo invalid!!';
+      }
       return response.data;
     } catch (err) {
       throw err;

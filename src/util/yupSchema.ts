@@ -53,8 +53,8 @@ export const schemaLogin = yup.object().shape({
 export const schemaTodo = yup.object().shape({
   text: yup
     .string()
-    .min(2, 'Text is too short')
-    .max(20, 'Text is invalid')
+    .min(4, 'Text is too short')
+    .max(40, 'Text is invalid')
     .required('Text is required'),
   complete: yup.bool(),
   author: yup
