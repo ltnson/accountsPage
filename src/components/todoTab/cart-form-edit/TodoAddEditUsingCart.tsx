@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import LabelForm from '../../forms/label-inputAdorment/LabelForm';
-import TextForm from '../../forms/TextForm';
+import TextTodoForm from '../../forms/TextTodoForm';
 import SelectTodoForm from '../../forms/SelectTodoForm';
 import { EditTodo } from '../../../model/types';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -31,7 +31,7 @@ const TodoAddEditUsingCart = () => {
 
   const todoMutation = idTodo === 'New' ? postNewTodo() : postEditTodo(idTodo);
 
-  const { handleSubmit } = formTodo;
+  const { handleSubmit, control } = formTodo;
   const onSubmit = (data: EditTodo) => {
     todoMutation.mutate(data, {
       onSuccess: () => {
@@ -57,19 +57,19 @@ const TodoAddEditUsingCart = () => {
           <LabelForm label="ID Todo" />
           <p className="font-bold">{idTodo}</p>
         </div>
-        <TextForm label="Text" name="text" span="1" />
+        <TextTodoForm label="Text" name="text" control={control} />
         <SelectTodoForm
           label="Complete"
           name="complete"
-          span="1"
+          control={control}
           newTodo={idTodo === 'New' ? true : false}
         />
-        <TextForm label="Author" name="author" span="1" />
+        <TextTodoForm label="Author" name="author" control={control} />
         {todoMutation.isLoading ? (
           <LinearProgress />
         ) : (
           <Button className="save col-span-2" type="submit">
-            Save
+            {idTodo === 'New' ? 'Create' : 'Save'}
           </Button>
         )}
       </form>
