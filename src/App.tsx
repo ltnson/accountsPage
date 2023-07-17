@@ -14,7 +14,6 @@ import NotFound from './page/NotFound';
 import { checkAuth, checkAuthLoginPage } from './util/auth';
 import HomePage from './page/HomePage';
 import TodoAddEditForm from './page/todo/TodoAddEditForm';
-import Navbar from './page/Layout/Navbar';
 import TodoQueryTab from './page/todo/TodoQueryTab';
 import TodoQueryCartTab from './page/todo/TodoQueryCartTab';
 import TodoAxiosTab from './page/todo/TodoAxiosTab';
@@ -32,7 +31,6 @@ function App() {
         },
         {
           path: 'accounts',
-          element: <Navbar title="Account" />,
           children: [
             { index: true, loader: loaderNew },
             { path: 'tab', element: <AccountTab />, loader: loaderTab },
@@ -59,8 +57,7 @@ function App() {
           ],
         },
         {
-          path: 'todoquery',
-          element: <Navbar title="TodoQuery" />,
+          path: 'todo-query',
           children: [
             {
               index: true,
@@ -71,13 +68,11 @@ function App() {
           ],
         },
         {
-          path: 'todoquerycart',
-          element: <Navbar title="TodoQueryCart" />,
+          path: 'todo-query-cart',
           children: [{ index: true, element: <TodoQueryCartTab /> }],
         },
         {
-          path: 'todoaxios',
-          element: <Navbar title="TodoAxios" />,
+          path: 'todo-axios',
           children: [
             { index: true, element: <TodoAxiosTab /> },
             { path: 'add', element: <TodoAddEditForm /> },

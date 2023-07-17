@@ -19,26 +19,32 @@ const Sidebar = () => {
   const sidebarArr: SidebarArr = [
     {
       logo: (className: string) => <DashbroadSVG className={className} />,
+      path: 'dashbroad',
       name: 'Dashbroad',
     },
     {
       logo: (className: string) => <PJSVG className={className} />,
+      path: 'todo-axios',
       name: 'TodoAxios',
     },
     {
       logo: (className: string) => <StacksSVG className={className} />,
+      path: 'todo-query-cart',
       name: 'TodoQueryCart',
     },
     {
       logo: (className: string) => <ReportSVG className={className} />,
+      path: 'todo-query',
       name: 'TodoQuery',
     },
     {
       logo: (className: string) => <UsersSVG className={className} />,
+      path: 'accounts',
       name: 'Accounts',
     },
     {
       logo: (className: string) => <SettingSVG className={className} />,
+      path: 'role-management',
       name: 'Role Management',
     },
   ];
@@ -53,7 +59,7 @@ const Sidebar = () => {
     >
       <Typography className="sidebar-list" component="div">
         {sidebarArr.map((item) => (
-          <NavLink to={item.name.toLowerCase()} key={item.name}>
+          <NavLink to={item.path} key={item.name}>
             {({ isActive }) => (
               <Typography component="div" className="sideber-instance">
                 {item.logo(isActive ? 'sidebar red' : 'sidebar')}

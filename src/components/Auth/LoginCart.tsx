@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { loginAccountMutation, catchErr } from '../../hooks/Accounts';
 import { LoginData } from '../../model/types';
 
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaLogin } from '../../util/yupSchema';
 import { Toaster } from 'react-hot-toast';
@@ -53,39 +53,34 @@ const LoginCart = () => {
             <p className="border my-2"></p>
           </div>
         </div>
-        <FormProvider {...formLogin}>
-          <form
-            className="flex flex-col gap-4"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <EmailInput name="username" />
-            <PasswordInput name="password" />
-            <Typography className="text-sm md:text-md font-light">
-              <a href="#">Forgot your password?</a>
-            </Typography>
-            {isLoading ? (
-              <div className="py-4">
-                <LinearProgress />
-              </div>
-            ) : (
-              <Button className="login-btn-1" type="submit">
-                Login
-              </Button>
-            )}
-            <div className="flex justify-between ">
-              <div className="grow px-2">
-                <p className="border my-2"></p>
-              </div>
-              <Typography className="text-sm md:text-md grow-0">
-                Or continue with
-              </Typography>
-              <div className="grow px-2">
-                <p className="border my-2"></p>
-              </div>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+          <EmailInput name="username" />
+          <PasswordInput name="password" />
+          <Typography className="text-sm md:text-md font-light">
+            <a href="#">Forgot your password?</a>
+          </Typography>
+          {isLoading ? (
+            <div className="py-4">
+              <LinearProgress />
             </div>
-            <Button className="login-btn-2">Login with SSO</Button>
-          </form>
-        </FormProvider>
+          ) : (
+            <Button className="login-btn-1" type="submit">
+              Login
+            </Button>
+          )}
+          <div className="flex justify-between ">
+            <div className="grow px-2">
+              <p className="border my-2"></p>
+            </div>
+            <Typography className="text-sm md:text-md grow-0">
+              Or continue with
+            </Typography>
+            <div className="grow px-2">
+              <p className="border my-2"></p>
+            </div>
+          </div>
+          <Button className="login-btn-2">Login with SSO</Button>
+        </form>
       </div>
     </Typography>
   );

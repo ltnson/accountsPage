@@ -56,7 +56,7 @@ export const schemaTodo = yup.object().shape({
     .min(4, 'Text is too short')
     .max(40, 'Text is invalid')
     .required('Text is required'),
-  complete: yup.bool(),
+  complete: yup.bool().required('Please select your complete'),
   author: yup
     .string()
     .min(4, 'Author is too short')

@@ -30,27 +30,27 @@ const TodoQueryForm = () => {
 
   const formTodo = useForm<EditTodo>({
     resolver: yupResolver(schemaTodo),
-    defaultValues: pathname.includes('/todoquery')
+    defaultValues: pathname.includes('/todo-query')
       ? editQueryData
       : editAxiosData,
   });
 
   const { handleSubmit } = formTodo;
   const onSubmit = (data: EditTodo) => {
-    if (pathname.includes('/todoquery')) {
+    if (pathname.includes('/todo-query')) {
       if (idTodoParams) {
         dispatch(setIdTodoEditQuery(idTodoParams));
       }
       dispatch(setEditFormQuery(data));
       dispatch(setShowEditedFormQuery(true));
-      return navigate('/todoquery');
+      return navigate('/todo-query');
     }
     if (idTodoParams) {
       dispatch(setIdTodoEditAxios(idTodoParams));
     }
     dispatch(setEditFormAxios(data));
     dispatch(setShowEditedFormAxios(true));
-    navigate('/todoaxios');
+    navigate('/todo-axios');
   };
 
   return (

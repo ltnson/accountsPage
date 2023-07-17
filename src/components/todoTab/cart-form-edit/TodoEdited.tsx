@@ -1,6 +1,6 @@
 import { postEditTodo, postNewTodo, reloadTodoKey } from '../../../hooks/Todos';
 import { catchErr } from '../../../hooks/Accounts';
-import { toast, Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { todoQuerySlice } from '../../../store/slice/TodoQuerySlice';
 import {
@@ -24,6 +24,7 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
   const { resetEditFormAxios, setReloadTodo } = todoAxiosSlice.actions;
   const { resetEditFormQuery } = todoQuerySlice.actions;
   const queryClient = useQueryClient();
+  const idTodo = pathname === '/todo-query' ? idTodoQuery : idTodoAxios;
 
   const updateTodoAxios = async () => {
     try {
@@ -52,7 +53,7 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
   const todoMutation =
     idTodoQuery === 'New' ? postNewTodo() : postEditTodo(idTodoQuery);
   const handleUpdateTodo = () => {
-    if (pathname === '/todoquery') {
+    if (pathname === '/todo-query') {
       return todoMutation.mutate(item, {
         onSuccess: () => {
           dispatch(resetEditFormQuery());
@@ -65,12 +66,15 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
 
   return (
     <div className="border border-t-neutral/d2 p-4 rounded">
-      <Toaster />
       <div className="grid grid-cols-4 text-base gap-4">
         <div>
           <Typography className="s14-gray">ID</Typography>
-          <p className="break-words">
-            {pathname === '/todoquery' ? idTodoQuery : idTodoAxios}
+          <p
+            className={`break-words ${
+              idTodo === 'New' ? 'text-t-green' : 'text-t-red'
+            }`}
+          >
+            {idTodo}
           </p>
         </div>
         <div>
@@ -93,7 +97,7 @@ const TodoEdited = ({ item }: { item: EditTodo }) => {
           <LinearProgress />
         ) : (
           <Button className="navbar" onClick={handleUpdateTodo}>
-            Update Server ?
+            {idTodo === 'New' ? 'Create New Todo ?' : 'Update Todo ?'}
           </Button>
         )}
       </div>

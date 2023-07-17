@@ -1,4 +1,4 @@
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import LabelForm from '../../forms/label-inputAdorment/LabelForm';
 import TextForm from '../../forms/TextForm';
 import SelectTodoForm from '../../forms/SelectTodoForm';
@@ -42,39 +42,37 @@ const TodoAddEditUsingCart = () => {
   };
   return (
     <div className="bg-cart" onClick={() => dispatch(resetEditFormQueryCart())}>
-      <FormProvider {...formTodo}>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="w-1/2 flex flex-col gap-6 bg-white p-8 rounded relative"
-          onClick={(e) => e.stopPropagation()}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-1/2 flex flex-col gap-6 bg-white p-8 rounded relative"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div
+          className="absolute sm:top-8 sm:right-9 top-6 right-8"
+          onClick={() => dispatch(resetEditFormQueryCart())}
         >
-          <div
-            className="absolute sm:top-8 sm:right-9 top-6 right-8"
-            onClick={() => dispatch(resetEditFormQueryCart())}
-          >
-            <CloseSVG />
-          </div>
-          <div>
-            <LabelForm label="ID Todo" />
-            <p className="font-bold">{idTodo}</p>
-          </div>
-          <TextForm label="Text" name="text" span="1" />
-          <SelectTodoForm
-            label="Complete"
-            name="complete"
-            span="1"
-            newTodo={idTodo === 'New' ? true : false}
-          />
-          <TextForm label="Author" name="author" span="1" />
-          {todoMutation.isLoading ? (
-            <LinearProgress />
-          ) : (
-            <Button className="save col-span-2" type="submit">
-              Save
-            </Button>
-          )}
-        </form>
-      </FormProvider>
+          <CloseSVG />
+        </div>
+        <div>
+          <LabelForm label="ID Todo" />
+          <p className="font-bold">{idTodo}</p>
+        </div>
+        <TextForm label="Text" name="text" span="1" />
+        <SelectTodoForm
+          label="Complete"
+          name="complete"
+          span="1"
+          newTodo={idTodo === 'New' ? true : false}
+        />
+        <TextForm label="Author" name="author" span="1" />
+        {todoMutation.isLoading ? (
+          <LinearProgress />
+        ) : (
+          <Button className="save col-span-2" type="submit">
+            Save
+          </Button>
+        )}
+      </form>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Toaster } from 'react-hot-toast';
 
 import { catchErr, getAccountDetail } from '../../../../hooks/Accounts';
 import { Typography, CircularProgress } from '@mui/material';
@@ -26,7 +25,6 @@ const AccountDetail = () => {
 
   return (
     <div className="bg-cart" onClick={() => dispatch(setShowDetail())}>
-      <Toaster />
       {isLoading && (
         <div className="cart-loading">
           <CircularProgress size="lg" />

@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import SidebarButton from '../../assets/SVG/navbarSVG/SidebarButton';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -14,7 +14,7 @@ import AccountUpdate from '../../components/account/account-carts/up-flie/Accoun
 import TitleNavbar from '../../components/navbar/TitleNavbar';
 import TodoDetail from '../../components/todoTab/cart-form-edit/TodoDetail';
 
-const Navbar = ({ title }: { title: string }) => {
+const Navbar = () => {
   const showSidebar = useSelector(showSidebarSelector);
   const showUpdate = useSelector(showUpdateSelector);
   const showDetail = useSelector(showDetailSelector);
@@ -23,13 +23,30 @@ const Navbar = ({ title }: { title: string }) => {
 
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  let title = 'home';
+  if (pathname === '/todo-query') {
+    title = 'Todo Query';
+  }
+  if (pathname === '/todo-axios') {
+    title = 'Todo Axios';
+  }
+  if (pathname === '/todo-query-cart') {
+    title = 'Todo Query Cart';
+  }
+  if (
+    pathname === '/accounts/tab' ||
+    pathname === '/accounts/male' ||
+    pathname === '/accounts/female' ||
+    pathname === '/accounts/filter'
+  ) {
+    title = 'Accounts';
+  }
 
   return (
     <>
       {showTodoDetail && <TodoDetail />}
       {showUpdate && <AccountUpdate />}
       {showDetail && <AccountDetail />}
-      <Outlet />
       <div className="w-full flex h-12 sm:h-16 pr-2 sm:pr-3 lg:pr-5  bg-white z-20 items-center fixed top-0 left-0">
         <div className=" pr-2 flex items-center w-full ">
           <div

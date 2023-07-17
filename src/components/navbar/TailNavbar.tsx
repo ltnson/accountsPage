@@ -13,6 +13,7 @@ import {
 import { todoQuerySlice } from '../../store/slice/TodoQuerySlice';
 import { todoAxiosSlice } from '../../store/slice/TodoAxiosSlice';
 import { todoQueryCartSlice } from '../../store/slice/TodoQueryCartSlice';
+import { useState } from 'react';
 
 const TailNavbar = ({ title }: { title: string }) => {
   const { pathname } = useLocation();
@@ -20,41 +21,54 @@ const TailNavbar = ({ title }: { title: string }) => {
   const dispatch = useDispatch();
   const showEditedQuery = useSelector(showEditedQuerySelector);
   const showEditedAxios = useSelector(showEditedAxiosSelector);
+  const showEdited =
+    pathname === '/todo-query' ? showEditedQuery : showEditedAxios;
   const { setShowUpdate } = accountsSlice.actions;
   const { resetEditFormQuery } = todoQuerySlice.actions;
   const { setShowEditedFormQueryCart } = todoQueryCartSlice.actions;
   const { resetEditFormAxios } = todoAxiosSlice.actions;
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const handleGoAdd = () => {
-    if (pathname === '/todoquery') {
-      if (showEditedQuery) {
-        const confirmed = window.confirm(
-          'Your Edited Todo don"t save to Server ,remove this, and edit new Todo ??',
-        );
-        if (!confirmed) {
-          return;
-        }
-      }
+    if (pathname === '/todo-query') {
       dispatch(resetEditFormQuery());
+      navigate('/todo-query/add');
     }
-    if (pathname === '/todoaxios') {
-      if (showEditedAxios) {
-        const confirmed = window.confirm(
-          'Your Edited Todo don"t save to Server ,remove this, and edit new Todo ??',
-        );
-        if (!confirmed) {
-          return;
-        }
-      }
+    if (pathname === '/todo-axios') {
       dispatch(resetEditFormAxios());
+      navigate('/todo-axios/add');
     }
-    if (pathname === '/todoquerycart') {
-      return dispatch(setShowEditedFormQueryCart(true));
+    if (pathname === '/todo-query-cart') {
+      dispatch(setShowEditedFormQueryCart(true));
     }
-    navigate('add');
+    if (pathname.includes('/accounts')) {
+      navigate('/accounts/add');
+    }
+    setShowConfirm(false);
   };
   return (
     <>
+      {showConfirm && (
+        <div className="bg-cart">
+          <div className="w-96 bg-white p-8 rounded-xl">
+            <p className="text-t-light">
+              Your Edited Todo don"t save to Server, remove this and edit new
+              Todo ??
+            </p>
+            <div className="flex justify-evenly gap-4 pt-4 pb-2  ">
+              <Button
+                className="filter-clear"
+                onClick={() => setShowConfirm(false)}
+              >
+                Cancer
+              </Button>
+              <Button className="filter-show" onClick={handleGoAdd}>
+                Add New
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
       {!pathname.includes('add') && !pathname.includes('edit') && (
         <div className="flex gap-2.5 justify-self-end h-12 items-center">
           <FieldSVG
@@ -66,7 +80,10 @@ const TailNavbar = ({ title }: { title: string }) => {
             onClick={() => dispatch(setShowUpdate())}
           />
           <DownloadSVG className="navbar" />
-          <Button className=" btn-navbar" onClick={handleGoAdd}>
+          <Button
+            className=" btn-navbar"
+            onClick={() => (showEdited ? setShowConfirm(true) : handleGoAdd())}
+          >
             <PlushSVG /> New {title}
           </Button>
         </div>

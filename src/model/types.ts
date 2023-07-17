@@ -19,6 +19,7 @@ export interface MyContextData {
 
 export type SidebarArr = {
   logo: (className: string) => JSX.Element;
+  path: string;
   name: string;
 }[];
 

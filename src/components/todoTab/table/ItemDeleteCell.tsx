@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import { todoAxiosSlice } from '../../../store/slice/TodoAxiosSlice';
+import { Button } from '@mui/material';
 
 const ItemDeleteCell = ({ item }: { item: Todo }) => {
   const { pathname } = useLocation();
@@ -17,6 +18,8 @@ const ItemDeleteCell = ({ item }: { item: Todo }) => {
   const deleteMutation = deleteTodo();
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
+  const [showConfirm, setShowConfirm] = useState<boolean>(false);
+
   const deleteWithAxios = async () => {
     try {
       setAxiosLoading(true);
@@ -34,22 +37,41 @@ const ItemDeleteCell = ({ item }: { item: Todo }) => {
   };
 
   const handleDeleteTodo = () => {
-    const confirmed = window.confirm('You want to delete todo ???');
-    if (confirmed) {
-      if (pathname === '/todoaxios') {
-        return deleteWithAxios();
-      }
-      deleteMutation.mutate(item._id, {
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: reloadTodoKey });
-        },
-      });
+    if (pathname === '/todo-axios') {
+      return deleteWithAxios();
     }
+    deleteMutation.mutate(item._id, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: reloadTodoKey });
+      },
+    });
+    setShowConfirm(false);
   };
 
   return (
     <>
-      {pathname === '/todoaxios' ? (
+      {showConfirm && (
+        <div className="bg-cart">
+          <div className="w-96 bg-white p-8 rounded-xl">
+            <p className="text-t-light">
+              Your Edited Todo don"t save to Server, remove this and edit new
+              Todo ??
+            </p>
+            <div className="flex justify-evenly gap-4 pt-4 pb-2  ">
+              <Button
+                className="filter-clear"
+                onClick={() => setShowConfirm(false)}
+              >
+                Cancer
+              </Button>
+              <Button className="filter-show" onClick={handleDeleteTodo}>
+                Delete
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+      {pathname === '/todo-axios' ? (
         <div className="flex justify-center items-center w-full h-full">
           {axiosLoading ? (
             <div className="h-7 w-7 sm:h-8 sm:w-8">
@@ -76,7 +98,7 @@ const ItemDeleteCell = ({ item }: { item: Todo }) => {
               <SvgIcon
                 component={DeleteOutlineIcon}
                 className="delete-icon"
-                onClick={handleDeleteTodo}
+                onClick={() => setShowConfirm(true)}
               />
             </a>
           )}

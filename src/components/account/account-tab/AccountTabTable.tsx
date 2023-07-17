@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 import { getAccountsLimit, catchErr } from '../../../hooks/Accounts';
-import { Toaster } from 'react-hot-toast';
 
 import HeadTab from './table/HeadTab';
 import BodyTab from './table/BodyTab';
@@ -66,7 +65,6 @@ const AccountTabTable = () => {
           showFilter ? 'xl:w-[calc(100%-650px)]' : 'w-full'
         }`}
       >
-        <Toaster />
         <div className="grow-0 sm:py-[28px] py-3 flex flex-wrap ">
           <TextField
             placeholder="Search"

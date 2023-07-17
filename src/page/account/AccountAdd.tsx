@@ -10,7 +10,7 @@ import {
 
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Toaster, toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import { schemaEditAccount } from '../../util/yupSchema';
 
 import TextForm from '../../components/forms/TextForm';
@@ -93,7 +93,6 @@ const AccountAdd = () => {
 
   return (
     <div className="bg-white w-full h-full rounded-xl p-5 overflow-y-auto">
-      <Toaster />
       {editDataQuery?.isLoading && (
         <div className="w-full h-full flex justify-center items-center">
           <CircularProgress size="lg" />
