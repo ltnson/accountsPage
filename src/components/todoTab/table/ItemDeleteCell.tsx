@@ -78,7 +78,7 @@ const ItemDeleteCell = ({ item }: { item: Todo }) => {
               <CircularProgress sx={{ color: '#ff8787' }} />
             </div>
           ) : (
-            <a href="#" className="btn-delete-icon ">
+            <a className="btn-delete-icon ">
               <SvgIcon
                 component={DeleteOutlineIcon}
                 className="delete-icon"
@@ -94,7 +94,7 @@ const ItemDeleteCell = ({ item }: { item: Todo }) => {
               <CircularProgress sx={{ color: '#ff8787' }} />
             </div>
           ) : (
-            <a href="#" className="btn-delete-icon ">
+            <a className="btn-delete-icon ">
               <SvgIcon
                 component={DeleteOutlineIcon}
                 className="delete-icon"

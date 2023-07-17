@@ -22,7 +22,6 @@ const TabHeadFilter = () => {
       <>
         <a
           className="btn-w-a w-8 h-8 sm:w-10 sm:h-10 bg-blue/10"
-          href="#"
           onClick={() => dispatch(setShowFilter())}
         >
           <FilterActionSVG />
@@ -39,7 +38,6 @@ const TabHeadFilter = () => {
       className={`btn-w-a w-8 h-8 sm:w-10 sm:h-10 ${
         showFilter && 'bg-blue/10'
       }`}
-      href="#"
       onClick={() => dispatch(setShowFilter())}
     >
       <FilterSVG />

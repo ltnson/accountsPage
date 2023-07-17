@@ -63,7 +63,6 @@ const ItemTab = ({ item }: { item: Account }) => {
       <TableCell>
         <div className="flex gap-2">
           <a
-            href=""
             onClick={() => handleShowDetail(item.id)}
             onMouseEnter={() => callAheadDetail(item.id)}
             className="btn-show-cart"
@@ -71,7 +70,6 @@ const ItemTab = ({ item }: { item: Account }) => {
             <EyeSVG />
           </a>
           <a
-            href=""
             onClick={() => navigate(`/accounts/edit/${item.id}`)}
             onMouseEnter={() => callAheadDetail(item.id)}
             className="btn-show-cart "

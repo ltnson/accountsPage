@@ -1,32 +1,32 @@
-import { useFormContext, useController } from 'react-hook-form';
+import { Control, useController } from 'react-hook-form';
 
 import { TextField, MenuItem } from '@mui/material';
 import DownSelectSVG from '../../assets/SVG/accountsSVG/DownSelectSVG';
 import LabelForm from './label-inputAdorment/LabelForm';
+import { EditTodo } from '../../model/types';
 
 const SelectTodoForm = ({
   label,
-  span,
+  control,
   name,
   newTodo,
 }: {
   label: string;
-  span: string;
+  control: Control<EditTodo>;
   name: string;
   newTodo: boolean;
 }) => {
-  const { control } = useFormContext();
   const {
     field: { onChange, value },
     fieldState: { error },
   } = useController({
-    name: name,
+    name: 'complete',
     control,
   });
 
   //change icon of select input and set value if client choosing
   return (
-    <div className={`col-span-${span}`}>
+    <div>
       <LabelForm label={label} />
       <TextField
         className="input-form"

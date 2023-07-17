@@ -1,17 +1,23 @@
 import { TextField, InputAdornment, IconButton } from '@mui/material';
 import EyeClosed from '../../assets/SVG/loginSVG/EyeClosed';
 import EyeOpen from '../../assets/SVG/loginSVG/EyeOpen';
-import { useFormContext, useController } from 'react-hook-form';
+import { Control, useController } from 'react-hook-form';
 import { useState } from 'react';
+import { LoginData } from '../../model/types';
 
-export const PasswordInput = ({ name }: { name: string }) => {
+export const PasswordInput = ({
+  name,
+  control,
+}: {
+  name: string;
+  control: Control<LoginData>;
+}) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const { control } = useFormContext();
   const {
     field: { onChange },
     fieldState: { error },
   } = useController({
-    name: name,
+    name: 'password',
     control,
   });
   return (
@@ -40,13 +46,18 @@ export const PasswordInput = ({ name }: { name: string }) => {
   );
 };
 
-export const EmailInput = ({ name }: { name: string }) => {
-  const { control } = useFormContext();
+export const EmailInput = ({
+  name,
+  control,
+}: {
+  name: string;
+  control: Control<LoginData>;
+}) => {
   const {
     field: { onChange },
     fieldState: { error },
   } = useController({
-    name: name,
+    name: 'username',
     control,
   });
   return (

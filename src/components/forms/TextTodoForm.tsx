@@ -1,18 +1,18 @@
-import { useController, useFormContext } from 'react-hook-form';
+import { useController, Control } from 'react-hook-form';
 import { TextField } from '@mui/material';
 import LabelForm from './label-inputAdorment/LabelForm';
 import InputAdornmentForm from './label-inputAdorment/InputAdormentForm';
+import { EditTodo } from '../../model/types';
 
-const TextForm = ({
+const TextTodoForm = ({
   name,
   label,
-  span,
+  control,
 }: {
-  name: string;
+  name: 'text' | 'author';
   label: string;
-  span: string;
+  control: Control<EditTodo>;
 }) => {
-  const { control } = useFormContext();
   const {
     field: { onChange, value, ref },
     fieldState: { error },
@@ -21,7 +21,7 @@ const TextForm = ({
     control,
   });
   return (
-    <div className={`col-span-${span}`}>
+    <div>
       <LabelForm label={label} />
       <TextField
         className="input-form"
@@ -39,7 +39,7 @@ const TextForm = ({
           endAdornment: (
             <InputAdornmentForm
               length={value ? value.length : 0}
-              totalLength={50}
+              totalLength={25}
             />
           ),
         }}
@@ -48,4 +48,4 @@ const TextForm = ({
   );
 };
 
-export default TextForm;
+export default TextTodoForm;

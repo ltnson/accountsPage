@@ -1,9 +1,8 @@
-import { FormProvider, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { EditTodo } from '../../model/types';
 import { schemaTodo } from '../../util/yupSchema';
-import TextForm from '../../components/forms/TextForm';
 import SelectTodoForm from '../../components/forms/SelectTodoForm';
 import LabelForm from '../../components/forms/label-inputAdorment/LabelForm';
 import { Button } from '@mui/material';
@@ -15,6 +14,7 @@ import {
   todoAxiosEditDataSelector,
 } from '../../store/selects';
 import { todoAxiosSlice } from '../../store/slice/TodoAxiosSlice';
+import TextTodoForm from '../../components/forms/TextTodoForm';
 
 const TodoQueryForm = () => {
   const { pathname } = useLocation();
@@ -28,9 +28,6 @@ const TodoQueryForm = () => {
   const { setEditFormAxios, setIdTodoEditAxios, setShowEditedFormAxios } =
     todoAxiosSlice.actions;
 
-  const location = useLocation();
-  console.log(location.hash);
-
   const formTodo = useForm<EditTodo>({
     resolver: yupResolver(schemaTodo),
     defaultValues: pathname.includes('/todo-query')
@@ -38,7 +35,7 @@ const TodoQueryForm = () => {
       : editAxiosData,
   });
 
-  const { handleSubmit } = formTodo;
+  const { handleSubmit, control } = formTodo;
   const onSubmit = (data: EditTodo) => {
     if (pathname.includes('/todo-query')) {
       if (idTodoParams) {
@@ -58,28 +55,26 @@ const TodoQueryForm = () => {
 
   return (
     <div className="bg-white w-full h-full rounded-xl p-5 overflow-y-auto">
-      <FormProvider {...formTodo}>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="w-1/2 flex flex-col gap-6"
-        >
-          <div>
-            <LabelForm label="ID Todo" />
-            <p className="font-bold">{idTodoParams ? idTodoParams : 'New'}</p>
-          </div>
-          <TextForm label="Text" name="text" span="1" />
-          <SelectTodoForm
-            label="Complete"
-            name="complete"
-            span="1"
-            newTodo={idTodoParams ? false : true}
-          />
-          <TextForm label="Author" name="author" span="1" />
-          <Button className="save col-span-2" type="submit">
-            Save
-          </Button>
-        </form>
-      </FormProvider>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-1/2 flex flex-col gap-6"
+      >
+        <div>
+          <LabelForm label="ID Todo" />
+          <p className="font-bold">{idTodoParams ? idTodoParams : 'New'}</p>
+        </div>
+        <TextTodoForm label="Text" name="text" control={control} />
+        <SelectTodoForm
+          label="Complete"
+          name="complete"
+          control={control}
+          newTodo={idTodoParams ? false : true}
+        />
+        <TextTodoForm label="Author" name="author" control={control} />
+        <Button className="save col-span-2" type="submit">
+          Save
+        </Button>
+      </form>
     </div>
   );
 };

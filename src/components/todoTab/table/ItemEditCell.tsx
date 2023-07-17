@@ -100,11 +100,10 @@ const ItemEditCell = ({ item }: { item: Todo }) => {
           </div>
         </div>
       )}
-      <a href="" className="btn-show-cart" onClick={handleShowTodo}>
+      <a className="btn-show-cart" onClick={handleShowTodo}>
         <EyeSVG />
       </a>
       <a
-        href=""
         className="btn-show-cart "
         onClick={() => (showEdited ? setShowConfirm(true) : handleGoEditTodo())}
       >

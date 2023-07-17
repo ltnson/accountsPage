@@ -19,7 +19,7 @@ const LoginCart = () => {
   const formLogin = useForm<LoginData>({
     resolver: yupResolver(schemaLogin),
   });
-  const { handleSubmit } = formLogin;
+  const { handleSubmit, control } = formLogin;
 
   const { mutate, isLoading } = loginAccountMutation();
 
@@ -54,10 +54,10 @@ const LoginCart = () => {
           </div>
         </div>
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-          <EmailInput name="username" />
-          <PasswordInput name="password" />
+          <EmailInput name="username" control={control} />
+          <PasswordInput name="password" control={control} />
           <Typography className="text-sm md:text-md font-light">
-            <a href="#">Forgot your password?</a>
+            <a>Forgot your password?</a>
           </Typography>
           {isLoading ? (
             <div className="py-4">
