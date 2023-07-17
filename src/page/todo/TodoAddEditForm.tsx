@@ -28,6 +28,9 @@ const TodoQueryForm = () => {
   const { setEditFormAxios, setIdTodoEditAxios, setShowEditedFormAxios } =
     todoAxiosSlice.actions;
 
+  const location = useLocation();
+  console.log(location.hash);
+
   const formTodo = useForm<EditTodo>({
     resolver: yupResolver(schemaTodo),
     defaultValues: pathname.includes('/todo-query')

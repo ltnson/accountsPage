@@ -14,7 +14,7 @@ import { todoQueryCartSlice } from '../../../store/slice/TodoQueryCartSlice';
 import { useState } from 'react';
 import { Button } from '@mui/material';
 
-const ItemAddEditCell = ({ item }: { item: Todo }) => {
+const ItemEditCell = ({ item }: { item: Todo }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const dispatch = useDispatch();
@@ -76,7 +76,7 @@ const ItemAddEditCell = ({ item }: { item: Todo }) => {
     dispatch(setDetailData(item));
     dispatch(setShowDetail(true));
   };
-  console.log(showEdited);
+
   return (
     <div className="flex gap-2">
       {showConfirm && (
@@ -100,11 +100,11 @@ const ItemAddEditCell = ({ item }: { item: Todo }) => {
           </div>
         </div>
       )}
-      <a href="#" className="btn-show-cart" onClick={handleShowTodo}>
+      <a href="" className="btn-show-cart" onClick={handleShowTodo}>
         <EyeSVG />
       </a>
       <a
-        href="#"
+        href=""
         className="btn-show-cart "
         onClick={() => (showEdited ? setShowConfirm(true) : handleGoEditTodo())}
       >
@@ -114,4 +114,4 @@ const ItemAddEditCell = ({ item }: { item: Todo }) => {
   );
 };
 
-export default ItemAddEditCell;
+export default ItemEditCell;

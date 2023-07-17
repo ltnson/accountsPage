@@ -6,7 +6,7 @@ import { TableRow, TableCell, Checkbox } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { allCheckboxSelector } from '../../../store/selects';
 
-import ItemAddEditCell from './ItemAddEditCell';
+import ItemEditCell from './ItemEditCell';
 import ItemDeleteCell from './ItemDeleteCell';
 
 const ItemTodo = ({ item }: { item: Todo }) => {
@@ -39,7 +39,7 @@ const ItemTodo = ({ item }: { item: Todo }) => {
         </TableCell>
         <TableCell>{item.createdDate}</TableCell>
         <TableCell>
-          <ItemAddEditCell item={item} />
+          <ItemEditCell item={item} />
         </TableCell>
         <TableCell>
           <ItemDeleteCell item={item} />
