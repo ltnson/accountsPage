@@ -6,45 +6,38 @@ import { EditTodo } from '../../../model/types';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaTodo } from '../../../util/yupSchema';
 import { Button, LinearProgress } from '@mui/material';
-import { postEditTodo, postNewTodo, reloadTodoKey } from '../../../hooks/Todos';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  idQueryCartEditSelector,
-  todoQueryCartEditDataSelector,
-} from '../../../store/selects';
+import { useDispatch } from 'react-redux';
+
 import { todoQueryCartSlice } from '../../../store/slice/TodoQueryCartSlice';
 import CloseSVG from '../../../assets/SVG/accountsSVG/CloseSVG';
-import { useQueryClient } from '@tanstack/react-query';
 
-const TodoAddEditUsingCart = () => {
+const TodoAddEditUsingCart = ({
+  editData,
+  idTodo,
+  handleUpdate,
+  updateLoading,
+}: {
+  editData: EditTodo;
+  idTodo: string;
+  handleUpdate: (data: EditTodo) => void;
+  updateLoading: boolean;
+}) => {
   const dispatch = useDispatch();
-  const idTodo = useSelector(idQueryCartEditSelector);
-  const editData = useSelector(todoQueryCartEditDataSelector);
   const { resetEditFormQueryCart } = todoQueryCartSlice.actions;
-  const queryClient = useQueryClient();
-
   const formTodo = useForm<EditTodo>({
     resolver: yupResolver(schemaTodo),
     defaultValues: editData,
     mode: 'onBlur',
   });
-
-  const todoMutation = idTodo === 'New' ? postNewTodo() : postEditTodo(idTodo);
-
   const { handleSubmit, control } = formTodo;
-  const onSubmit = (data: EditTodo) => {
-    todoMutation.mutate(data, {
-      onSuccess: () => {
-        dispatch(resetEditFormQueryCart());
-        queryClient.invalidateQueries({ queryKey: reloadTodoKey });
-      },
-    });
-  };
+
   return (
     <div className="bg-cart" onClick={() => dispatch(resetEditFormQueryCart())}>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleUpdate)}
         className="w-1/2 flex flex-col gap-6 bg-white p-8 rounded relative"
+        // hàm chặn sự tác động đến phần tử cha ,chỉ dùng được trong thẻ đó
+        // ,hàm bên ngoài khi client bấm vào background sẽ tự động đóng cart
         onClick={(e) => e.stopPropagation()}
       >
         <div
@@ -65,7 +58,7 @@ const TodoAddEditUsingCart = () => {
           newTodo={idTodo === 'New' ? true : false}
         />
         <TextTodoForm label="Author" name="author" control={control} />
-        {todoMutation.isLoading ? (
+        {updateLoading ? (
           <LinearProgress />
         ) : (
           <Button className="save col-span-2" type="submit">

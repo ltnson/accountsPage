@@ -1,27 +1,19 @@
-import { useEffect } from 'react';
-
-import { catchErr, getAccountDetail } from '../../../../hooks/Accounts';
 import { Typography, CircularProgress } from '@mui/material';
 import CloseSVG from '../../../../assets/SVG/accountsSVG/CloseSVG';
 import { detailArr1, detailArr2, detailArr3 } from '.';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { accountsSlice } from '../../../../store/slice/AccountSlice';
-import { idDetailSelector } from '../../../../store/selects';
+import { Account } from '../../../../model/types';
 
-const AccountDetail = () => {
-  const idDetail = useSelector(idDetailSelector);
+const AccountDetail = ({
+  data,
+  isLoading,
+}: {
+  data: Account | undefined;
+  isLoading: boolean | undefined;
+}) => {
   const dispatch = useDispatch();
   const { setShowDetail } = accountsSlice.actions;
-
-  const { data, isLoading, error } = getAccountDetail(idDetail);
-
-  //if error ,close detail comp and showing error
-  useEffect(() => {
-    if (error) {
-      catchErr(error);
-      dispatch(setShowDetail());
-    }
-  }, [error]);
 
   return (
     <div className="bg-cart" onClick={() => dispatch(setShowDetail())}>

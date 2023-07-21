@@ -10,14 +10,8 @@ export const showUpdateSelector = (state: RootState) =>
 export const showSidebarSelector = (state: RootState) =>
   state.accounts.showSidebar;
 export const idDetailSelector = (state: RootState) => state.accounts.idDetail;
-export const limitTabSelector = (state: RootState) => state.accounts.limitTab;
-export const skipTabSelector = (state: RootState) => state.accounts.skipTab;
-export const totalTabSelector = (state: RootState) => state.accounts.totalTab;
-export const searchingSelector = (state: RootState) => state.accounts.searching;
 export const allCheckboxSelector = (state: RootState) =>
   state.accounts.allCheckbox;
-export const searchResultSelector = (state: RootState) =>
-  state.accounts.searchResults;
 
 //TodoQuery
 export const todoQueryEditDataSelector = (state: RootState) =>

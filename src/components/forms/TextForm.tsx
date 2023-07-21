@@ -18,6 +18,7 @@ const TextForm = ({
     fieldState: { error },
   } = useController({
     name: name,
+    defaultValue: '',
     control,
   });
   return (

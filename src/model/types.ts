@@ -153,12 +153,7 @@ export type AccountSlice = {
   showDetail: boolean;
   showSidebar: boolean;
   showFilter: boolean;
-  totalTab: number;
-  limitTab: number;
-  skipTab: number;
   idDetail: number;
-  searchResults: number;
-  searching: boolean;
   allCheckbox: boolean;
 };
 

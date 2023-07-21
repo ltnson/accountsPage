@@ -1,28 +1,74 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SidebarButton from '../../assets/SVG/navbarSVG/SidebarButton';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  showDetailSelector,
   showSidebarSelector,
   showTodoDetailSelector,
   showUpdateSelector,
 } from '../../store/selects';
 import { accountsSlice } from '../../store/slice/AccountSlice';
 import TailNavbar from '../../components/navbar/TailNavbar';
-import AccountDetail from '../../components/account/account-carts/detail/AccountDetail';
 import AccountUpdate from '../../components/account/account-carts/up-flie/AccountUpdate';
 import TitleNavbar from '../../components/navbar/TitleNavbar';
 import TodoDetail from '../../components/todoTab/cart-form-edit/TodoDetail';
+import {
+  showEditedAxiosSelector,
+  showEditedQuerySelector,
+} from '../../store/selects';
+import ConfirmTodo from '../../components/todoTab/cart-form-edit/ConfirmTodo';
+import { useState } from 'react';
+import { todoQuerySlice } from '../../store/slice/TodoQuerySlice';
+import { todoQueryCartSlice } from '../../store/slice/TodoQueryCartSlice';
+import { todoAxiosSlice } from '../../store/slice/TodoAxiosSlice';
 
 const Navbar = () => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const isHomePage = pathname === '/' || pathname.includes('/home');
+  const isAddEditPage = !pathname.includes('add') && !pathname.includes('edit');
+
   const showSidebar = useSelector(showSidebarSelector);
   const showUpdate = useSelector(showUpdateSelector);
-  const showDetail = useSelector(showDetailSelector);
   const showTodoDetail = useSelector(showTodoDetailSelector);
+  const handleShowUpdateCart = () => {
+    dispatch(setShowUpdate());
+  };
   const { setShowSidebar } = accountsSlice.actions;
 
-  const { pathname } = useLocation();
-  const dispatch = useDispatch();
+  const [showConfirm, setShowConfirm] = useState<boolean>(false);
+  const handleShowConfirm = (bool: boolean) => {
+    setShowConfirm(bool);
+  };
+
+  const showEditedQuery = useSelector(showEditedQuerySelector);
+  const showEditedAxios = useSelector(showEditedAxiosSelector);
+  const showEdited =
+    pathname === '/todo-query' ? showEditedQuery : showEditedAxios;
+
+  const { setShowUpdate } = accountsSlice.actions;
+  const { resetEditFormQuery } = todoQuerySlice.actions;
+  const { setShowEditedFormQueryCart } = todoQueryCartSlice.actions;
+  const { resetEditFormAxios } = todoAxiosSlice.actions;
+
+  const handleGoAdd = () => {
+    if (pathname === '/todo-query') {
+      dispatch(resetEditFormQuery());
+      navigate('/todo-query/add');
+    }
+    if (pathname === '/todo-axios') {
+      dispatch(resetEditFormAxios());
+      navigate('/todo-axios/add');
+    }
+    if (pathname === '/todo-query-cart') {
+      dispatch(setShowEditedFormQueryCart(true));
+    }
+    if (pathname.includes('/accounts')) {
+      navigate('/accounts/add');
+    }
+    setShowConfirm(false);
+  };
+
   let title = 'home';
   if (pathname === '/todo-query') {
     title = 'Todo Query';
@@ -46,7 +92,13 @@ const Navbar = () => {
     <>
       {showTodoDetail && <TodoDetail />}
       {showUpdate && <AccountUpdate />}
-      {showDetail && <AccountDetail />}
+      {showConfirm && (
+        <ConfirmTodo
+          handleAction={handleGoAdd}
+          handleShowConfirm={handleShowConfirm}
+          nameAction="Add New"
+        />
+      )}
       <div className="w-full flex h-12 sm:h-16 pr-2 sm:pr-3 lg:pr-5  bg-white z-20 items-center fixed top-0 left-0">
         <div className=" pr-2 flex items-center w-full ">
           <div
@@ -63,10 +115,14 @@ const Navbar = () => {
             <TitleNavbar title={title} />
           </div>
         </div>
-        {pathname === '/' || pathname.includes('/home') ? (
-          <></>
-        ) : (
-          <TailNavbar title={title} />
+        {!isHomePage && isAddEditPage && (
+          <TailNavbar
+            title={title}
+            handleGoAdd={
+              showEdited ? () => handleShowConfirm(true) : handleGoAdd
+            }
+            handleShowUpdateCart={handleShowUpdateCart}
+          />
         )}
       </div>
     </>

@@ -1,9 +1,14 @@
-import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { OptionSeenArr } from '../../../model/types';
 
-const AccountTabHeader = () => {
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+const AccountTabHeader = ({
+  handlePageHeader,
+}: {
+  handlePageHeader: (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    path: string,
+  ) => void;
+}) => {
   const optionSeenArr: OptionSeenArr = [
     {
       path: '/accounts/tab?limit=10&page=1',
@@ -15,15 +20,6 @@ const AccountTabHeader = () => {
       name: 'Female',
     },
   ];
-  const handleNavLinkClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    path: string,
-  ) => {
-    if (path.includes(pathname)) {
-      return e.preventDefault();
-    }
-    navigate(path);
-  };
 
   return (
     <div className="px-2 sm:px-5 border-b border-t-neutral/d2 pt-[14px] grow-0">
@@ -32,7 +28,7 @@ const AccountTabHeader = () => {
           <NavLink
             to={op.path}
             key={index}
-            onClick={(e) => handleNavLinkClick(e, op.path)}
+            onClick={(e) => handlePageHeader(e, op.path)}
           >
             {({ isActive }) => (
               <p

@@ -31,6 +31,9 @@ const axiosTodos = {
       const response = await axios.post(`${TODOS_URL}/${id}`, data, {
         headers: { 'Content-Type': 'application/json' },
       });
+      if (response.data === 'Failure') {
+        throw response.data;
+      }
       if (typeof response.data !== 'string') {
         throw response.data.join('\n');
       }

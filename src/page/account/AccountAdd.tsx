@@ -5,12 +5,10 @@ import {
   getAccountDetail,
   postAccountEdit,
   postAccountAdd,
-  catchErr,
 } from '../../hooks/Accounts';
 
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { toast } from 'react-hot-toast';
 import { schemaEditAccount } from '../../util/yupSchema';
 
 import TextForm from '../../components/forms/TextForm';
@@ -35,6 +33,7 @@ const AccountAdd = () => {
     setFocus,
   } = formMethod;
 
+  //tim the input dau tien bi loi va focus den
   useEffect(() => {
     const firstError = (
       Object.keys(errors) as Array<keyof typeof errors>
@@ -42,7 +41,6 @@ const AccountAdd = () => {
       const fieldKey = field as keyof typeof errors;
       return !!errors[fieldKey] ? fieldKey : a;
     }, null) as keyof EditForm;
-
     if (firstError) {
       setFocus(firstError);
     }
@@ -55,9 +53,6 @@ const AccountAdd = () => {
 
   //reset data of form if edit
   useEffect(() => {
-    if (editDataQuery?.error) {
-      catchErr(editDataQuery.error);
-    }
     if (editDataQuery?.data) {
       formMethod.reset({
         firstName: editDataQuery.data.firstName,
@@ -69,7 +64,7 @@ const AccountAdd = () => {
         today: new Date().toLocaleDateString('en-US'),
       });
     }
-  }, [editDataQuery?.data, editDataQuery?.error]);
+  }, [editDataQuery?.data]);
 
   //query post data edit
   const editMutation = idAccount
@@ -78,15 +73,8 @@ const AccountAdd = () => {
 
   const onSubmit = (data: EditForm) => {
     return editMutation.mutate(data, {
-      onSuccess: (newData) => {
-        setTimeout(
-          () => toast.success(`Account with id ${newData.id} are Update`),
-          300,
-        );
+      onSuccess: () => {
         navigate('/accounts');
-      },
-      onError: (error) => {
-        catchErr(error);
       },
     });
   };

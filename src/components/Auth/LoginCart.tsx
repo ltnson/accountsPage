@@ -1,6 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-
-import { loginAccountMutation, catchErr } from '../../hooks/Accounts';
 import { LoginData } from '../../model/types';
 
 import { useForm } from 'react-hook-form';
@@ -12,26 +9,19 @@ import { Typography, Button, LinearProgress } from '@mui/material';
 import VinovaSVG from '../../assets/SVG/VinovaSVG';
 import { EmailInput, PasswordInput } from '../forms/LoginForm';
 
-const LoginCart = () => {
-  const navigate = useNavigate();
-
+const LoginCart = ({
+  isLoading,
+  handleLogin,
+}: {
+  isLoading: boolean;
+  handleLogin: (loginData: LoginData) => void;
+}) => {
   //hook form of login form and valitate with yup
   const formLogin = useForm<LoginData>({
     resolver: yupResolver(schemaLogin),
+    mode: 'onBlur',
   });
   const { handleSubmit, control } = formLogin;
-
-  const { mutate, isLoading } = loginAccountMutation();
-
-  const onSubmit = (loginData: LoginData) => {
-    mutate(loginData, {
-      onSuccess: (data) => {
-        localStorage.setItem('user', JSON.stringify(data));
-        navigate('/accounts');
-      },
-      onError: (error) => catchErr(error),
-    });
-  };
 
   return (
     <Typography component="div" className=" login-layout">
@@ -53,7 +43,10 @@ const LoginCart = () => {
             <p className="border my-2"></p>
           </div>
         </div>
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="flex flex-col gap-4"
+          onSubmit={handleSubmit(handleLogin)}
+        >
           <EmailInput name="username" control={control} />
           <PasswordInput name="password" control={control} />
           <Typography className="text-sm md:text-md font-light">

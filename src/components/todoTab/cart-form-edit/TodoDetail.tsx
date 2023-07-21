@@ -8,6 +8,7 @@ const TodoDetail = () => {
   const item = useSelector(todoDetailDataSelector);
   const dispatch = useDispatch();
   const { setShowDetail } = todoQueryCartSlice.actions;
+
   return (
     <div className="bg-cart" onClick={() => dispatch(setShowDetail(false))}>
       <div

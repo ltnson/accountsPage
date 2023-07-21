@@ -1,53 +1,81 @@
-import { useEffect } from 'react';
-
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-
 import FooterContent from './footer/FooterContent';
-import FooterPagination from './footer/FooterPagination';
-import { useDispatch, useSelector } from 'react-redux';
+
 import {
-  limitTabSelector,
-  searchingSelector,
-  skipTabSelector,
-} from '../../../store/selects';
-import { accountsSlice } from '../../../store/slice/AccountSlice';
+  MenuItem,
+  TextField,
+  Pagination,
+  PaginationItem,
+  Typography,
+} from '@mui/material';
 
-const AccountTabFooter = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { pathname } = useLocation();
-  const [searchParams] = useSearchParams();
-  const limitStr = searchParams.get('limit');
-  const pageStr = searchParams.get('page');
-  const limitTab = useSelector(limitTabSelector);
-  const skipTab = useSelector(skipTabSelector);
-  const searching = useSelector(searchingSelector);
-  const { setLimitTab, setSkipTab } = accountsSlice.actions;
+const AccountTabFooter = ({
+  pagination,
+  limitTab,
+  totalTab,
+  skipTab,
+  searchResult,
+  searching,
+  handlePaginationChange,
 
-  //change data if client change pathName
-  useEffect(() => {
-    const limit = limitStr && parseInt(limitStr);
-    const page = pageStr && parseInt(pageStr);
-    if (limit && page) {
-      dispatch(setLimitTab(limit));
-      dispatch(setSkipTab(Math.ceil((page - 1) * limit)));
-    }
-  }, [limitStr, pageStr]);
-
-  // rerender if client change option of table
-  useEffect(() => {
-    if (pathname.includes('/accounts/tab'))
-      navigate(
-        `/accounts/tab?limit=${limitTab}&page=${Math.ceil(
-          skipTab / limitTab + 1,
-        )}`,
-      );
-  }, [limitTab, skipTab]);
-
+  handleSetLimit,
+}: {
+  pagination: boolean;
+  limitTab: number;
+  skipTab: number;
+  totalTab: number;
+  searchResult: number;
+  searching: boolean;
+  handlePaginationChange: (
+    event: React.ChangeEvent<unknown>,
+    value: number,
+  ) => void;
+  handleSetLimit: (e: number) => void;
+}) => {
   return (
     <div className="tab-footer">
-      <FooterContent />
-      {!searching && pathname.includes('/accounts/tab') && <FooterPagination />}
+      <FooterContent
+        limitTab={limitTab}
+        skipTab={skipTab}
+        totalTab={totalTab}
+        searchResult={searchResult}
+        searching={searching}
+      />
+      {pagination && (
+        <div className="flex gap-1.5">
+          <TextField
+            value={limitTab}
+            select
+            className="account-tab-select"
+            onChange={(e) => handleSetLimit(parseInt(e.target.value))}
+          >
+            <MenuItem value={20}>20 per page</MenuItem>
+            <MenuItem value={10}>10 per page</MenuItem>
+            <MenuItem value={5}>5 per page</MenuItem>
+          </TextField>
+          <Pagination
+            count={Math.ceil(totalTab / limitTab)}
+            page={Math.ceil(skipTab / limitTab + 1)}
+            onChange={handlePaginationChange}
+            renderItem={(item) => (
+              <PaginationItem
+                slots={{
+                  previous: () => (
+                    <Typography className="btn-group-prev s14-gray">
+                      Prev.
+                    </Typography>
+                  ),
+                  next: () => (
+                    <Typography className="btn-group-next s14-gray">
+                      Next
+                    </Typography>
+                  ),
+                }}
+                {...item}
+              />
+            )}
+          />
+        </div>
+      )}
     </div>
   );
 };

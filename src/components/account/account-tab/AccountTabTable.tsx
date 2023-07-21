@@ -1,9 +1,3 @@
-import { useEffect, useState } from 'react';
-
-import { useLoaderData } from 'react-router-dom';
-
-import { getAccountsLimit, catchErr } from '../../../hooks/Accounts';
-
 import HeadTab from './table/HeadTab';
 import BodyTab from './table/BodyTab';
 import {
@@ -16,47 +10,22 @@ import {
 import SearchSVG from '../../../assets/SVG/accountsSVG/SearchSVG';
 import TabHeadFilter from './table/TabHeadFilter';
 import AccountFilter from '../account-carts/filter/AccountFilter';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { showFilterSelector } from '../../../store/selects';
-import { accountsSlice } from '../../../store/slice/AccountSlice';
+import { Accounts } from '../../../model/types';
 
-const AccountTabTable = () => {
-  // get url after loader in router return
-  const url = useLoaderData() as string;
-  const [pathName, setPathName] = useState<string>(url);
+const AccountTabTable = ({
+  data,
+  isLoading,
+  handleToSearch,
+  totalTab,
+}: {
+  data: Accounts | undefined;
+  isLoading: boolean;
+  handleToSearch: (e: any) => void;
+  totalTab: number;
+}) => {
   const showFilter = useSelector(showFilterSelector);
-  const dispatch = useDispatch();
-  const { setSearching, setTotalTab, setSearchResult } = accountsSlice.actions;
-
-  useEffect(() => {
-    setPathName(url);
-  }, [url]);
-
-  //get data of table
-  const { data, isLoading, error } = getAccountsLimit(pathName);
-
-  //check data
-  useEffect(() => {
-    if (error) {
-      catchErr(error);
-    }
-    if (data) {
-      dispatch(setTotalTab(data.total));
-      dispatch(setSearchResult(data.limit));
-    }
-  }, [error, data]);
-
-  //search and reget data of table
-  const handleToSearch = (e: string) => {
-    if (e === '') {
-      dispatch(setSearching(false));
-      return setPathName(url);
-    }
-    setTimeout(() => {
-      dispatch(setSearching(true));
-      setPathName(`/search?q=${e}`);
-    }, 1000);
-  };
 
   return (
     <div className="tab-table">
@@ -79,13 +48,13 @@ const AccountTabTable = () => {
               ),
             }}
           />
-          <TabHeadFilter />
+          <TabHeadFilter totalTab={totalTab} />
         </div>
-        {data?.users && (
+        {data && (
           <TableContainer className="scroll-style">
             <Table border={1}>
               <HeadTab />
-              <BodyTab accountsArray={data.users} />
+              <BodyTab accountsArray={data} />
             </Table>
           </TableContainer>
         )}

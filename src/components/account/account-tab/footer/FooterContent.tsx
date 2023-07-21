@@ -1,20 +1,18 @@
 import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import {
-  searchingSelector,
-  limitTabSelector,
-  skipTabSelector,
-  totalTabSelector,
-  searchResultSelector,
-} from '../../../../store/selects';
 
-const FooterContent = () => {
-  const searchResult = useSelector(searchResultSelector);
-  const limitTab = useSelector(limitTabSelector);
-  const skipTab = useSelector(skipTabSelector);
-  const searching = useSelector(searchingSelector);
-  const totalTab = useSelector(totalTabSelector);
-
+const FooterContent = ({
+  searchResult,
+  limitTab,
+  skipTab,
+  totalTab,
+  searching,
+}: {
+  searchResult: number;
+  limitTab: number;
+  skipTab: number;
+  totalTab: number;
+  searching: boolean;
+}) => {
   const { pathname } = useLocation();
 
   //change content of footer table if pathname change because result of other data dont have skip table

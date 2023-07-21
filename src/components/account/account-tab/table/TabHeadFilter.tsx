@@ -4,16 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import FilterSVG from '../../../../assets/SVG/accountsSVG/FilterSVG';
 import CloseSVG2 from '../../../../assets/SVG/accountsSVG/CloseSVG2';
 import FilterActionSVG from '../../../../assets/SVG/accountsSVG/FilterActionSVG';
-import {
-  showFilterSelector,
-  totalTabSelector,
-} from '../../../../store/selects';
+import { showFilterSelector } from '../../../../store/selects';
 import { accountsSlice } from '../../../../store/slice/AccountSlice';
 
-const TabHeadFilter = () => {
+const TabHeadFilter = ({ totalTab }: { totalTab: number }) => {
   const { pathname } = useLocation();
   const showFilter = useSelector(showFilterSelector);
-  const totalTab = useSelector(totalTabSelector);
   const dispatch = useDispatch();
   const { setShowFilter } = accountsSlice.actions;
 

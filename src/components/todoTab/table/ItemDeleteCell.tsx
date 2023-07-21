@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
 import { todoAxiosSlice } from '../../../store/slice/TodoAxiosSlice';
-import { Button } from '@mui/material';
+import ConfirmTodo from '../cart-form-edit/ConfirmTodo';
 
 const ItemDeleteCell = ({ item }: { item: Todo }) => {
   const { pathname } = useLocation();
@@ -48,62 +48,34 @@ const ItemDeleteCell = ({ item }: { item: Todo }) => {
     setShowConfirm(false);
   };
 
+  const handleShowConfirm = (bool: boolean) => {
+    setShowConfirm(bool);
+  };
+
   return (
     <>
       {showConfirm && (
-        <div className="bg-cart">
-          <div className="w-96 bg-white p-8 rounded-xl">
-            <p className="text-t-light">
-              Your Edited Todo don"t save to Server, remove this and edit new
-              Todo ??
-            </p>
-            <div className="flex justify-evenly gap-4 pt-4 pb-2  ">
-              <Button
-                className="filter-clear"
-                onClick={() => setShowConfirm(false)}
-              >
-                Cancer
-              </Button>
-              <Button className="filter-show" onClick={handleDeleteTodo}>
-                Delete
-              </Button>
-            </div>
+        <ConfirmTodo
+          handleAction={handleDeleteTodo}
+          handleShowConfirm={handleShowConfirm}
+          nameAction="Delete"
+        />
+      )}
+      <div className="flex justify-center items-center w-full h-full">
+        {deleteMutation.isLoading || axiosLoading ? (
+          <div className="h-7 w-7 sm:h-8 sm:w-8">
+            <CircularProgress sx={{ color: '#ff8787' }} />
           </div>
-        </div>
-      )}
-      {pathname === '/todo-axios' ? (
-        <div className="flex justify-center items-center w-full h-full">
-          {axiosLoading ? (
-            <div className="h-7 w-7 sm:h-8 sm:w-8">
-              <CircularProgress sx={{ color: '#ff8787' }} />
-            </div>
-          ) : (
-            <a className="btn-delete-icon ">
-              <SvgIcon
-                component={DeleteOutlineIcon}
-                className="delete-icon"
-                onClick={handleDeleteTodo}
-              />
-            </a>
-          )}
-        </div>
-      ) : (
-        <div className="flex justify-center items-center w-full h-full">
-          {deleteMutation.isLoading ? (
-            <div className="h-7 w-7 sm:h-8 sm:w-8">
-              <CircularProgress sx={{ color: '#ff8787' }} />
-            </div>
-          ) : (
-            <a className="btn-delete-icon ">
-              <SvgIcon
-                component={DeleteOutlineIcon}
-                className="delete-icon"
-                onClick={() => setShowConfirm(true)}
-              />
-            </a>
-          )}
-        </div>
-      )}
+        ) : (
+          <a className="btn-delete-icon ">
+            <SvgIcon
+              component={DeleteOutlineIcon}
+              className="delete-icon"
+              onClick={() => setShowConfirm(true)}
+            />
+          </a>
+        )}
+      </div>
     </>
   );
 };

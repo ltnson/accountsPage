@@ -12,7 +12,7 @@ import { todoQuerySlice } from '../../../store/slice/TodoQuerySlice';
 import { todoAxiosSlice } from '../../../store/slice/TodoAxiosSlice';
 import { todoQueryCartSlice } from '../../../store/slice/TodoQueryCartSlice';
 import { useState } from 'react';
-import { Button } from '@mui/material';
+import ConfirmTodo from '../cart-form-edit/ConfirmTodo';
 
 const ItemEditCell = ({ item }: { item: Todo }) => {
   const navigate = useNavigate();
@@ -77,28 +77,18 @@ const ItemEditCell = ({ item }: { item: Todo }) => {
     dispatch(setShowDetail(true));
   };
 
+  const handleShowConfirm = (bool: boolean) => {
+    setShowConfirm(bool);
+  };
+
   return (
     <div className="flex gap-2">
       {showConfirm && (
-        <div className="bg-cart">
-          <div className="w-96 bg-white p-8 rounded-xl">
-            <p className="text-t-light">
-              Your Edited Todo don"t save to Server, remove this and edit new
-              Todo ??
-            </p>
-            <div className="flex justify-evenly gap-4 pt-4 pb-2  ">
-              <Button
-                className="filter-clear"
-                onClick={() => setShowConfirm(false)}
-              >
-                Cancer
-              </Button>
-              <Button className="filter-show" onClick={handleGoEditTodo}>
-                Go Edit
-              </Button>
-            </div>
-          </div>
-        </div>
+        <ConfirmTodo
+          handleAction={handleGoEditTodo}
+          handleShowConfirm={handleShowConfirm}
+          nameAction="Edit"
+        />
       )}
       <a className="btn-show-cart" onClick={handleShowTodo}>
         <EyeSVG />

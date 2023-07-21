@@ -8,7 +8,7 @@ const TodoTabList = ({
   isLoading,
 }: {
   data: TodosList | null;
-  isLoading: boolean;
+  isLoading: boolean | undefined;
 }) => {
   return (
     <>
