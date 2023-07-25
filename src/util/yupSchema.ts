@@ -19,8 +19,11 @@ export const schemaEditAccount = yup.object({
     .string()
     .required('Phone is required')
     .matches(/^[+0-9\s]+$/, 'Phone must only contain numbers')
-    .min(13, 'Phone is too invalid')
-    .max(20, 'Phone is too invalid'),
+    .min(10, 'Phone is too invalid')
+    .max(20, 'Phone is too invalid')
+    .test('check-length', 'your length of phone number is invalid', (value) => {
+      return value.trim().length >= 8;
+    }),
   username: yup
     .string()
     .min(3, 'User Name is required')

@@ -24,7 +24,9 @@ const TabHeadFilter = ({ totalTab }: { totalTab: number }) => {
         </a>
         <div className="flex items-center pl-2">
           <CloseSVG2 className="filter-text" />
-          <p className="text-t-blue text-sm">Clear {100 - totalTab} filters</p>
+          <p className="text-add-blue text-sm">
+            Clear {100 - totalTab} filters
+          </p>
         </div>
       </>
     );

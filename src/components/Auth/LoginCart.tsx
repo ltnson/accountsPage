@@ -49,7 +49,7 @@ const LoginCart = ({
         >
           <EmailInput name="username" control={control} />
           <PasswordInput name="password" control={control} />
-          <Typography className="text-sm md:text-md font-light">
+          <Typography className="text-sm md:text-md fonadd-light">
             <a>Forgot your password?</a>
           </Typography>
           {isLoading ? (

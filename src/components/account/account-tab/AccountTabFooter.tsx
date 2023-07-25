@@ -16,7 +16,6 @@ const AccountTabFooter = ({
   searchResult,
   searching,
   handlePaginationChange,
-
   handleSetLimit,
 }: {
   pagination: boolean;

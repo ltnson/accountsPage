@@ -35,6 +35,7 @@ const AccountAdd = () => {
 
   //tim the input dau tien bi loi va focus den
   useEffect(() => {
+    console.log(errors);
     const firstError = (
       Object.keys(errors) as Array<keyof typeof errors>
     ).reduce<keyof typeof errors | null>((field, a) => {
@@ -92,10 +93,10 @@ const AccountAdd = () => {
           <div className="flex flex-col justify-center items-center gap-10">
             <p className="text-2xl">
               Not found account with id{' '}
-              <span className="text-red">{idAccount}</span>
+              <span className="texadd-red">{idAccount}</span>
             </p>
             <p
-              className="text-2xl text-t-blue cursor-pointer"
+              className="text-2xl text-add-blue cursor-pointer"
               onClick={() => navigate(-1)}
             >
               Back to page ?
@@ -113,7 +114,7 @@ const AccountAdd = () => {
               <TextForm label="Email" span="2" name="email" />
               <PhoneForm label="Phone" span="2" name="phone" />
             </div>
-            <hr className="border-b border-t-neutral/DE " />
+            <hr className="border-b border-add-neutral/DE " />
             <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 py-4 sm:py-8 ">
               <SelectForm
                 label="Contract type"
@@ -133,7 +134,7 @@ const AccountAdd = () => {
                 array={['Another', 'Test 1']}
               />
             </div>
-            <hr className="border-b border-t-neutral/DE " />
+            <hr className="border-b border-add-neutral/DE " />
             <div className="flex flex-col md:grid md:grid-cols-2 md:gap-6 gap-4 py-4 sm:py-8">
               <SelectForm
                 label="Team"

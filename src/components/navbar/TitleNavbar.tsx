@@ -9,7 +9,7 @@ const TitleNavbar = ({ title }: { title: string }) => {
   );
   if (pathname.includes('add')) {
     content = (
-      <p className="text-t-light text-sm sm:text-xl flex items-center gap-2">
+      <p className="text-add-light text-sm sm:text-xl flex items-center gap-2">
         <LeftSVG onClick={() => navigate(-1)} />
         {`${title} / Create New ${title}`}
       </p>
@@ -17,7 +17,7 @@ const TitleNavbar = ({ title }: { title: string }) => {
   }
   if (pathname.includes('edit')) {
     content = (
-      <p className="text-t-light text-sm sm:text-xl flex items-center gap-2">
+      <p className="text-add-light text-sm sm:text-xl flex items-center gap-2">
         <LeftSVG onClick={() => navigate(-1)} />
         {`${title} / Edit ${title}`}
       </p>

@@ -22,8 +22,8 @@ const AccountTabHeader = ({
   ];
 
   return (
-    <div className="px-2 sm:px-5 border-b border-t-neutral/d2 pt-[14px] grow-0">
-      <div className="flex text-t-light gap-3">
+    <div className="px-2 sm:px-5 border-b border-add-neutral/d2 pt-[14px] grow-0">
+      <div className="flex text-add-light gap-3">
         {optionSeenArr.map((op, index) => (
           <NavLink
             to={op.path}
@@ -33,7 +33,7 @@ const AccountTabHeader = ({
             {({ isActive }) => (
               <p
                 className={`tab-header-select ${
-                  isActive ? 'border-t-blue text-t-blue' : ''
+                  isActive ? 'border-add-blue text-add-blue' : ''
                 }`}
               >
                 {op.name}

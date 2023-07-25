@@ -16,7 +16,7 @@
 
   .tab-table {
     @apply flex flex-col-reverse overflow-y-auto xl:flex-row flex-nowrap grow 
-    overflow-hidden border-b border-t-neutral/d2  px-2 sm:px-5 pb-3 sm:pb-5;
+    overflow-hidden border-b border-add-neutral/d2  px-2 sm:px-5 pb-3 sm:pb-5;
   }
 
   .side-bar {
@@ -30,16 +30,16 @@
   }
 
   .btn-w-a {
-    @apply border border-t-blue inline-block rounded p-1 sm:p-2 ml-4 hover:bg-blue/10;
+    @apply border border-add-blue inline-block rounded p-1 sm:p-2 ml-4 hover:bg-blue/10;
   }
 
   .btn-show-cart {
-    @apply h-7 w-7 sm:h-8 sm:w-8 flex justify-center items-center border border-t-blue 
+    @apply h-7 w-7 sm:h-8 sm:w-8 flex justify-center items-center border border-add-blue 
      bg-white inline-block rounded p-1 sm:p-2 ml-4 hover:bg-blue/10;
   }
 
   .btn-delete-icon {
-    @apply h-7 w-7 sm:h-8 sm:w-8 flex justify-center items-center border border-t-red 
+    @apply h-7 w-7 sm:h-8 sm:w-8 flex justify-center items-center border border-add-red 
      bg-white inline-block rounded p-1 sm:p-2  hover:bg-red-rgba;
   }
 
@@ -68,17 +68,17 @@
   }
 
   .update-import {
-    @apply w-full h-60 md:h-64 border-dashed border-2 border-t-neutral/d2 bg-neutral/f5 
-    flex flex-col items-center justify-center text-t-neutral/6 rounded-md mt-3;
+    @apply w-full h-60 md:h-64 border-dashed border-2 border-add-neutral/d2 bg-neutral/f5 
+    flex flex-col items-center justify-center text-add-neutral/6 rounded-md mt-3;
   }
 
   .tab-header-select {
-    @apply p-3 border-b-[3px] hover:border-t-blue hover:text-t-blue;
+    @apply p-3 border-b-[3px] hover:border-add-blue hover:text-add-blue;
   }
 
   .tab-footer {
     @apply grow-0 p-2 sm:py-4 sm:px-5 flex flex-col lg:flex-row justify-between items-center 
-    text-t-light sm:text-base text-sm;
+    text-add-light sm:text-base text-sm;
   }
 }
 

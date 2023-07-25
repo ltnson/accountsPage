@@ -14,7 +14,7 @@ const ConfirmTodo = ({
         className="w-96 bg-white p-8 rounded-xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <p className="text-t-light">
+        <p className="text-add-light">
           {nameAction === 'Delete'
             ? 'You want to delete this Todo ??'
             : 'Your Edited Todo don"t save to Server, remove this Todo and edit new??'}

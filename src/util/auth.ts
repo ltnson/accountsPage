@@ -26,3 +26,4 @@ export function checkAuthLoginPage(): null | Response {
   }
   return redirect('/');
 }
+

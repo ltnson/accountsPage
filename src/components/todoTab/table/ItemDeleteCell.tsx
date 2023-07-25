@@ -38,6 +38,7 @@ const ItemDeleteCell = ({ item }: { item: Todo }) => {
 
   const handleDeleteTodo = () => {
     if (pathname === '/todo-axios') {
+      setShowConfirm(false);
       return deleteWithAxios();
     }
     deleteMutation.mutate(item._id, {

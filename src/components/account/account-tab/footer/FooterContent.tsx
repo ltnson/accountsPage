@@ -18,7 +18,7 @@ const FooterContent = ({
   //change content of footer table if pathname change because result of other data dont have skip table
   if (searching) {
     return (
-      <div className="grow-0 p-4 text-t-light sm:text-base text-sm">
+      <div className="grow-0 p-4 text-add-light sm:text-base text-sm">
         <p>
           Showing {searchResult} of {totalTab} total
         </p>
@@ -27,7 +27,7 @@ const FooterContent = ({
   }
   if (pathname.includes('/accounts/filter')) {
     return (
-      <div className="grow-0 p-4 text-t-light  sm:text-base text-sm">
+      <div className="grow-0 p-4 text-add-light  sm:text-base text-sm">
         <p>
           Showing {searchResult} of {totalTab} total
         </p>
@@ -36,14 +36,14 @@ const FooterContent = ({
   }
   if (pathname.includes('vinova')) {
     return (
-      <div className="grow-0 p-4 text-t-light  sm:text-base text-sm">
+      <div className="grow-0 p-4 text-add-light  sm:text-base text-sm">
         <p>Showing {totalTab} accounts of Vinova</p>
       </div>
     );
   }
   if (pathname.includes('partner')) {
     return (
-      <div className="grow-0 p-4 text-t-light  sm:text-base text-sm">
+      <div className="grow-0 p-4 text-add-light  sm:text-base text-sm">
         <p>Showing {totalTab} accounts of partner</p>
       </div>
     );

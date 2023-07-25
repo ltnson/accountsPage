@@ -21,7 +21,7 @@ const TodoDetail = () => {
         >
           <CloseSVG />
         </div>
-        <div className="border-b border-t-neutral/d2 p-8">
+        <div className="border-b border-add-neutral/d2 p-8">
           <Typography className="s12-gray">ID</Typography>
           <Typography className="s14">{item._id}</Typography>
         </div>
@@ -35,7 +35,7 @@ const TodoDetail = () => {
             {item.complete ? 'Completed' : 'Unfinished'}
           </Typography>
         </div>
-        <div className="border-b border-t-neutral/d2 p-8">
+        <div className="border-b border-add-neutral/d2 p-8">
           <Typography className="s12-gray">Author</Typography>
           <Typography className="s14">{item.author}</Typography>
         </div>

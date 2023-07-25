@@ -30,7 +30,7 @@ const AccountDetail = ({
           >
             <CloseSVG />
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 grid-flow-row-dense border-b border-t-light gap-2 sm:gap-5 md:gap-6 pb-3 md:pr-10 lg:pr-16">
+          <div className="grid grid-cols-2 sm:grid-cols-3 grid-flow-row-dense border-b border-add-light gap-2 sm:gap-5 md:gap-6 pb-3 md:pr-10 lg:pr-16">
             <p className="col-span-2 sm:col-span-3 font-semibold">
               Account Detail
             </p>
@@ -47,7 +47,7 @@ const AccountDetail = ({
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 border-b border-t-light gap-4 py-4 md:pr-10 lg:pr-16">
+          <div className="grid grid-cols-2 sm:grid-cols-3 border-b border-add-light gap-4 py-4 md:pr-10 lg:pr-16">
             {detailArr2.map((item, index) => (
               <div key={index}>
                 <Typography className="s12-gray">{item.name}</Typography>
@@ -55,7 +55,7 @@ const AccountDetail = ({
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 border-b border-t-light gap-4 py-4 md:pr-10 lg:pr-16">
+          <div className="grid grid-cols-2 sm:grid-cols-3 border-b border-add-light gap-4 py-4 md:pr-10 lg:pr-16">
             {detailArr3.map((item, index) => (
               <div
                 key={index}

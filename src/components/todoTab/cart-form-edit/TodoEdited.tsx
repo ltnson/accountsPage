@@ -14,7 +14,7 @@ const TodoEdited = ({
 }) => {
   return (
     <div
-      className={`border border-t-neutral/d2 p-4 rounded ${
+      className={`border border-add-neutral/d2 p-4 rounded ${
         idTodo === 'New' ? 'bg-white' : 'bg-red-rgba'
       }`}
     >
@@ -23,7 +23,7 @@ const TodoEdited = ({
           <Typography className="s14-gray">ID</Typography>
           <p
             className={`break-words ${
-              idTodo === 'New' ? 'text-t-green' : 'text-t-red'
+              idTodo === 'New' ? 'text-add-green' : 'text-add-red'
             }`}
           >
             {idTodo}
@@ -35,7 +35,7 @@ const TodoEdited = ({
         </div>
         <div>
           <Typography className="s14-gray">Complete</Typography>
-          <p className={item.complete ? 'text-t-green' : 'text-t-red'}>
+          <p className={item.complete ? 'text-add-green' : 'text-add-red'}>
             {item.complete ? 'Completed' : 'Unfinished'}
           </p>
         </div>

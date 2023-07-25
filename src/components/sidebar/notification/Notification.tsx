@@ -23,7 +23,7 @@ const Notification = () => {
         onClick={() => setLogoutCart(!logoutCart)}
       >
         <img
-          className="bg-t-light rounded-full w-9 h-9 "
+          className="bg-add-light rounded-full w-9 h-9 "
           alt="it is me"
           src={userData?.image}
         />
@@ -32,7 +32,7 @@ const Notification = () => {
         <div className="logout-cart">
           <div>
             <p className="text-lg font-semibold pt-2">{userData?.firstName}</p>
-            <p className="text-sm text-t-neutral">{userData?.email}</p>
+            <p className="text-sm text-add-neutral">{userData?.email}</p>
           </div>
           <Button className="logout" onClick={handleLogout}>
             <LogoutSVG /> Log Out

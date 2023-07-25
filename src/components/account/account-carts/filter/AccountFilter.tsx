@@ -41,8 +41,8 @@ const AccountFilter = () => {
           {filterArr.map((item, index) => (
             <div
               className={`w-full ${
-                index === 4 && 'xl:border-b border-t-neutral/d2 xl:pb-4'
-              } ${index === 1 && 'xl:border-b border-t-neutral/d2 xl:pb-4'}`}
+                index === 4 && 'xl:border-b border-add-neutral/d2 xl:pb-4'
+              } ${index === 1 && 'xl:border-b border-add-neutral/d2 xl:pb-4'}`}
               key={index}
             >
               <FilterForm

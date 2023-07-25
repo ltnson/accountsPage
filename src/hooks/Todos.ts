@@ -3,6 +3,7 @@ import typeTodoApi from '../api/typeTodoApi';
 import { EditTodo } from '../model/types';
 import { catchErr } from './Accounts';
 import { toast } from 'react-hot-toast';
+import axiosTodos from '../api/axiosTodos';
 
 export const reloadTodoKey: string[] = ['todosList'];
 
@@ -41,4 +42,38 @@ export const deleteTodo = () => {
     onSuccess: (data) => toast.success(`${data}, Todo is deleted`),
     onError: (err) => catchErr(err),
   });
+};
+
+//axios todo
+
+export const usePostUpdateTodoAxios = async (
+  idTodo: string,
+  itemEdited: EditTodo,
+) => {
+  try {
+    if (idTodo === 'New') {
+      const res = await axiosTodos.postNewTodo(itemEdited);
+      if (res) {
+        return toast.success(`Todo with Id : ${res} is created`);
+      }
+    } else {
+      const res = await axiosTodos.postEditTodo(idTodo, itemEdited);
+      if (res) {
+        return toast.success(`${res},Todo with Id: ${idTodo} is updated`);
+      }
+    }
+  } catch (err) {
+    return catchErr(err);
+  }
+};
+
+export const useGetTodoListData = async () => {
+  try {
+    const data = await axiosTodos.getTodoList();
+    if (data) {
+      return data;
+    }
+  } catch (err) {
+    catchErr(err);
+  }
 };

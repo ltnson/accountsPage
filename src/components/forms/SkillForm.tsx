@@ -17,7 +17,7 @@ const SkillForm = () => {
             <div className="flex gap-x-1 items-center flex-nowrap sm:flex-nowrap  ml-2 w-auto pr-2 h-6">
               {skill.map((sk, index) => (
                 <div
-                  className={`rounded-3xl border border-t-neutral/d2 text-center flex items-center flex-nowrap ${
+                  className={`rounded-3xl border border-add-neutral/d2 text-center flex items-center flex-nowrap ${
                     sk === '' && 'hidden'
                   }`}
                   key={index}
@@ -46,7 +46,7 @@ const SkillForm = () => {
             <div className="flex gap-x-1 items-center flex-nowrap  ml-2 w-auto pr-2 h-6">
               {newSk.map((sk, index) => (
                 <div
-                  className={`rounded-3xl border border-t-neutral/d2 text-center flex items-center flex-wrap ${
+                  className={`rounded-3xl border border-add-neutral/d2 text-center flex items-center flex-wrap ${
                     sk === '' && 'hidden'
                   }`}
                   key={index}
